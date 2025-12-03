@@ -184,7 +184,7 @@ class EmailClassifier:
         """Sauvegarde les catégories"""
         categories_file = self.config_dir / "categories.json"
         with open(categories_file, "w") as f:
-            json.dump({k: asdict(v) for k, v in categories.items()}, f, indent=2, ensure_ascii=False)
+            json.dump({k: v.dict() for k, v in categories.items()}, f, indent=2, ensure_ascii=False)
 
     def _load_training_examples(self) -> List[TrainingExample]:
         """Charge les exemples d'entraînement"""
