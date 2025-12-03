@@ -192,38 +192,37 @@ end
 # --- 8. CRÉER FICHIER DE CONFIGURATION ENV ---
 log_info "Génération du fichier de configuration d'environnement..."
 
-cat > $CONFIG_FILE << 'EOF'
-#!/usr/bin/env fish
-# ProtonLumoAI - Configuration d'environnement
-
-# Chemins
-set -gx PROTON_LUMO_HOME (dirname (dirname (status filename)))
-set -gx PROTON_LUMO_SCRIPTS "$PROTON_LUMO_HOME/scripts"
-set -gx PROTON_LUMO_CONFIG "$PROTON_LUMO_HOME/config"
-set -gx PROTON_LUMO_DATA "$PROTON_LUMO_HOME/data"
-set -gx PROTON_LUMO_LOGS "$PROTON_LUMO_HOME/logs"
-
-# ProtonMail Bridge
-set -gx PROTON_BRIDGE_HOST "127.0.0.1"
-set -gx PROTON_BRIDGE_PORT "1143"
-set -gx PROTON_BRIDGE_SMTP_PORT "1025"
-
-# Configuration
-set -gx PROTON_LUMO_CONFIG_FILE "$PROTON_LUMO_CONFIG/config.yaml"
-set -gx PROTON_LUMO_MODELS_DIR "$PROTON_LUMO_DATA/models"
-set -gx PROTON_LUMO_TRAINING_DIR "$PROTON_LUMO_DATA/training"
-
-# Logging
-set -gx PROTON_LUMO_LOG_LEVEL "INFO"
-set -gx PROTON_LUMO_LOG_FILE "$PROTON_LUMO_LOGS/processor.log"
-
-# Alias utiles
-alias lumo-logs="tail -f $PROTON_LUMO_LOGS/processor.log"
-alias lumo-run="python3 $PROTON_LUMO_SCRIPTS/email_processor.py"
-alias lumo-train="python3 $PROTON_LUMO_SCRIPTS/train_classifier.py"
-alias lumo-status="systemctl --user status protonmail-bridge.service"
-alias lumo-check="fish $PROTON_LUMO_SCRIPTS/check_dependencies.sh"
-EOF
+# Créer le fichier de configuration avec echo (compatible Fish)
+echo '#!/usr/bin/env fish' > $CONFIG_FILE
+echo '# ProtonLumoAI - Configuration d\'environnement' >> $CONFIG_FILE
+echo '' >> $CONFIG_FILE
+echo '# Chemins' >> $CONFIG_FILE
+echo 'set -gx PROTON_LUMO_HOME (dirname (dirname (status filename)))' >> $CONFIG_FILE
+echo 'set -gx PROTON_LUMO_SCRIPTS "$PROTON_LUMO_HOME/scripts"' >> $CONFIG_FILE
+echo 'set -gx PROTON_LUMO_CONFIG "$PROTON_LUMO_HOME/config"' >> $CONFIG_FILE
+echo 'set -gx PROTON_LUMO_DATA "$PROTON_LUMO_HOME/data"' >> $CONFIG_FILE
+echo 'set -gx PROTON_LUMO_LOGS "$PROTON_LUMO_HOME/logs"' >> $CONFIG_FILE
+echo '' >> $CONFIG_FILE
+echo '# ProtonMail Bridge' >> $CONFIG_FILE
+echo 'set -gx PROTON_BRIDGE_HOST "127.0.0.1"' >> $CONFIG_FILE
+echo 'set -gx PROTON_BRIDGE_PORT "1143"' >> $CONFIG_FILE
+echo 'set -gx PROTON_BRIDGE_SMTP_PORT "1025"' >> $CONFIG_FILE
+echo '' >> $CONFIG_FILE
+echo '# Configuration' >> $CONFIG_FILE
+echo 'set -gx PROTON_LUMO_CONFIG_FILE "$PROTON_LUMO_CONFIG/config.yaml"' >> $CONFIG_FILE
+echo 'set -gx PROTON_LUMO_MODELS_DIR "$PROTON_LUMO_DATA/models"' >> $CONFIG_FILE
+echo 'set -gx PROTON_LUMO_TRAINING_DIR "$PROTON_LUMO_DATA/training"' >> $CONFIG_FILE
+echo '' >> $CONFIG_FILE
+echo '# Logging' >> $CONFIG_FILE
+echo 'set -gx PROTON_LUMO_LOG_LEVEL "INFO"' >> $CONFIG_FILE
+echo 'set -gx PROTON_LUMO_LOG_FILE "$PROTON_LUMO_LOGS/processor.log"' >> $CONFIG_FILE
+echo '' >> $CONFIG_FILE
+echo '# Alias utiles' >> $CONFIG_FILE
+echo 'alias lumo-logs="tail -f $PROTON_LUMO_LOGS/processor.log"' >> $CONFIG_FILE
+echo 'alias lumo-run="python3 $PROTON_LUMO_SCRIPTS/email_processor.py"' >> $CONFIG_FILE
+echo 'alias lumo-train="python3 $PROTON_LUMO_SCRIPTS/train_classifier.py"' >> $CONFIG_FILE
+echo 'alias lumo-status="systemctl --user status protonmail-bridge.service"' >> $CONFIG_FILE
+echo 'alias lumo-check="fish $PROTON_LUMO_SCRIPTS/check_dependencies.sh"' >> $CONFIG_FILE
 
 log_success "Configuration d'environnement créée : $CONFIG_FILE"
 
