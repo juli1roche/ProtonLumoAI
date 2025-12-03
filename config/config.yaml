@@ -1,215 +1,27 @@
-# ============================================================================
 # ProtonLumoAI Configuration
-# ============================================================================
 
-# Configuration ProtonMail Bridge
 bridge:
-  host: "127.0.0.1"
+  host: 127.0.0.1
   port: 1143
   smtp_port: 1025
-  timeout: 30
 
-# Configuration de traitement des emails
 processing:
-  # Intervalle de polling (en secondes)
-  poll_interval: 60
-  
-  # Intervalle d'amélioration automatique (en secondes)
+  poll_interval: 60  # secondes
   auto_improve_interval: 3600  # 1 heure
-  
-  # Traiter uniquement les emails non-lus
   process_unseen_only: true
-  
-  # Mode de test (ne pas déplacer les emails)
   dry_run: false
-  
-  # Nombre maximum d'emails à traiter par cycle
-  max_emails_per_cycle: 100
 
-# Configuration de classification
 classification:
-  # Seuil de confiance minimum pour accepter une classification
   confidence_threshold: 0.6
-  
-  # Utiliser Lumo CLI si disponible
   use_lumo: true
-  
-  # Utiliser les mots-clés en fallback
   use_keywords_fallback: true
-  
-  # Méthode de classification par défaut
-  default_method: "lumo"  # "lumo", "keyword", "hybrid"
 
-# Configuration d'entraînement
 training:
-  # Activer l'entraînement automatique
   auto_train: true
-  
-  # Intervalle d'évaluation de la performance (en secondes)
   evaluation_interval: 3600
-  
-  # Nombre minimum d'exemples avant d'entraîner
   min_examples_for_training: 10
-  
-  # Nombre d'exemples pour l'évaluation
-  evaluation_test_size: 100
 
-# Catégories d'emails
-categories:
-  SPAM:
-    folder: "Spam"
-    priority: 1
-    confidence_threshold: 0.7
-    keywords:
-      - "unsubscribe"
-      - "click here"
-      - "limited time"
-      - "act now"
-      - "free money"
-      - "congratulations"
-      - "winner"
-  
-  VENTE:
-    folder: "Achats"
-    priority: 2
-    confidence_threshold: 0.65
-    keywords:
-      - "solde"
-      - "promo"
-      - "offrir"
-      - "%"
-      - "commander"
-      - "panier"
-      - "livraison"
-      - "code promo"
-      - "réduction"
-  
-  BANQUE:
-    folder: "Administratif/Banque"
-    priority: 3
-    confidence_threshold: 0.8
-    keywords:
-      - "virement"
-      - "compte"
-      - "banque"
-      - "facture"
-      - "paiement"
-      - "transaction"
-      - "solde"
-      - "relevé"
-  
-  PRO:
-    folder: "Travail"
-    priority: 4
-    confidence_threshold: 0.7
-    keywords:
-      - "réunion"
-      - "projet"
-      - "client"
-      - "deadline"
-      - "rapport"
-      - "présentation"
-      - "meeting"
-      - "conférence"
-  
-  URGENT:
-    folder: "À traiter"
-    priority: 5
-    confidence_threshold: 0.75
-    keywords:
-      - "urgent"
-      - "asap"
-      - "important"
-      - "action requise"
-      - "immédiat"
-      - "prioritaire"
-  
-  VOYAGES:
-    folder: "Voyages"
-    priority: 2
-    confidence_threshold: 0.7
-    keywords:
-      - "billet"
-      - "train"
-      - "vol"
-      - "booking"
-      - "hôtel"
-      - "réservation"
-      - "itinéraire"
-      - "vol confirmé"
-  
-  SOCIAL:
-    folder: "Réseaux sociaux"
-    priority: 1
-    confidence_threshold: 0.65
-    keywords:
-      - "like"
-      - "comment"
-      - "follow"
-      - "share"
-      - "mention"
-      - "notification"
-      - "friend request"
-  
-  NEWSLETTER:
-    folder: "Newsletters"
-    priority: 1
-    confidence_threshold: 0.7
-    keywords:
-      - "newsletter"
-      - "weekly"
-      - "monthly"
-      - "digest"
-      - "subscribe"
-      - "unsubscribe"
-
-# Dossiers spéciaux
-folders:
-  # Dossier pour l'entraînement manuel
-  training_root: "Training"
-  
-  # Dossier pour les corrections
-  corrections: "Corrections"
-  
-  # Dossier pour les feedbacks
-  feedback: "Feedback"
-
-# Configuration de logging
 logging:
-  # Niveau de log
-  level: "INFO"  # DEBUG, INFO, WARNING, ERROR, CRITICAL
-  
-  # Format des logs
-  format: "{time:YYYY-MM-DD HH:mm:ss} | {level: <8} | {name}:{function}:{line} - {message}"
-  
-  # Rotation des fichiers de log
+  level: INFO
   rotation: "10 MB"
-  
-  # Rétention des logs
   retention: "30 days"
-  
-  # Afficher les logs dans la console
-  console: true
-
-# Configuration avancée
-advanced:
-  # Nombre de threads pour le traitement parallèle
-  max_workers: 4
-  
-  # Timeout pour les opérations IMAP (en secondes)
-  imap_timeout: 30
-  
-  # Timeout pour les appels Lumo (en secondes)
-  lumo_timeout: 10
-  
-  # Nombre de tentatives en cas d'erreur
-  max_retries: 3
-  
-  # Délai entre les tentatives (en secondes)
-  retry_delay: 5
-  
-  # Activer le cache des classifications
-  enable_cache: true
-  
-  # Taille du cache
-  cache_size: 1000
