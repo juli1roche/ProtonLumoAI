@@ -20,7 +20,7 @@ from threading import Thread, Event
 from loguru import logger
 
 from email_classifier import EmailClassifier
-from train_classifier import TrainingManager
+from feedback_manager import FeedbackManager
 
 
 class ProtonMailBox:
@@ -119,7 +119,7 @@ class EmailProcessor:
     def __init__(self):
         """Initialise le processeur"""
         self.classifier = EmailClassifier()
-        self.trainer = TrainingManager(self.classifier)
+        self.feedback_manager = None # Sera initialisé avec une mailbox
         self.running = False
         self.last_improvement = 0
         self.processed_count = 0
@@ -159,7 +159,7 @@ class EmailProcessor:
                 folder_name = folder_info.decode().split(' "/" ')[-1].strip('"')
                 
                 # Ignorer les dossiers spéciaux
-                if folder_name in ["INBOX", "Spam", "Trash", "Sent", "Drafts", "Archives"]:
+                if folder_name in ["INBOX", "Spam", "Trash", "Sent", "Drafts", "Archives"] or folder_name.startswith("Feedback"):
                     continue
                 
                 logger.info(f"Traitement du dossier: {folder_name}")
@@ -302,19 +302,19 @@ class EmailProcessor:
         """Exécute un cycle de traitement"""
         try:
             mailbox = self.connect_mailbox()
+            self.feedback_manager = FeedbackManager(self.classifier, mailbox)
+            
             try:
                 self.process_all_folders(mailbox)
+                
+                # Vérifier si amélioration automatique est nécessaire
+                current_time = time.time()
+                if current_time - self.last_improvement > AUTO_IMPROVE_INTERVAL:
+                    logger.info("Lancement de l'amélioration automatique...")
+                    self.feedback_manager.check_for_feedback()
+                    self.last_improvement = current_time
             finally:
                 mailbox.close()
-            
-            # Vérifier si amélioration automatique est nécessaire
-            current_time = time.time()
-            if current_time - self.last_improvement > AUTO_IMPROVE_INTERVAL:
-                logger.info("Lancement de l'amélioration automatique...")
-                # Note: auto_improve() peut nécessiter une mailbox
-                # Pour l'instant, on l'ignore pour éviter les erreurs
-                # self.trainer.auto_improve(mailbox)
-                self.last_improvement = current_time
             
             return True
         except Exception as e:
