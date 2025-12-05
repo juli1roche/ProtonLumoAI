@@ -22,6 +22,33 @@ from imap_tools import MailBox, AND
 from email_classifier import EmailClassifier
 from train_classifier import TrainingManager
 
+
+class ProtonMailBox(MailBox):
+    """MailBox personnalisé pour ProtonMail Bridge avec STARTTLS"""
+    
+    def __init__(self, host, port, username, password, timeout=None):
+        """Initialise la connexion avec STARTTLS"""
+        # Créer le contexte SSL
+        ssl_context = ssl.create_default_context()
+        ssl_context.check_hostname = False
+        ssl_context.verify_mode = ssl.CERT_NONE
+        
+        # Appeler le constructeur parent SANS ssl_context (pour éviter SSL direct)
+        super().__init__(host=host, port=port, timeout=timeout)
+        
+        # Remplacer la connexion par une connexion STARTTLS
+        try:
+            # Créer une connexion IMAP4 non sécurisée
+            self.client = imaplib.IMAP4(host, port, timeout=timeout or 10)
+            # Appliquer STARTTLS
+            self.client.starttls(ssl_context=ssl_context)
+            # Se connecter
+            self.client.login(username, password)
+            logger.success(f"Connexion STARTTLS établie avec {host}:{port}")
+        except Exception as e:
+            logger.error(f"Erreur connexion STARTTLS: {e}")
+            raise
+
 # --- CONFIGURATION LOGGING ---
 LOG_DIR = Path(os.getenv("PROTON_LUMO_LOGS", "~/ProtonLumoAI/logs")).expanduser()
 LOG_DIR.mkdir(parents=True, exist_ok=True)
@@ -58,25 +85,16 @@ class EmailProcessor:
         
         logger.info("EmailProcessor initialisé")
 
-    def connect_mailbox(self) -> MailBox:
-        """Établit la connexion à la boîte mail"""
+    def connect_mailbox(self) -> ProtonMailBox:
+        """Établit la connexion à la boîte mail ProtonMail Bridge"""
         logger.info(f"Connexion à {IMAP_HOST}:{IMAP_PORT}...")
         try:
-            # ProtonMail Bridge utilise STARTTLS (pas SSL direct)
-            # Créer le contexte SSL
-            ssl_context = ssl.create_default_context()
-            ssl_context.check_hostname = False
-            ssl_context.verify_mode = ssl.CERT_NONE
-            
-            # Connexion avec imaplib directement pour STARTTLS
-            imap = imaplib.IMAP4(IMAP_HOST, IMAP_PORT, timeout=10)
-            imap.starttls(ssl_context=ssl_context)
-            imap.login(IMAP_USERNAME, IMAP_PASSWORD)
-            
-            # Créer un MailBox avec la connexion existante
-            mailbox = MailBox(IMAP_HOST, IMAP_PORT)
-            mailbox.client = imap
-            
+            mailbox = ProtonMailBox(
+                host=IMAP_HOST,
+                port=IMAP_PORT,
+                username=IMAP_USERNAME,
+                password=IMAP_PASSWORD
+            )
             logger.success("Connexion établie")
             return mailbox
         except Exception as e:

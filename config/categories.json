@@ -1,0 +1,126 @@
+{
+  "SPAM": {
+    "name": "SPAM",
+    "folder": "Spam",
+    "keywords": [
+      "unsubscribe",
+      "click here",
+      "limited time",
+      "act now",
+      "free money"
+    ],
+    "confidence_threshold": 0.7,
+    "priority": 1,
+    "description": "Emails non sollicités et publicités"
+  },
+  "VENTE": {
+    "name": "VENTE",
+    "folder": "Achats",
+    "keywords": [
+      "solde",
+      "promo",
+      "offrir",
+      "%",
+      "commander",
+      "panier",
+      "livraison",
+      "code promo"
+    ],
+    "confidence_threshold": 0.65,
+    "priority": 2,
+    "description": "Emails commerciaux et offres d'achat"
+  },
+  "BANQUE": {
+    "name": "BANQUE",
+    "folder": "Administratif/Banque",
+    "keywords": [
+      "virement",
+      "compte",
+      "banque",
+      "facture",
+      "paiement",
+      "transaction",
+      "solde"
+    ],
+    "confidence_threshold": 0.8,
+    "priority": 3,
+    "description": "Emails bancaires et administratifs"
+  },
+  "PRO": {
+    "name": "PRO",
+    "folder": "Travail",
+    "keywords": [
+      "réunion",
+      "projet",
+      "client",
+      "deadline",
+      "rapport",
+      "présentation",
+      "meeting"
+    ],
+    "confidence_threshold": 0.7,
+    "priority": 4,
+    "description": "Emails professionnels"
+  },
+  "URGENT": {
+    "name": "URGENT",
+    "folder": "À traiter",
+    "keywords": [
+      "urgent",
+      "asap",
+      "important",
+      "action requise",
+      "immédiat"
+    ],
+    "confidence_threshold": 0.75,
+    "priority": 5,
+    "description": "Emails marqués comme urgents"
+  },
+  "VOYAGES": {
+    "name": "VOYAGES",
+    "folder": "Voyages",
+    "keywords": [
+      "billet",
+      "train",
+      "vol",
+      "booking",
+      "hôtel",
+      "réservation",
+      "itinéraire"
+    ],
+    "confidence_threshold": 0.7,
+    "priority": 2,
+    "description": "Confirmations et informations de voyage"
+  },
+  "SOCIAL": {
+    "name": "SOCIAL",
+    "folder": "Réseaux sociaux",
+    "keywords": [
+      "like",
+      "comment",
+      "follow",
+      "share",
+      "mention",
+      "notification",
+      "friend request"
+    ],
+    "confidence_threshold": 0.65,
+    "priority": 1,
+    "description": "Notifications des réseaux sociaux"
+  },
+  "NEWSLETTER": {
+    "name": "NEWSLETTER",
+    "folder": "Newsletters",
+    "keywords": [
+      "newsletter",
+      "weekly",
+      "monthly",
+      "digest",
+      "subscribe",
+      "unsubscribe"
+    ],
+    "confidence_threshold": 0.7,
+    "priority": 1,
+    "description": "Newsletters et digests"
+  }
+}
