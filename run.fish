@@ -70,6 +70,10 @@ echo ""
 echo "🚀 Démarrage du processeur d'emails..."
 echo ""
 
+# Synchroniser les dossiers avant de démarrer
+echo "🔄 Synchronisation des dossiers ProtonMail..."
+$PYTHON_BIN scripts/sync_folders.py
+
 # Lancer le processeur avec le Python du venv
 set -l PYTHON_BIN (pwd)"/venv/bin/python3"
 

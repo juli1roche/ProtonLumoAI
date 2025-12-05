@@ -40,5 +40,9 @@ if ! systemctl --user is-active --quiet protonmail-bridge.service; then
     sleep 2
 fi
 
+# Synchroniser les dossiers avant de démarrer
+echo "🔄 Synchronisation des dossiers ProtonMail..."
+python3 "$SCRIPT_DIR/sync_folders.py"
+
 # Lancer le processeur
 python3 "$SCRIPT_DIR/email_processor.py"
