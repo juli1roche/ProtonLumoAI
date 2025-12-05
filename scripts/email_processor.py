@@ -11,19 +11,17 @@ import sys
 import ssl
 import imaplib
 from pathlib import Path
-from typing import Optional
+from typing import Optional, Set
 
 from loguru import logger
 from dotenv import load_dotenv
 
 # Import des modules locaux
-# Assurez-vous que le PYTHONPATH est correct ou que les scripts sont dans le même dossier
 try:
     from email_classifier import EmailClassifier
     from email_parser import EmailParser
     from feedback_manager import FeedbackManager
 except ImportError:
-    # Fallback pour exécution directe depuis le dossier scripts/
     sys.path.append(os.path.dirname(os.path.abspath(__file__)))
     from email_classifier import EmailClassifier
     from email_parser import EmailParser
@@ -40,6 +38,7 @@ PROTON_PASSWORD = os.getenv("PROTON_PASSWORD")
 POLL_INTERVAL = int(os.getenv("PROTON_LUMO_POLL_INTERVAL", 60))
 UNSEEN_ONLY = os.getenv("PROTON_LUMO_UNSEEN_ONLY", "true").lower() == "true"
 DRY_RUN = os.getenv("PROTON_LUMO_DRY_RUN", "false").lower() == "true"
+MAX_EMAILS_PER_FOLDER = int(os.getenv("PROTON_LUMO_MAX_EMAILS_PER_FOLDER", 100))
 
 
 class ProtonMailBox:
@@ -55,29 +54,27 @@ class ProtonMailBox:
         self.password = password
         self.timeout = timeout or 10
         self.client: Optional[imaplib.IMAP4] = None
+        self._existing_folders: Set[str] = set()
         self._connect()
     
     def _connect(self):
         """Établit la connexion STARTTLS avec ProtonMail Bridge"""
         try:
-            # Contexte SSL permissif pour le certificat auto-signé du Bridge
             ssl_context = ssl.create_default_context()
             ssl_context.check_hostname = False
             ssl_context.verify_mode = ssl.CERT_NONE
             
-            # 1. Connexion TCP simple (non chiffrée au départ)
             logger.debug(f"Connexion IMAP à {self.host}:{self.port}...")
             self.client = imaplib.IMAP4(self.host, self.port, timeout=self.timeout)
             
-            # 2. Upgrade vers TLS via STARTTLS
             logger.debug("Envoi de la commande STARTTLS...")
             self.client.starttls(ssl_context=ssl_context)
             
-            # 3. Authentification
             logger.debug(f"Authentification pour {self.username}...")
             self.client.login(self.username, self.password)
             
             logger.success(f"Connexion établie avec succès ({self.host}:{self.port})")
+            self._refresh_folder_cache()
             
         except Exception as e:
             logger.error(f"Échec de la connexion IMAP/STARTTLS : {e}")
@@ -87,6 +84,28 @@ class ProtonMailBox:
                 except:
                     pass
             raise
+
+    def _refresh_folder_cache(self):
+        """Met à jour le cache des dossiers existants"""
+        try:
+            status, folders = self.client.list()
+            if status == 'OK':
+                for folder_bytes in folders:
+                    try:
+                        folder_raw = folder_bytes.decode('utf-8')
+                    except UnicodeDecodeError:
+                        folder_raw = folder_bytes.decode('latin-1')
+                    
+                    parts = folder_raw.split(' "/' ')
+                    if len(parts) > 1:
+                        folder_name = parts[-1].strip('"')
+                        self._existing_folders.add(folder_name)
+        except Exception as e:
+            logger.warning(f"Erreur lors de la mise à jour du cache des dossiers: {e}")
+
+    def folder_exists(self, folder_path: str) -> bool:
+        """Vérifie si un dossier existe"""
+        return folder_path in self._existing_folders
 
     def __enter__(self):
         return self
@@ -98,11 +117,11 @@ class ProtonMailBox:
         """Ferme proprement la connexion"""
         if self.client:
             try:
-                self.client.close() # Close selected folder
+                self.client.close()
             except:
                 pass
             try:
-                self.client.logout() # Logout from server
+                self.client.logout()
             except:
                 pass
 
@@ -113,16 +132,14 @@ class EmailProcessor:
     def __init__(self):
         self.classifier = EmailClassifier()
         self.parser = EmailParser()
-        # FeedbackManager sera initialisé avec une connexion active
         self.feedback_manager: Optional[FeedbackManager] = None
         self.running = True
         self.initial_scan_done = False
         
-        # Gestion des signaux pour arrêt propre (Ctrl+C)
         signal.signal(signal.SIGINT, self._signal_handler)
         signal.signal(signal.SIGTERM, self._signal_handler)
 
-        logger.info(f"EmailProcessor démarré [Dry Run: {DRY_RUN}, Unseen Only: {UNSEEN_ONLY}]")
+        logger.info(f"EmailProcessor démarré [Dry Run: {DRY_RUN}, Unseen Only: {UNSEEN_ONLY}, Max/Folder: {MAX_EMAILS_PER_FOLDER}]")
 
     def _signal_handler(self, sig, frame):
         logger.info("Signal d'arrêt reçu. Fermeture...")
@@ -151,15 +168,35 @@ class EmailProcessor:
             return cat_obj.folder
         return None
 
-    def create_folder_recursively(self, mailbox: ProtonMailBox, folder_path: str):
-        """Crée un dossier et ses parents s'ils n'existent pas."""
+    def ensure_folder_exists(self, mailbox: ProtonMailBox, folder_path: str) -> bool:
+        """
+        S'assure qu'un dossier existe, le crée récursivement si nécessaire.
+        Retourne True si le dossier existe ou a été créé, False en cas d'échec.
+        """
+        # Vérifier le cache d'abord
+        if mailbox.folder_exists(folder_path):
+            return True
+        
+        # Créer récursivement
         path_parts = folder_path.split('/')
         current_path = ''
+        
         for part in path_parts:
             if current_path:
                 current_path += '/'
             current_path += part
-            mailbox.client.create(f'''{current_path}''')
+            
+            if not mailbox.folder_exists(current_path):
+                try:
+                    logger.debug(f"Création du dossier: {current_path}")
+                    mailbox.client.create(f'"{current_path}"')
+                    mailbox._existing_folders.add(current_path)
+                    logger.success(f"✓ Dossier créé: {current_path}")
+                except Exception as e:
+                    logger.error(f"Impossible de créer le dossier {current_path}: {e}")
+                    return False
+        
+        return True
 
     def process_folder(self, mailbox: ProtonMailBox, folder_name: str = "INBOX") -> int:
         """
@@ -168,15 +205,14 @@ class EmailProcessor:
         """
         processed_count = 0
         try:
-            # Sélection du dossier (avec gestion des caractères spéciaux)
+            # Sélection du dossier avec échappement des guillemets
             try:
-                mailbox.client.select(f'''{folder_name}''')
+                mailbox.client.select(f'"{folder_name}"')
             except Exception as e:
                 logger.error(f"Impossible de sélectionner le dossier {folder_name}: {e}")
                 return 0
 
             # Critère de recherche
-            # Modification pour le scan initial
             if not self.initial_scan_done:
                 criteria = 'ALL'
                 logger.info("Premier démarrage : Scan de TOUS les emails.")
@@ -190,14 +226,20 @@ class EmailProcessor:
                 return 0
 
             email_ids = messages[0].split()
-            logger.info(f"{len(email_ids)} email(s) trouvé(s) dans {folder_name}")
+            total_emails = len(email_ids)
+            
+            # Limiter le nombre d'emails traités par dossier
+            if total_emails > MAX_EMAILS_PER_FOLDER:
+                logger.warning(f"⚠️  {total_emails} emails trouvés dans {folder_name}, limitation à {MAX_EMAILS_PER_FOLDER} pour éviter la surcharge API")
+                email_ids = email_ids[:MAX_EMAILS_PER_FOLDER]
+            
+            logger.info(f"{len(email_ids)} email(s) trouvé(s) dans {folder_name} (sur {total_emails} total)")
 
             for email_id in email_ids:
                 if not self.running:
                     break
 
                 try:
-                    # Récupération du contenu complet (RFC822)
                     res, msg_data = mailbox.client.fetch(email_id, '(RFC822)')
                     if res != 'OK':
                         logger.error(f"Erreur fetch email ID {email_id}")
@@ -205,27 +247,28 @@ class EmailProcessor:
 
                     raw_email = msg_data[0][1]
                     
-                    # 1. Parsing robuste
+                    # Parsing
                     subject, sender, body = self.parser.parse(raw_email)
                     
-                    # 2. Classification
+                    # Classification
                     result = self.classifier.classify(email_id.decode(), subject, body)
                     category = result.category
                     confidence = result.confidence
 
                     logger.info(f"Email '{subject[:30]}...' -> {category} ({confidence:.2f})")
 
-                    # 3. Action (Déplacement)
+                    # Déplacement
                     target_folder = self._get_target_folder(category)
                     
                     if target_folder:
                         if not DRY_RUN:
-                            # S'assurer que le dossier existe avant de copier
-                            self.create_folder_recursively(mailbox, target_folder)
+                            # S'assurer que le dossier de destination existe
+                            if not self.ensure_folder_exists(mailbox, target_folder):
+                                logger.error(f"Impossible de créer le dossier {target_folder}, email non déplacé")
+                                continue
 
-                            res, _ = mailbox.client.copy(email_id, f'''{target_folder}''')
+                            res, _ = mailbox.client.copy(email_id, f'"{target_folder}"')
                             if res == 'OK':
-                                # Marquer pour suppression dans la source (déplacement = copy + delete)
                                 mailbox.client.store(email_id, '+FLAGS', '\\Deleted')
                                 logger.success(f"✓ Déplacé vers {target_folder}")
                                 processed_count += 1
@@ -240,7 +283,7 @@ class EmailProcessor:
                     logger.error(f"Erreur traitement email {email_id.decode('utf-8', 'ignore')}: {e}")
                     continue
 
-            # Appliquer les suppressions (expunge)
+            # Purge
             if not DRY_RUN and processed_count > 0:
                 logger.info(f"Purge de {processed_count} email(s) déplacé(s) de {folder_name}...")
                 mailbox.client.expunge()
@@ -255,8 +298,7 @@ class EmailProcessor:
         """Boucle principale du service."""
         logger.info("Démarrage de la boucle de traitement...")
 
-        # Liste des dossiers à NE PAS scanner (Dossiers systèmes et destination)
-        # Adaptez cette liste selon les noms exacts dans votre ProtonMail
+        # Dossiers à exclure
         EXCLUDED_FOLDERS = [
             "Trash", "Corbeille", 
             "Spam", "Junk",
@@ -264,54 +306,55 @@ class EmailProcessor:
             "Sent", "Sent Messages", "Envoyés",
             "Drafts", "Brouillons",
             "All Mail", "Tous les messages",
-            "Folders/GMAIL", # Exclure le dossier d'archive volumineux
+            "Folders/GMAIL",
             "Labels/[Imap]/Sent",
             "Labels/Sent",
             "Sent",
             "Labels/[Imap]/Trash",
             "Labels/[Imap]\\",
-            "Labels/undefined 23-12-2022 15:03"
+            "Labels/[Imap]\\/Trash",
+            "Labels/[Imap]\\/Sent",
+            "Labels/undefined 23-12-2022 15:03",
+            "Labels/gmail.com 23-12-2022 14:55",
+            "Labels/OM *"
         ]
 
         while self.running:
             try:
-                # Connexion (nouvelle à chaque cycle pour éviter les timeouts)
                 with self.connect_mailbox() as mailbox:
                     
-                    # 1. Initialiser le FeedbackManager
+                    # FeedbackManager
                     if not self.feedback_manager:
                         self.feedback_manager = FeedbackManager(self.classifier, mailbox)
                     else:
                         self.feedback_manager.mailbox = mailbox
 
-                    # 2. Vérifier les corrections (Feedback Loop)
                     self.feedback_manager.check_for_feedback()
 
-                    # 3. Traiter TOUS les dossiers (Modification ici)
+                    # Traiter tous les dossiers
                     status, folders = mailbox.client.list()
                     total_processed = 0
                     
                     if status == 'OK':
                         for folder_bytes in folders:
-                            # Décodage robuste du nom du dossier
-                            # Format typique: (\HasNoChildren) "/" "NomDuDossier"
                             try:
                                 folder_raw = folder_bytes.decode('utf-8')
                             except UnicodeDecodeError:
-                                folder_raw = folder_bytes.decode('latin-1') # Fallback
+                                folder_raw = folder_bytes.decode('latin-1')
 
                             parts = folder_raw.split(' "/" ')
                             if len(parts) > 1:
-                                folder_name = parts[-1].strip('''"''')
+                                folder_name = parts[-1].strip('"')
                             else:
-                                continue # Skip invalid folder format
+                                continue
                             
-                            # Ignorer les dossiers exclus et les dossiers d'entraînement/feedback
-                            # Aussi ignorer les dossiers avec des caractères spéciaux problématiques
+                            # Filtrer les dossiers problématiques
                             if (folder_name not in EXCLUDED_FOLDERS and 
                                 not folder_name.startswith("Training") and 
                                 not folder_name.startswith("Feedback") and
                                 '\\' not in folder_name and
+                                '*' not in folder_name and
+                                ':' not in folder_name and
                                 'undefined' not in folder_name.lower()):
                                 
                                 logger.debug(f"Scan du dossier: {folder_name}")
@@ -323,12 +366,10 @@ class EmailProcessor:
                     else:
                         logger.debug("Cycle terminé. Aucun changement.")
 
-                    # Marquer le scan initial comme terminé
                     if not self.initial_scan_done:
                         self.initial_scan_done = True
                         logger.success("Scan initial terminé. Le système se concentrera désormais sur les nouveaux emails.")
 
-                # Attente avant le prochain cycle
                 time.sleep(POLL_INTERVAL)
 
             except Exception as e:
@@ -339,7 +380,6 @@ class EmailProcessor:
 
 
 if __name__ == "__main__":
-    # Point d'entrée
     try:
         processor = EmailProcessor()
         processor.run()
