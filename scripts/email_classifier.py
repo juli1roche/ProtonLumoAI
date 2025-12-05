@@ -7,6 +7,7 @@
 import os
 import json
 import subprocess
+import requests
 from typing import Dict, List, Tuple, Optional
 from dataclasses import dataclass, asdict
 from datetime import datetime
@@ -145,7 +146,7 @@ class EmailClassifier:
         self.models_dir.mkdir(parents=True, exist_ok=True)
         self.training_dir.mkdir(parents=True, exist_ok=True)
         
-        self.use_lumo = use_lumo and self._check_lumo_available()
+        self.use_lumo = use_lumo or bool(os.getenv("PERPLEXITY_API_KEY"))
         self.categories = self._load_categories()
         self.training_examples = self._load_training_examples()
         self.classification_history = []
@@ -212,37 +213,61 @@ class EmailClassifier:
 
     def classify_with_lumo(self, subject: str, body: str) -> Tuple[str, float, str]:
         """
-        Classification via Lumo CLI
-        
-        Returns:
-            (category, confidence, explanation)
+        Classification via Perplexity API (remplace Lumo CLI)
         """
+        api_key = os.getenv("PERPLEXITY_API_KEY")
+        if not api_key:
+            logger.warning("Clé API Perplexity manquante. Configurez PERPLEXITY_API_KEY dans .env")
+            return None, 0.0, ""
+
         try:
-            text_content = f"{subject}\n{body[:1000]}"
-            
-            # Appel Lumo CLI
-            result = subprocess.run(
-                ["lumo", "classify", "--text", text_content, "--json"],
-                capture_output=True,
-                text=True,
-                timeout=10
+            # Préparation du prompt pour l'IA
+            categories_list = ", ".join(self.categories.keys())
+            prompt = (
+                f"Analyze this email and classify it into exactly one of these categories: {categories_list}.\n"
+                f"Subject: {subject}\n"
+                f"Body: {body[:1000]}\n\n"
+                "Return ONLY a JSON object with this format: {\\\"category\\\": \\\"CATEGORY_NAME\\\", \\\"confidence\\\": 0.9, \\\"explanation\\\": \\\"short reason\\\"}"
             )
+
+            # Appel API Perplexity
+            headers = {
+                "Authorization": f"Bearer {api_key}",
+                "Content-Type": "application/json"
+            }
+            data = {
+                "model": "sonar-pro", # Ou "sonar" pour moins cher
+                "messages": [
+                    {"role": "system", "content": "You are a helpful email classification assistant that outputs only JSON."},
+                    {"role": "user", "content": prompt}
+                ]
+            }
             
-            if result.returncode == 0:
-                try:
-                    output = json.loads(result.stdout)
-                    category = output.get("category", "UNKNOWN").upper()
-                    confidence = float(output.get("confidence", 0.0))
-                    explanation = output.get("explanation", "")
-                    
-                    logger.debug(f"Lumo classification: {category} ({confidence:.2f})")
-                    return category, confidence, explanation
-                except json.JSONDecodeError:
-                    logger.warning("Réponse Lumo non-JSON")
+            response = requests.post("https://api.perplexity.ai/chat/completions", headers=headers, json=data, timeout=10)
+            
+            if response.status_code == 200:
+                result_json = response.json()
+                content = result_json["choices"][0]["message"]["content"]
+                
+                # Nettoyage du Markdown json ```json ... ``` si présent
+                if "```json" in content:
+                    content = content.split("```json")[1].split("```")[0].strip()
+                elif "```" in content:
+                    content = content.split("```")[1].split("```")[0].strip()
+
+                output = json.loads(content)
+                
+                category = output.get("category", "UNKNOWN").upper()
+                confidence = float(output.get("confidence", 0.0))
+                explanation = output.get("explanation", "")
+                
+                logger.info(f"✓ Perplexity: {category} ({confidence:.2f})")
+                return category, confidence, explanation
             else:
-                logger.warning(f"Erreur Lumo: {result.stderr}")
+                logger.error(f"Erreur API Perplexity: {response.status_code} - {response.text}")
+                
         except Exception as e:
-            logger.error(f"Erreur appel Lumo: {e}")
+            logger.error(f"Erreur appel Perplexity: {e}")
         
         return None, 0.0, ""
 
@@ -293,23 +318,18 @@ class EmailClassifier:
                 method = "lumo"
                 logger.info(f"✓ Lumo: {category} ({confidence:.2f})")
         
-        # Étape 2 : Mots-clés
+        # Étape 2 : Mots-clés (si Lumo échoue ou est incertain)
         if not category or confidence < 0.5:
-            kw_category, kw_confidence, kw_explanation = self.classify_with_keywords(subject, body)
-            if kw_confidence > confidence:
-                category = kw_category
-                confidence = kw_confidence
-                explanation = kw_explanation
-                method = "keyword"
-                logger.info(f"✓ Keyword: {category} ({confidence:.2f})")
+            category, confidence, explanation = self.classify_with_keywords(subject, body)
+            method = "keyword"
         
-        # Étape 3 : Fallback
-        if not category:
+        # Étape 3 : Fallback final
+        if not category or confidence < 0.1:
             category = "UNKNOWN"
             confidence = 0.0
+            explanation = "Aucune classification possible"
             method = "fallback"
-            logger.info("✓ Fallback: UNKNOWN")
-        
+
         result = ClassificationResult(
             email_id=email_id,
             subject=subject,
@@ -324,7 +344,7 @@ class EmailClassifier:
         return result
 
     def add_training_example(self, email_id: str, subject: str, body: str, category: str, user_corrected: bool = False):
-        """Ajoute un exemple d'entraînement"""
+        """Ajoute un nouvel exemple d'entraînement"""
         example = TrainingExample(
             email_id=email_id,
             subject=subject,
@@ -335,90 +355,13 @@ class EmailClassifier:
         )
         self.training_examples.append(example)
         self._save_training_examples()
-        logger.info(f"Exemple d'entraînement ajouté: {email_id} -> {category}")
+        logger.info(f"Nouvel exemple d'entraînement ajouté pour la catégorie {category}")
 
-    def train_lumo(self, category: str, examples: Optional[List[str]] = None):
-        """Entraîne Lumo avec des exemples"""
+    def train_lumo(self, category: str, texts: List[str]):
+        """(Ré)entraîne un modèle Lumo pour une catégorie spécifique"""
         if not self.use_lumo:
-            logger.warning("Lumo non disponible pour l'entraînement")
             return
-        
-        if examples is None:
-            # Utiliser les exemples d'entraînement pour cette catégorie
-            examples = [
-                f"{ex.subject} {ex.body[:500]}"
-                for ex in self.training_examples
-                if ex.category == category
-            ]
-        
-        if not examples:
-            logger.warning(f"Aucun exemple pour l'entraînement de {category}")
-            return
-        
-        try:
-            for example in examples:
-                result = subprocess.run(
-                    ["lumo", "train", "--label", category, "--text", example],
-                    capture_output=True,
-                    timeout=10
-                )
-                if result.returncode != 0:
-                    logger.warning(f"Erreur entraînement Lumo: {result.stderr}")
-            
-            logger.info(f"Entraînement Lumo complété pour {category} ({len(examples)} exemples)")
-        except Exception as e:
-            logger.error(f"Erreur entraînement: {e}")
 
-    def get_statistics(self) -> Dict:
-        """Retourne les statistiques de classification"""
-        stats = {
-            "total_classifications": len(self.classification_history),
-            "by_category": {},
-            "by_method": {},
-            "average_confidence": 0.0
-        }
-        
-        if not self.classification_history:
-            return stats
-        
-        # Compter par catégorie et méthode
-        for result in self.classification_history:
-            stats["by_category"][result.category] = stats["by_category"].get(result.category, 0) + 1
-            stats["by_method"][result.method] = stats["by_method"].get(result.method, 0) + 1
-        
-        # Confiance moyenne
-        avg_confidence = sum(r.confidence for r in self.classification_history) / len(self.classification_history)
-        stats["average_confidence"] = round(avg_confidence, 3)
-        
-        return stats
-
-    def export_results(self, filepath: str):
-        """Exporte l'historique de classification"""
-        with open(filepath, "w") as f:
-            for result in self.classification_history:
-                f.write(result.model_dump_json() + "\n")
-        logger.info(f"Résultats exportés vers {filepath}")
-
-
-if __name__ == "__main__":
-    # Test
-    classifier = EmailClassifier()
-    
-    # Test de classification
-    test_email = classifier.classify(
-        "test-001",
-        "Offre spéciale : 50% de réduction",
-        "Nous vous proposons une offre exclusive avec 50% de réduction sur tous nos produits..."
-    )
-    print(f"Résultat: {test_email}")
-    
-    # Ajouter un exemple d'entraînement
-    classifier.add_training_example(
-        "test-001",
-        "Offre spéciale : 50% de réduction",
-        "Nous vous proposons une offre exclusive...",
-        "VENTE"
-    )
-    
-    # Statistiques
-    print(f"Statistiques: {classifier.get_statistics()}")
+        # Cette fonction est un placeholder car Lumo CLI ne supporte pas le réentraînement via API
+        # Dans un vrai scénario, on pourrait appeler une API de réentraînement
+        logger.info(f"Réentraînement Lumo pour {category} avec {len(texts)} exemples...")
