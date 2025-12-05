@@ -30,10 +30,13 @@ end
 # Activer l'environnement virtuel
 source venv/bin/activate.fish
 
+# Définir le chemin vers l'exécutable Python du venv
+set -l PYTHON_BIN (pwd)/venv/bin/python3
+
 # Installer les dépendances
 if test -f "requirements.txt"
     echo "📦 Installation des dépendances..."
-    pip install -r requirements.txt
+    $PYTHON_BIN -m pip install -r requirements.txt
 else
     echo "⚠️  Fichier requirements.txt non trouvé. L'installation des dépendances est ignorée."
 end
@@ -51,7 +54,7 @@ end
 # Charger les variables d'environnement depuis .env
 echo "📝 Chargement des variables d'environnement..."
 set -l ENV_FILE ".env"
-for line in (grep -v 	'^#' $ENV_FILE | grep -v 	'^$')
+for line in (grep -v '^#' $ENV_FILE | grep -v '^$')
     set -l key (echo $line | cut -d '=' -f 1)
     set -l value (echo $line | cut -d '=' -f 2-)
     set -gx $key $value
@@ -67,20 +70,13 @@ echo "✓ Configuration chargée"
 echo "  - Host: $PROTON_BRIDGE_HOST:$PROTON_BRIDGE_PORT"
 echo "  - Username: $PROTON_USERNAME"
 echo ""
-echo "🚀 Démarrage du processeur d'emails..."
-echo ""
 
 # Synchroniser les dossiers avant de démarrer
 echo "🔄 Synchronisation des dossiers ProtonMail..."
 $PYTHON_BIN scripts/sync_folders.py
 
-# Lancer le processeur avec le Python du venv
-set -l PYTHON_BIN (pwd)"/venv/bin/python3"
-
-if not test -f $PYTHON_BIN
-    echo "❌ Erreur: Python du venv non trouvé à $PYTHON_BIN"
-    exit 1
-end
+echo "🚀 Démarrage du processeur d'emails..."
+echo ""
 
 # Exécuter avec le Python du venv
 $PYTHON_BIN scripts/email_processor.py

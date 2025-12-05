@@ -159,10 +159,7 @@ class EmailProcessor:
         processed_count = 0
         try:
             # Sélection du dossier
-            status, _ = mailbox.client.select(f'"{folder_name}"')
-            if status != 'OK':
-                logger.warning(f"Impossible de sélectionner le dossier {folder_name}")
-                return 0
+            mailbox.client.select(f'"{folder_name}"')
 
             # Critère de recherche
             # Modification pour le scan initial
@@ -209,12 +206,8 @@ class EmailProcessor:
                     
                     if target_folder:
                         if not DRY_RUN:
-                            # Copier vers la destination
-                                                        # S'assurer que le dossier existe avant de copier
-                            status, _ = mailbox.client.list(directory='""', pattern=f'"{target_folder}"')
-                            if status == 'OK' and not _[0]:
-                                logger.info(f"Création du dossier manquant: {target_folder}")
-                                mailbox.client.create(f'"{target_folder}"')
+                            # S'assurer que le dossier existe avant de copier
+                            mailbox.client.create(f'"{target_folder}"')
 
                             res, _ = mailbox.client.copy(email_id, f'"{target_folder}"')
                             if res == 'OK':
@@ -230,7 +223,7 @@ class EmailProcessor:
                         logger.debug("Pas de déplacement (Catégorie UNKNOWN ou pas de dossier cible)")
 
                 except Exception as e:
-                    logger.error(f"Erreur traitement email {email_id}: {e}")
+                    logger.error(f"Erreur traitement email {email_id.decode('utf-8', 'ignore')}: {e}")
                     continue
 
             # Appliquer les suppressions (expunge)
@@ -279,8 +272,16 @@ class EmailProcessor:
                         for folder_bytes in folders:
                             # Décodage robuste du nom du dossier
                             # Format typique: (\HasNoChildren) "/" "NomDuDossier"
-                            folder_raw = folder_bytes.decode()
-                            folder_name = folder_raw.split(' "/" ')[-1].strip('"')
+                            try:
+                                folder_raw = folder_bytes.decode('utf-8')
+                            except UnicodeDecodeError:
+                                folder_raw = folder_bytes.decode('latin-1') # Fallback
+
+                            parts = folder_raw.split(' "/" ')
+                            if len(parts) > 1:
+                                folder_name = parts[-1].strip('"')
+                            else:
+                                continue # Skip invalid folder format
                             
                             # Ignorer les dossiers exclus et les dossiers d'entraînement/feedback
                             if (folder_name not in EXCLUDED_FOLDERS and 
