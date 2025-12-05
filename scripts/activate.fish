@@ -24,4 +24,4 @@ else
 end
 
 echo "✓ Environnement ProtonLumoAI activé"
-return 0
+# Ne pas retourner, laisser le shell continuer
