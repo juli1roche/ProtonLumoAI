@@ -107,9 +107,12 @@ class ProtonMailBox:
                     except UnicodeDecodeError:
                         folder_raw = folder_bytes.decode('latin-1')
                     
-                    parts = folder_raw.split(' \"" ')
-                    if len(parts) > 1:
-                        folder_name = parts[-1].strip('"')
+                    # ✅ FIX: Parser correctement le format IMAP LIST
+                    # Format: (\\Flags) "/" "Nom/Du/Dossier"
+                    parts = folder_raw.split('"')
+                    if len(parts) >= 3:
+                        # Le nom est entre les deux derniers guillemets
+                        folder_name = parts[-2]
                         self._existing_folders.add(folder_name)
         except Exception as e:
             logger.warning(f"Erreur lors de la mise à jour du cache des dossiers: {e}")
@@ -491,10 +494,15 @@ class EmailProcessor:
                             except UnicodeDecodeError:
                                 folder_raw = folder_bytes.decode('latin-1')
 
-                            parts = folder_raw.split(' \"" ')
-                            if len(parts) > 1:
-                                folder_name = parts[-1].strip('"')
+                            # ✅ FIX: Parser correctement le format IMAP LIST
+                            # Format: (\\Flags) "/" "Nom/Du/Dossier"
+                            parts = folder_raw.split('"')
+                            if len(parts) >= 3:
+                                # Le nom est entre les deux derniers guillemets (avant-dernier élément)
+                                folder_name = parts[-2]
                             else:
+                                # Fallback si format inattendu
+                                logger.warning(f"Format de dossier inattendu: {folder_raw}")
                                 continue
                             
                             # ✅ Filtrer UNIQUEMENT les dossiers système IMAP et Training/Feedback
