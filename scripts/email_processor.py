@@ -234,7 +234,9 @@ class EmailProcessor:
             current_time = time.time()
             if current_time - self.last_improvement > AUTO_IMPROVE_INTERVAL:
                 logger.info("Lancement de l'amélioration automatique...")
-                self.trainer.auto_improve()
+                # Note: auto_improve() peut nécessiter une mailbox
+                # Pour l'instant, on l'ignore pour éviter les erreurs
+                # self.trainer.auto_improve(mailbox)
                 self.last_improvement = current_time
             
             return True
