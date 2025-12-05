@@ -247,13 +247,15 @@ class EmailProcessor:
             "Trash", "Corbeille", 
             "Spam", "Junk",
             "Archive", 
-            "Sent", "Sent Messages", "Envoyés",
+            "Sent",
+            "Labels/[Imap]/Trash", "Sent Messages", "Envoyés",
             "Drafts", "Brouillons",
             "All Mail", "Tous les messages",
             "Folders/GMAIL", # Exclure le dossier d'archive volumineux
             "Labels/[Imap]/Sent",
             "Labels/Sent",
-            "Sent"
+            "Sent",
+            "Labels/[Imap]/Trash"
         ]
 
         while self.running:
