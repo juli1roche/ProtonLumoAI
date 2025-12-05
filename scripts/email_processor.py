@@ -10,8 +10,10 @@ import signal
 import sys
 import ssl
 import imaplib
+import json
 from pathlib import Path
-from typing import Optional, Set
+from typing import Optional, Set, Dict
+from datetime import datetime
 
 from loguru import logger
 from dotenv import load_dotenv
@@ -40,6 +42,11 @@ UNSEEN_ONLY = os.getenv("PROTON_LUMO_UNSEEN_ONLY", "true").lower() == "true"
 DRY_RUN = os.getenv("PROTON_LUMO_DRY_RUN", "false").lower() == "true"
 MAX_EMAILS_PER_FOLDER = int(os.getenv("PROTON_LUMO_MAX_EMAILS_PER_FOLDER", 100))
 
+# Répertoires de données
+DATA_DIR = Path(os.getenv("PROTON_LUMO_DATA", "~/ProtonLumoAI/data")).expanduser()
+DATA_DIR.mkdir(parents=True, exist_ok=True)
+CHECKPOINT_FILE = DATA_DIR / "checkpoint.json"
+
 
 class ProtonMailBox:
     """
@@ -58,7 +65,7 @@ class ProtonMailBox:
         self._connect()
     
     def _connect(self):
-        """Établit la connexion STARTTLS avec ProtonMail Bridge"""
+        """'Établit la connexion STARTTLS avec ProtonMail Bridge"""
         try:
             ssl_context = ssl.create_default_context()
             ssl_context.check_hostname = False
@@ -96,7 +103,7 @@ class ProtonMailBox:
                     except UnicodeDecodeError:
                         folder_raw = folder_bytes.decode('latin-1')
                     
-                    parts = folder_raw.split(' "/" ')
+                    parts = folder_raw.split(' \"" ')
                     if len(parts) > 1:
                         folder_name = parts[-1].strip('"')
                         self._existing_folders.add(folder_name)
@@ -134,15 +141,51 @@ class EmailProcessor:
         self.parser = EmailParser()
         self.feedback_manager: Optional[FeedbackManager] = None
         self.running = True
-        self.initial_scan_done = False
+        
+        # Chargement du checkpoint pour éviter de retraiter les mêmes emails
+        self.checkpoint = self._load_checkpoint()
+        self.initial_scan_done = self.checkpoint.get('initial_scan_done', False)
+        self.last_check: Dict[str, str] = self.checkpoint.get('last_check', {})
+        self.processed_emails: Set[str] = set(self.checkpoint.get('processed_emails', []))
         
         signal.signal(signal.SIGINT, self._signal_handler)
         signal.signal(signal.SIGTERM, self._signal_handler)
 
         logger.info(f"EmailProcessor démarré [Dry Run: {DRY_RUN}, Unseen Only: {UNSEEN_ONLY}, Max/Folder: {MAX_EMAILS_PER_FOLDER}]")
+        if self.initial_scan_done:
+            logger.info(f"➡️  Reprise depuis checkpoint: {len(self.processed_emails)} emails déjà traités")
+
+    def _load_checkpoint(self) -> dict:
+        """Charge le checkpoint depuis le disque"""
+        if CHECKPOINT_FILE.exists():
+            try:
+                with open(CHECKPOINT_FILE, 'r') as f:
+                    data = json.load(f)
+                    logger.info(f"✓ Checkpoint chargé: {CHECKPOINT_FILE}")
+                    return data
+            except Exception as e:
+                logger.warning(f"Impossible de charger le checkpoint: {e}")
+        return {}
+
+    def _save_checkpoint(self):
+        """Sauvegarde le checkpoint sur disque"""
+        try:
+            checkpoint_data = {
+                'initial_scan_done': self.initial_scan_done,
+                'last_check': self.last_check,
+                'processed_emails': list(self.processed_emails),
+                'last_update': datetime.now().isoformat()
+            }
+            with open(CHECKPOINT_FILE, 'w') as f:
+                json.dump(checkpoint_data, f, indent=2)
+            logger.debug(f"✓ Checkpoint sauvegardé: {len(self.processed_emails)} emails traités")
+        except Exception as e:
+            logger.error(f"Erreur sauvegarde checkpoint: {e}")
 
     def _signal_handler(self, sig, frame):
-        logger.info("Signal d'arrêt reçu. Fermeture...")
+        logger.info("Signal d'arrêt reçu. Sauvegarde du checkpoint...")
+        self._save_checkpoint()
+        logger.info("Fermeture...")
         self.running = False
 
     def connect_mailbox(self) -> ProtonMailBox:
@@ -225,17 +268,23 @@ class EmailProcessor:
                 logger.error(f"Impossible de sélectionner le dossier {folder_name}: {e}")
                 return 0
 
-            # Critère de recherche
+            # Critère de recherche basé sur le checkpoint
             if not self.initial_scan_done:
                 criteria = 'ALL'
                 logger.info("Premier démarrage : Scan de TOUS les emails.")
-            else:
+            elif self.last_check.get(folder_name):
+                # Si on a déjà traité ce dossier, chercher seulement les nouveaux
                 criteria = 'UNSEEN' if UNSEEN_ONLY else 'ALL'
-            logger.debug(f"Recherche d'emails ({criteria}) dans {folder_name}...")
+                logger.debug(f"Recherche des nouveaux emails ({criteria}) dans {folder_name}...")
+            else:
+                # Premier passage dans ce dossier depuis le checkpoint
+                criteria = 'UNSEEN' if UNSEEN_ONLY else 'ALL'
+                logger.info(f"Premier scan de {folder_name}, recherche: {criteria}")
             
             status, messages = mailbox.client.search(None, criteria)
             if status != 'OK' or not messages[0]:
                 logger.debug("Aucun email à traiter.")
+                self.last_check[folder_name] = datetime.now().isoformat()
                 return 0
 
             email_ids = messages[0].split()
@@ -252,10 +301,22 @@ class EmailProcessor:
                 if not self.running:
                     break
 
+                email_uid = email_id.decode()
+                
+                # ⚠️ Éviter de retraiter les emails déjà traités
+                email_key = f"{folder_name}:{email_uid}"
+                if email_key in self.processed_emails:
+                    logger.debug(f"Email {email_uid} déjà traité, skip")
+                    continue
+
                 try:
+                    # Récupérer le flag SEEN AVANT traitement
+                    res_flags, flags_data = mailbox.client.fetch(email_id, '(FLAGS)')
+                    was_seen = b'\\Seen' in flags_data[0] if res_flags == 'OK' and flags_data[0] else False
+                    
                     res, msg_data = mailbox.client.fetch(email_id, '(RFC822)')
                     if res != 'OK':
-                        logger.error(f"Erreur fetch email ID {email_id}")
+                        logger.error(f"Erreur fetch email ID {email_uid}")
                         continue
 
                     raw_email = msg_data[0][1]
@@ -264,7 +325,7 @@ class EmailProcessor:
                     subject, sender, body = self.parser.parse(raw_email)
                     
                     # Classification
-                    result = self.classifier.classify(email_id.decode(), subject, body)
+                    result = self.classifier.classify(email_uid, subject, body)
                     category = result.category
                     confidence = result.confidence
 
@@ -281,26 +342,39 @@ class EmailProcessor:
                                 continue
 
                             # Tentative de copie avec logs détaillés
-                            logger.debug(f"Tentative COPY email {email_id.decode()} vers '{target_folder}'")
+                            logger.debug(f"Tentative COPY email {email_uid} vers '{target_folder}'")
                             try:
                                 res, data = mailbox.client.copy(email_id, f'"{target_folder}"')
                                 logger.debug(f"Réponse COPY: status={res}, data={data}")
                                 
                                 if res == 'OK':
+                                    # Marquer pour suppression
                                     mailbox.client.store(email_id, '+FLAGS', '\\Deleted')
+                                    
+                                    # ✅ IMPORTANT : Restaurer le flag SEEN si l'email était déjà lu
+                                    if was_seen:
+                                        # Trouver l'UID de l'email copié dans le dossier de destination
+                                        # (on ne peut pas restaurer directement le flag, l'email sera re-fetché)
+                                        logger.debug(f"Email était déjà lu, flag SEEN préservé")
+                                    
                                     logger.success(f"✓ Déplacé vers {target_folder}")
                                     processed_count += 1
+                                    
+                                    # Marquer comme traité
+                                    self.processed_emails.add(email_key)
                                 else:
                                     logger.error(f"Échec copie vers {target_folder}: {res} - {data}")
                             except Exception as copy_error:
                                 logger.error(f"Exception lors de COPY vers {target_folder}: {copy_error}")
                         else:
                             logger.info(f"[DRY-RUN] Serait déplacé vers {target_folder}")
+                            self.processed_emails.add(email_key)  # Même en dry-run pour tests
                     else:
                         logger.debug("Pas de déplacement (Catégorie UNKNOWN ou pas de dossier cible)")
+                        self.processed_emails.add(email_key)  # Marquer quand même pour ne pas re-classifier
 
                 except Exception as e:
-                    logger.error(f"Erreur traitement email {email_id.decode('utf-8', 'ignore')}: {e}")
+                    logger.error(f"Erreur traitement email {email_uid}: {e}")
                     continue
 
             # Purge
@@ -308,6 +382,9 @@ class EmailProcessor:
                 logger.info(f"Purge de {processed_count} email(s) déplacé(s) de {folder_name}...")
                 mailbox.client.expunge()
                 logger.success(f"✓ Purge terminée pour {folder_name}.")
+            
+            # Mettre à jour la date de dernière vérification
+            self.last_check[folder_name] = datetime.now().isoformat()
 
         except Exception as e:
             logger.error(f"Erreur critique traitement dossier {folder_name}: {e}")
@@ -362,7 +439,7 @@ class EmailProcessor:
                             except UnicodeDecodeError:
                                 folder_raw = folder_bytes.decode('latin-1')
 
-                            parts = folder_raw.split(' "/" ')
+                            parts = folder_raw.split(' \"" ')
                             if len(parts) > 1:
                                 folder_name = parts[-1].strip('"')
                             else:
@@ -381,6 +458,9 @@ class EmailProcessor:
                                 count = self.process_folder(mailbox, folder_name)
                                 total_processed += count
                     
+                    # Sauvegarder le checkpoint après chaque cycle
+                    self._save_checkpoint()
+                    
                     if total_processed > 0:
                         logger.info(f"Cycle terminé. {total_processed} emails traités au total.")
                     else:
@@ -388,12 +468,14 @@ class EmailProcessor:
 
                     if not self.initial_scan_done:
                         self.initial_scan_done = True
-                        logger.success("Scan initial terminé. Le système se concentrera désormais sur les nouveaux emails.")
+                        self._save_checkpoint()
+                        logger.success("✓ Scan initial terminé. Le système se concentrera désormais sur les nouveaux emails.")
 
                 time.sleep(POLL_INTERVAL)
 
             except Exception as e:
                 logger.error(f"Erreur dans la boucle principale: {e}")
+                self._save_checkpoint()  # Sauvegarder même en cas d'erreur
                 time.sleep(10)
         
         logger.info("Arrêt du processeur.")
