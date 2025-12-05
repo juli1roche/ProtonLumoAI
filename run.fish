@@ -6,10 +6,18 @@
 set -l SCRIPT_DIR (dirname (status filename))
 cd $SCRIPT_DIR
 
-# Désactiver tout venv actif
+# Désactiver tout venv actif (Fish shell)
 if set -q VIRTUAL_ENV
     echo "⚠️  Désactivation du venv actif..."
-    deactivate
+    # En Fish shell, on peut appeler la fonction deactivate si elle existe
+    # Sinon, on réinitialise les variables manuellement
+    if functions -q deactivate
+        deactivate nondestructive
+    else
+        # Réinitialiser les variables de venv manuellement
+        set -e VIRTUAL_ENV
+        set -e VIRTUAL_ENV_PROMPT
+    end
 end
 
 # Vérifier que le venv existe
