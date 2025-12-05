@@ -209,7 +209,7 @@ class EmailProcessor:
                             # S'assurer que le dossier existe avant de copier
                             mailbox.client.create(f'"{target_folder}"')
 
-                            res, _ = mailbox.client.copy(email_id, f'"{target_folder}"')
+                            res, _ = mailbox.client.copy(email_id, f'"{target_folder.encode("utf-8").decode("ascii", "ignore")}"')
                             if res == 'OK':
                                 # Marquer pour suppression dans la source (déplacement = copy + delete)
                                 mailbox.client.store(email_id, '+FLAGS', '\\Deleted')
