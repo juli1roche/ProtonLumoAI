@@ -240,7 +240,7 @@ class EmailProcessor:
             return ' '.join([str(text, charset or 'utf-8') for text, charset in decoded_header])
         except Exception as e:
             logger.warning(f"Impossible de décoder l'en-tête: {e}")
-            return str(header)
+            return str(header, errors='ignore')
 
     def _get_body(self, msg: email.message.Message) -> str:
         """Extrait le corps de l'email de manière robuste."""
@@ -257,12 +257,12 @@ class EmailProcessor:
                         for encoding in ["utf-8", "latin-1", "iso-8859-1"]:
                             try:
                                 body = payload.decode(encoding)
-                                return body
+                                return body if body else ""
                             except UnicodeDecodeError:
                                 continue
                         logger.warning("Impossible de décoder le corps de l'email avec les encodages courants.")
                         body = payload.decode("utf-8", errors="ignore")
-                        return body
+                        return body if body else ""
                     except Exception as e:
                         logger.warning(f"Erreur lors de l'extraction du corps: {e}")
         else:
@@ -271,15 +271,15 @@ class EmailProcessor:
                 for encoding in ["utf-8", "latin-1", "iso-8859-1"]:
                     try:
                         body = payload.decode(encoding)
-                        return body
+                        return body if body else ""
                     except UnicodeDecodeError:
                         continue
                 logger.warning("Impossible de décoder le corps de l'email avec les encodages courants.")
                 body = payload.decode("utf-8", errors="ignore")
-                return body
+                return body if body else ""
             except Exception as e:
                 logger.warning(f"Erreur lors de l'extraction du corps (non-multipart): {e}")
-        return body
+        return body if body else ""
 
     def _get_target_folder(self, category: str, confidence: float) -> str:
         """Retourne le dossier cible en fonction de la catégorie et de la confiance"""
