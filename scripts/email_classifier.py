@@ -68,7 +68,7 @@ DEFAULT_CATEGORIES = {
     ),
     "VENTE": EmailCategory(
         name="VENTE",
-        folder="Achats",
+        folder="Folders/Achats",
         keywords=["solde", "promo", "offrir", "%", "commander", "panier", "livraison", "code promo"],
         confidence_threshold=0.65,
         priority=2,
@@ -76,7 +76,7 @@ DEFAULT_CATEGORIES = {
     ),
     "BANQUE": EmailCategory(
         name="BANQUE",
-        folder="Administratif/Banque",
+        folder="Folders/Administratif/Banque",
         keywords=["virement", "compte", "banque", "facture", "paiement", "transaction", "solde"],
         confidence_threshold=0.8,
         priority=3,
@@ -84,7 +84,7 @@ DEFAULT_CATEGORIES = {
     ),
     "PRO": EmailCategory(
         name="PRO",
-        folder="Travail",
+        folder="Folders/Travail",
         keywords=["réunion", "projet", "client", "deadline", "rapport", "présentation", "meeting"],
         confidence_threshold=0.7,
         priority=4,
@@ -92,7 +92,7 @@ DEFAULT_CATEGORIES = {
     ),
     "URGENT": EmailCategory(
         name="URGENT",
-        folder="À traiter",
+        folder="Folders/A_traiter",
         keywords=["urgent", "asap", "important", "action requise", "immédiat"],
         confidence_threshold=0.75,
         priority=5,
@@ -100,7 +100,7 @@ DEFAULT_CATEGORIES = {
     ),
     "VOYAGES": EmailCategory(
         name="VOYAGES",
-        folder="Voyages",
+        folder="Folders/Voyages",
         keywords=["billet", "train", "vol", "booking", "hôtel", "réservation", "itinéraire"],
         confidence_threshold=0.7,
         priority=2,
@@ -108,7 +108,7 @@ DEFAULT_CATEGORIES = {
     ),
     "SOCIAL": EmailCategory(
         name="SOCIAL",
-        folder="Réseaux sociaux",
+        folder="Folders/Reseaux_sociaux",
         keywords=["like", "comment", "follow", "share", "mention", "notification", "friend request"],
         confidence_threshold=0.65,
         priority=1,
@@ -116,7 +116,7 @@ DEFAULT_CATEGORIES = {
     ),
     "NEWSLETTER": EmailCategory(
         name="NEWSLETTER",
-        folder="Newsletters",
+        folder="Folders/Newsletters",
         keywords=["newsletter", "weekly", "monthly", "digest", "subscribe", "unsubscribe"],
         confidence_threshold=0.7,
         priority=1,
