@@ -235,21 +235,51 @@ class EmailProcessor:
         """Décode un en-tête d'email."""
         if header is None:
             return ""
-        decoded_header = email.header.decode_header(header)
-        return ' '.join([str(text, charset or 'utf-8') for text, charset in decoded_header])
+        try:
+            decoded_header = email.header.decode_header(header)
+            return ' '.join([str(text, charset or 'utf-8') for text, charset in decoded_header])
+        except Exception as e:
+            logger.warning(f"Impossible de décoder l'en-tête: {e}")
+            return str(header)
 
     def _get_body(self, msg: email.message.Message) -> str:
-        """Extrait le corps de l'email."""
+        """Extrait le corps de l'email de manière robuste."""
+        body = ""
         if msg.is_multipart():
             for part in msg.walk():
                 content_type = part.get_content_type()
                 content_disposition = str(part.get("Content-Disposition"))
 
                 if content_type == "text/plain" and "attachment" not in content_disposition:
-                    return part.get_payload(decode=True).decode()
+                    try:
+                        payload = part.get_payload(decode=True)
+                        # Essayer plusieurs encodages
+                        for encoding in ["utf-8", "latin-1", "iso-8859-1"]:
+                            try:
+                                body = payload.decode(encoding)
+                                return body
+                            except UnicodeDecodeError:
+                                continue
+                        logger.warning("Impossible de décoder le corps de l'email avec les encodages courants.")
+                        body = payload.decode("utf-8", errors="ignore")
+                        return body
+                    except Exception as e:
+                        logger.warning(f"Erreur lors de l'extraction du corps: {e}")
         else:
-            return msg.get_payload(decode=True).decode()
-        return ""
+            try:
+                payload = msg.get_payload(decode=True)
+                for encoding in ["utf-8", "latin-1", "iso-8859-1"]:
+                    try:
+                        body = payload.decode(encoding)
+                        return body
+                    except UnicodeDecodeError:
+                        continue
+                logger.warning("Impossible de décoder le corps de l'email avec les encodages courants.")
+                body = payload.decode("utf-8", errors="ignore")
+                return body
+            except Exception as e:
+                logger.warning(f"Erreur lors de l'extraction du corps (non-multipart): {e}")
+        return body
 
     def _get_target_folder(self, category: str, confidence: float) -> str:
         """Retourne le dossier cible en fonction de la catégorie et de la confiance"""
