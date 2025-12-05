@@ -210,6 +210,12 @@ class EmailProcessor:
                     if target_folder:
                         if not DRY_RUN:
                             # Copier vers la destination
+                                                        # S'assurer que le dossier existe avant de copier
+                            status, _ = mailbox.client.list(directory='""', pattern=f'"{target_folder}"')
+                            if status == 'OK' and not _[0]:
+                                logger.info(f"Création du dossier manquant: {target_folder}")
+                                mailbox.client.create(f'"{target_folder}"')
+
                             res, _ = mailbox.client.copy(email_id, f'"{target_folder}"')
                             if res == 'OK':
                                 # Marquer pour suppression dans la source (déplacement = copy + delete)
