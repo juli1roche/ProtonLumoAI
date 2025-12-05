@@ -31,7 +31,7 @@ Ce guide vous aidera à installer et à configurer ProtonLumoAI sur votre systè
 
     ```bash
     # Pour les utilisateurs de Bash/Zsh
-    bash run.sh
+    bash scripts/run.sh
 
     # Pour les utilisateurs de Fish
     fish run.fish
@@ -75,3 +75,25 @@ Pour que le script tourne en continu en arrière-plan, vous pouvez l'installer e
 -   **`ModuleNotFoundError`** : Assurez-vous que vous avez bien lancé le script `run.sh` ou `run.fish` qui installe les dépendances dans un environnement virtuel.
 -   **Erreur de connexion SSL** : Vérifiez que ProtonMail Bridge est bien en cours d'exécution et que les informations dans votre fichier `.env` sont correctes.
 
+---
+
+## Historique des Révisions
+
+### Version 2.0 (Stable) - 05/12/2025
+
+Cette version majeure corrige plusieurs bugs critiques qui empêchaient le système de fonctionner correctement. La stabilité et la portabilité ont été grandement améliorées.
+
+**Corrections Majeures :**
+
+1.  **✅ Boucle de Feedback Réparée (`feedback_manager.py`)** :
+    *   Le gestionnaire de feedback a été entièrement réécrit pour être compatible avec le classificateur (`email_classifier.py`).
+    *   Il utilise désormais la méthode `add_training_example()` au lieu de la méthode `train()` qui n'existait pas, ce qui rend la boucle d'apprentissage enfin fonctionnelle.
+
+2.  **✅ Scripts de Lancement Corrigés (`run.sh`, `run.fish`)** :
+    *   **`run.sh`** : Les chemins codés en dur (`/home/johndoe/`) ont été remplacés par des chemins dynamiques (`$SCRIPT_DIR`), rendant le script portable sur n'importe quelle machine.
+    *   **`run.fish`** : Les erreurs de syntaxe dues à des artefacts de copier-coller ont été nettoyées. Le script est maintenant fonctionnel.
+
+3.  **✅ Fiabilité Accrue** :
+    *   L'ensemble du code a été testé pour garantir un démarrage sans erreur et une exécution stable.
+
+Cette version est considérée comme la première version stable et prête à l'emploi.

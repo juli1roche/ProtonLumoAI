@@ -1,12 +1,17 @@
 #!/usr/bin/env bash
 # Lancement de ProtonLumoAI
 
-source "/home/johndoe/ProtonLumoAI/venv/bin/activate"
+# Détection automatique du chemin (Correction)
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
+
+# Utilisation du chemin relatif
+source "$PROJECT_ROOT/venv/bin/activate"
 export PYTHONUNBUFFERED=1
 
 # Charger les variables d'environnement
-if [ -f "/home/johndoe/ProtonLumoAI/.env" ]; then
-    export $(cat "/home/johndoe/ProtonLumoAI/.env" | grep -v '^#' | xargs)
+if [ -f "$PROJECT_ROOT/.env" ]; then
+    export $(cat "$PROJECT_ROOT/.env" | grep -v '^#' | xargs)
 fi
 
 # Vérifier ProtonMail Bridge
@@ -17,4 +22,4 @@ if ! systemctl --user is-active --quiet protonmail-bridge.service; then
 fi
 
 # Lancer le processeur
-python3 "/home/johndoe/ProtonLumoAI/scripts/email_processor.py"
+python3 "$SCRIPT_DIR/email_processor.py"
