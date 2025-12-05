@@ -12,6 +12,8 @@ from typing import List, Dict
 
 from loguru import logger
 import email
+from email.message import Message
+from email.header import decode_header
 
 from email_classifier import EmailClassifier
 
