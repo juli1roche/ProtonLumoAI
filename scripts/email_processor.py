@@ -17,7 +17,6 @@ from typing import Optional, Dict, List, Tuple
 from threading import Thread, Event
 
 from loguru import logger
-from imap_tools import MailBox, AND
 
 from email_classifier import EmailClassifier
 from train_classifier import TrainingManager
@@ -143,19 +142,40 @@ class EmailProcessor:
             logger.error(f"Erreur connexion: {e}")
             raise
 
-    def process_inbox(self, mailbox: ProtonMailBox) -> int:
-        """
-        Traite la boîte de réception
+    def process_all_folders(self, mailbox: ProtonMailBox) -> int:
+        """Traite tous les dossiers de la boîte mail"""
+        logger.info("Traitement de tous les dossiers...")
+        total_processed = 0
         
-        Returns:
-            Nombre d'emails traités
-        """
-        logger.info("Traitement de la boîte de réception...")
+        try:
+            # Lister tous les dossiers
+            status, folders = mailbox.client.list()
+            if status != 'OK':
+                logger.error(f"Erreur lors de la liste des dossiers: {status}")
+                return 0
+            
+            for folder_info in folders:
+                folder_name = folder_info.decode().split(' "/" ')[-1].strip('"')
+                
+                # Ignorer les dossiers spéciaux
+                if folder_name in ["INBOX", "Spam", "Trash", "Sent", "Drafts", "Archives"]:
+                    continue
+                
+                logger.info(f"Traitement du dossier: {folder_name}")
+                total_processed += self.process_folder(mailbox, folder_name)
+                
+        except Exception as e:
+            logger.error(f"Erreur traitement multi-dossiers: {e}")
+            
+        return total_processed
+
+    def process_folder(self, mailbox: ProtonMailBox, folder_name: str) -> int:
+        """Traite un dossier spécifique"""
         processed = 0
         
         try:
-            # Sélectionner la boîte INBOX
-            mailbox.client.select('INBOX')
+            # Sélectionner le dossier
+            mailbox.client.select(folder_name)
             
             # Récupérer les emails non lus ou tous les emails
             if PROCESS_UNSEEN_ONLY:
@@ -164,11 +184,11 @@ class EmailProcessor:
                 status, messages = mailbox.client.search(None, 'ALL')
             
             if status != 'OK':
-                logger.error(f"Erreur lors de la recherche d'emails: {status}")
+                logger.error(f"Erreur recherche emails dans {folder_name}: {status}")
                 return 0
             
             email_ids = messages[0].split()
-            logger.info(f"Trouvé {len(email_ids)} emails")
+            logger.info(f"Trouvé {len(email_ids)} emails dans {folder_name}")
             
             # Traiter chaque email
             for email_id in email_ids:
@@ -181,13 +201,13 @@ class EmailProcessor:
                     msg = msg_data[0][1]
                     
                     # Classifier l'email
-                    category = self.classifier.classify(msg)
-                    logger.info(f"Email {email_id.decode()}: {category}")
+                    category, confidence = self.classifier.classify(msg)
+                    logger.info(f"Email {email_id.decode()}: {category} (confiance: {confidence:.2f})")
                     
                     # Déplacer l'email vers le dossier approprié
                     if not DRY_RUN:
-                        folder_name = self._get_folder_name(category)
-                        mailbox.client.copy(email_id, folder_name)
+                        target_folder = self._get_target_folder(category, confidence)
+                        mailbox.client.copy(email_id, target_folder)
                         mailbox.client.store(email_id, '+FLAGS', '\\Deleted')
                     
                     processed += 1
@@ -199,16 +219,19 @@ class EmailProcessor:
             if not DRY_RUN:
                 mailbox.client.expunge()
             
-            logger.success(f"Traitement terminé: {processed} emails traités")
+            logger.success(f"Traitement de {folder_name} terminé: {processed} emails traités")
             self.processed_count += processed
             
         except Exception as e:
-            logger.error(f"Erreur traitement boîte: {e}")
+            logger.error(f"Erreur traitement dossier {folder_name}: {e}")
         
         return processed
 
-    def _get_folder_name(self, category: str) -> str:
-        """Retourne le nom du dossier pour une catégorie"""
+    def _get_target_folder(self, category: str, confidence: float) -> str:
+        """Retourne le dossier cible en fonction de la catégorie et de la confiance"""
+        if confidence < 0.7:
+            return "À traiter"
+        
         folder_mapping = {
             "SPAM": "Spam",
             "VENTE": "Achats",
@@ -226,7 +249,7 @@ class EmailProcessor:
         try:
             mailbox = self.connect_mailbox()
             try:
-                self.process_inbox(mailbox)
+                self.process_all_folders(mailbox)
             finally:
                 mailbox.close()
             
