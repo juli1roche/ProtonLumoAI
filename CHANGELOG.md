@@ -7,6 +7,44 @@ et ce projet adhère à [Semantic Versioning](https://semver.org/lang/fr/).
 
 ---
 
+## [1.0.1] - 2025-12-05
+
+### 🔧 Corrigé
+
+#### Filtres de Dossiers
+- **✅ Simplification des Filtres**
+  - Correction du bug "0 dossiers scannés" causé par des filtres trop stricts
+  - Suppression des exclusions excessives (\\ * : undefined gmail.com)
+  - Tous les dossiers non-système sont maintenant scannés (INBOX, Spam, Trash, Archives, Labels, etc.)
+  - Conservation uniquement des exclusions pour dossiers techniques IMAP
+
+#### Scan de Dossiers
+- **💾 Empty Folder Handling**
+  - Les dossiers vides ne sont plus marqués comme "traités" lors du scan initial
+  - Permet le rescan automatique si de nouveaux emails arrivent
+  - Amélioration de la log avec compteur de dossiers scannés
+
+#### Tri par Date
+- **📅 Emails les Plus Récents**
+  - Garantie que les emails traités sont TOUJOURS les plus récents (tri DESC)
+  - Application correcte des limites (100 par dossier, 10 pour Spam/Trash)
+  - Optimisation des appels API Perplexity
+
+#### Service Systemd
+- **🔧 Entry Point Fix**
+  - Correction du chemin vers `email_processor.py` au lieu de `main.py`
+  - Suppression de la dépendance à `protonmail-bridge.service`
+  - Ajout d'un délai de 15s au démarrage pour laisser Bridge démarrer
+  - Ajout de `PYTHONPATH` pour imports corrects
+
+### 📚 Documentation
+
+- **INSTALL.md** - Guide d'installation complet avec systemd
+- **Alias Fish** - Commandes simplifiées (lumo-start, lumo-status, lumo-logs, etc.)
+- **Service systemd** - Scripts d'installation/désinstallation automatisés
+
+---
+
 ## [1.0.0] - 2025-12-05
 
 ### ✨ Ajouté
@@ -92,3 +130,11 @@ et ce projet adhère à [Semantic Versioning](https://semver.org/lang/fr/).
 - **🚫 Retiré** pour les fonctionnalités supprimées.
 - **🔧 Corrigé** pour les corrections de bugs.
 - **🔒 Sécurité** pour les corrections de vulnérabilités.
+
+---
+
+## Liens de Comparaison
+
+- [Non publié] : `git diff HEAD`
+- [1.0.1] : `git diff v1.0.0...v1.0.1`
+- [1.0.0] : `git diff v0.2.0...v1.0.0`
