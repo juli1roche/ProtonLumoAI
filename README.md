@@ -388,6 +388,27 @@ Pour toute question ou problème :
 
 ## 📅 Changelog
 
+### v2.0.0 (Stable) - 2025-12-05
+
+**Corrections Majeures** :
+
+1. **Boucle de Feedback Réparée** ✅
+   - Réécriture complète de `scripts/feedback_manager.py`
+   - Utilisation de la méthode `add_training_example()` qui existe réellement
+   - La boucle d'apprentissage fonctionne maintenant correctement
+
+2. **Scripts de Lancement Corrigés** ✅
+   - `scripts/run.sh` utilise maintenant des chemins dynamiques (`$SCRIPT_DIR`, `$PROJECT_ROOT`)
+   - Nettoyage des fichiers Fish de tous les artefacts de copier-coller
+   - Le système fonctionne maintenant sur n'importe quelle machine
+
+3. **Documentation Mise à Jour** ✅
+   - Ajout de la section "Historique des Révisions" dans `INSTALLATION.md`
+   - Mise à jour du `CHANGELOG.md` avec les corrections
+   - Explication claire des corrections apportées
+
+**Statut** : STABLE ✅ - Le système est maintenant prêt pour une utilisation en production.
+
 ### v1.0.0 (Initial Release)
 - ✓ Système de classification avec Lumo CLI
 - ✓ Entraînement automatique
