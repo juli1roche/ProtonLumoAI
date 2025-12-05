@@ -228,7 +228,9 @@ class EmailProcessor:
 
             # Appliquer les suppressions (expunge)
             if not DRY_RUN and processed_count > 0:
+                logger.info(f"Purge de {processed_count} email(s) déplacé(s) de {folder_name}...")
                 mailbox.client.expunge()
+                logger.success(f"✓ Purge terminée pour {folder_name}.")
 
         except Exception as e:
             logger.error(f"Erreur critique traitement dossier {folder_name}: {e}")
@@ -248,7 +250,10 @@ class EmailProcessor:
             "Sent", "Sent Messages", "Envoyés",
             "Drafts", "Brouillons",
             "All Mail", "Tous les messages",
-            "Folders/GMAIL" # Exclure le dossier d'archive volumineux
+            "Folders/GMAIL", # Exclure le dossier d'archive volumineux
+            "Labels/[Imap]/Sent",
+            "Labels/Sent",
+            "Sent"
         ]
 
         while self.running:

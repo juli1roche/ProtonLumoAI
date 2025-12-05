@@ -10,6 +10,7 @@ import sys
 from pathlib import Path
 from loguru import logger
 from dotenv import load_dotenv
+from unidecode import unidecode
 
 # Import de la classe de connexion existante
 try:
@@ -50,9 +51,13 @@ def save_config(data):
         json.dump(data, f, indent=2, ensure_ascii=False)
     logger.success(f"Configuration sauvegardée dans {CONFIG_PATH}")
 
+def normalize_folder_name(folder_name):
+    """Normalise un nom de dossier en supprimant les accents et caractères spéciaux."""
+    return unidecode(folder_name)
+
 def sanitize_category_name(folder_name):
     """Transforme un nom de dossier en clé de catégorie (ex: 'Travail/Projets' -> 'TRAVAIL_PROJETS')"""
-    return folder_name.upper().replace('/', '_').replace(' ', '_').replace('-', '_')
+    return normalize_folder_name(folder_name).upper().replace('/', '_').replace(' ', '_').replace('-', '_')
 
 def sync():
     logger.info("Démarrage de la synchronisation des dossiers...")
@@ -79,39 +84,43 @@ def sync():
 
                 parts = folder_raw.split(' "/" ')
                 if len(parts) > 1:
-                    folder_name = parts[-1].strip('"')
+                    original_folder_name = parts[-1].strip('"')
                 else:
                     continue # Skip invalid folder format
                 
+                # Normaliser le nom du dossier
+                normalized_folder_name = normalize_folder_name(original_folder_name)
+
                 # Ignorer dossiers système et dossiers d'entraînement
-                if (folder_name in EXCLUDED_FOLDERS or 
-                    folder_name.startswith("Training") or 
-                    folder_name.startswith("Feedback") or
-                    folder_name.startswith("Corrections")):
+                if (original_folder_name in EXCLUDED_FOLDERS or 
+                    normalized_folder_name in EXCLUDED_FOLDERS or
+                    original_folder_name.startswith("Training") or 
+                    original_folder_name.startswith("Feedback") or
+                    original_folder_name.startswith("Corrections")):
                     continue
 
-                logger.debug(f"Dossier trouvé : {folder_name}")
+                logger.debug(f"Dossier trouvé : {original_folder_name} (Normalisé: {normalized_folder_name})")
 
                 # Vérifier si ce dossier est déjà configuré
-                if folder_name in existing_paths:
-                    logger.info(f"✓ Dossier connu : {folder_name} (Catégorie : {existing_paths[folder_name]})")
+                if normalized_folder_name in existing_paths:
+                    logger.info(f"✓ Dossier connu : {normalized_folder_name} (Catégorie : {existing_paths[normalized_folder_name]})")
                 else:
                     # CRÉATION D'UNE NOUVELLE CATÉGORIE
-                    cat_key = sanitize_category_name(folder_name)
+                    cat_key = sanitize_category_name(original_folder_name)
                     
                     # Éviter d'écraser si la clé existe déjà mais pointe ailleurs
                     if cat_key in current_config:
                         cat_key = f"{cat_key}_AUTO"
 
-                    logger.info(f"+ Ajout nouvelle catégorie : {cat_key} -> {folder_name}")
+                    logger.info(f"+ Ajout nouvelle catégorie : {cat_key} -> {normalized_folder_name}")
                     
                     current_config[cat_key] = {
                         "name": cat_key,
-                        "folder": folder_name,
+                        "folder": normalized_folder_name,
                         "keywords": [], # Pas de mots-clés par défaut, l'IA gérera
                         "confidence_threshold": 0.7,
                         "priority": 2,
-                        "description": f"Dossier auto-détecté : {folder_name}"
+                        "description": f"Dossier auto-détecté : {original_folder_name}"
                     }
                     new_folders_count += 1
 
