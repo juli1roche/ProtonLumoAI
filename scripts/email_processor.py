@@ -116,6 +116,7 @@ class EmailProcessor:
         # FeedbackManager sera initialisé avec une connexion active
         self.feedback_manager: Optional[FeedbackManager] = None
         self.running = True
+        self.initial_scan_done = False
         
         # Gestion des signaux pour arrêt propre (Ctrl+C)
         signal.signal(signal.SIGINT, self._signal_handler)
@@ -164,7 +165,12 @@ class EmailProcessor:
                 return 0
 
             # Critère de recherche
-            criteria = 'UNSEEN' if UNSEEN_ONLY else 'ALL'
+            # Modification pour le scan initial
+            if not self.initial_scan_done:
+                criteria = 'ALL'
+                logger.info("Premier démarrage : Scan de TOUS les emails.")
+            else:
+                criteria = 'UNSEEN' if UNSEEN_ONLY else 'ALL'
             logger.debug(f"Recherche d'emails ({criteria}) dans {folder_name}...")
             
             status, messages = mailbox.client.search(None, criteria)
@@ -283,6 +289,11 @@ class EmailProcessor:
                         logger.info(f"Cycle terminé. {total_processed} emails traités au total.")
                     else:
                         logger.debug("Cycle terminé. Aucun changement.")
+
+                    # Marquer le scan initial comme terminé
+                    if not self.initial_scan_done:
+                        self.initial_scan_done = True
+                        logger.success("Scan initial terminé. Le système se concentrera désormais sur les nouveaux emails.")
 
                 # Attente avant le prochain cycle
                 time.sleep(POLL_INTERVAL)
