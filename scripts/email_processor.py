@@ -234,26 +234,53 @@ class EmailProcessor:
         """Boucle principale du service."""
         logger.info("Démarrage de la boucle de traitement...")
 
+        # Liste des dossiers à NE PAS scanner (Dossiers systèmes et destination)
+        # Adaptez cette liste selon les noms exacts dans votre ProtonMail
+        EXCLUDED_FOLDERS = [
+            "Trash", "Corbeille", 
+            "Spam", "Junk",
+            "Archive", 
+            "Sent", "Sent Messages", "Envoyés",
+            "Drafts", "Brouillons",
+            "All Mail", "Tous les messages"
+        ]
+
         while self.running:
             try:
                 # Connexion (nouvelle à chaque cycle pour éviter les timeouts)
                 with self.connect_mailbox() as mailbox:
                     
-                    # 1. Initialiser le FeedbackManager avec la connexion active
+                    # 1. Initialiser le FeedbackManager
                     if not self.feedback_manager:
                         self.feedback_manager = FeedbackManager(self.classifier, mailbox)
                     else:
-                        self.feedback_manager.mailbox = mailbox # Mise à jour de la connexion
+                        self.feedback_manager.mailbox = mailbox
 
-                    # 2. Vérifier les corrections utilisateur (Feedback Loop)
-                    # On suppose que check_for_feedback gère ses propres exceptions
+                    # 2. Vérifier les corrections (Feedback Loop)
                     self.feedback_manager.check_for_feedback()
 
-                    # 3. Traiter la boîte de réception
-                    count = self.process_folder(mailbox, "INBOX")
+                    # 3. Traiter TOUS les dossiers (Modification ici)
+                    status, folders = mailbox.client.list()
+                    total_processed = 0
                     
-                    if count > 0:
-                        logger.info(f"Cycle terminé. {count} emails traités.")
+                    if status == 'OK':
+                        for folder_bytes in folders:
+                            # Décodage robuste du nom du dossier
+                            # Format typique: (\HasNoChildren) "/" "NomDuDossier"
+                            folder_raw = folder_bytes.decode()
+                            folder_name = folder_raw.split(' "/" ')[-1].strip('"')
+                            
+                            # Ignorer les dossiers exclus et les dossiers d'entraînement/feedback
+                            if (folder_name not in EXCLUDED_FOLDERS and 
+                                not folder_name.startswith("Training") and 
+                                not folder_name.startswith("Feedback")):
+                                
+                                logger.debug(f"Scan du dossier: {folder_name}")
+                                count = self.process_folder(mailbox, folder_name)
+                                total_processed += count
+                    
+                    if total_processed > 0:
+                        logger.info(f"Cycle terminé. {total_processed} emails traités au total.")
                     else:
                         logger.debug("Cycle terminé. Aucun changement.")
 
@@ -262,7 +289,6 @@ class EmailProcessor:
 
             except Exception as e:
                 logger.error(f"Erreur dans la boucle principale: {e}")
-                # Pause courte en cas d'erreur pour éviter le spam de logs
                 time.sleep(10)
         
         logger.info("Arrêt du processeur.")
