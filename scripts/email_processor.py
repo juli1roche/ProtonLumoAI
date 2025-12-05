@@ -333,8 +333,12 @@ class EmailProcessor:
             
             status, messages = mailbox.client.search(None, criteria)
             if status != 'OK' or not messages[0]:
-                logger.debug("Aucun email à traiter.")
-                self.last_check[folder_name] = datetime.now().isoformat()
+                logger.debug(f"Aucun email à traiter dans {folder_name}.")
+                # ✅ FIX: Ne PAS marquer les dossiers vides comme traités pendant le scan initial
+                # Cela permet de les rescanner lors du prochain cycle si de nouveaux emails arrivent
+                if self.initial_scan_done:
+                    # Après le scan initial, on peut marquer les dossiers vides
+                    self.last_check[folder_name] = datetime.now().isoformat()
                 return 0
 
             email_ids = messages[0].split()
@@ -439,7 +443,8 @@ class EmailProcessor:
                 mailbox.client.expunge()
                 logger.success(f"✓ Purge terminée pour {folder_name}.")
             
-            # Mettre à jour la date de dernière vérification
+            # ✅ Mettre à jour la date de dernière vérification SEULEMENT si des emails ont été traités
+            # Ou si le scan initial est terminé
             self.last_check[folder_name] = datetime.now().isoformat()
 
         except Exception as e:
@@ -476,6 +481,7 @@ class EmailProcessor:
                     # Traiter tous les dossiers
                     status, folders = mailbox.client.list()
                     total_processed = 0
+                    folders_scanned = 0
                     
                     if status == 'OK':
                         for folder_bytes in folders:
@@ -503,14 +509,15 @@ class EmailProcessor:
                                 logger.debug(f"Scan du dossier: {folder_name}")
                                 count = self.process_folder(mailbox, folder_name)
                                 total_processed += count
+                                folders_scanned += 1
                     
                     # Sauvegarder le checkpoint après chaque cycle
                     self._save_checkpoint()
                     
                     if total_processed > 0:
-                        logger.info(f"Cycle terminé. {total_processed} emails traités au total.")
+                        logger.info(f"Cycle terminé. {total_processed} emails traités sur {folders_scanned} dossiers scannés.")
                     else:
-                        logger.debug("Cycle terminé. Aucun changement.")
+                        logger.debug(f"Cycle terminé. Aucun email traité ({folders_scanned} dossiers scannés).")
 
                     if not self.initial_scan_done:
                         self.initial_scan_done = True
