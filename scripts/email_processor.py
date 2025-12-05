@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # ============================================================================
 # EMAIL PROCESSOR - ProtonLumoAI
+# Processeur principal avec gestion STARTTLS et Parsing Robuste
 # ============================================================================
 
 import os
@@ -13,129 +14,267 @@ from pathlib import Path
 from typing import Optional
 
 from loguru import logger
+from dotenv import load_dotenv
 
-from email_classifier import EmailClassifier
-from email_parser import EmailParser
-from feedback_manager import FeedbackManager
+# Import des modules locaux
+# Assurez-vous que le PYTHONPATH est correct ou que les scripts sont dans le même dossier
+try:
+    from email_classifier import EmailClassifier
+    from email_parser import EmailParser
+    from feedback_manager import FeedbackManager
+except ImportError:
+    # Fallback pour exécution directe depuis le dossier scripts/
+    sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+    from email_classifier import EmailClassifier
+    from email_parser import EmailParser
+    from feedback_manager import FeedbackManager
+
+# Chargement des variables d'environnement
+load_dotenv()
+
+# --- CONFIGURATION ---
+PROTON_BRIDGE_HOST = os.getenv("PROTON_BRIDGE_HOST", "127.0.0.1")
+PROTON_BRIDGE_PORT = int(os.getenv("PROTON_BRIDGE_PORT", 1143))
+PROTON_USERNAME = os.getenv("PROTON_USERNAME")
+PROTON_PASSWORD = os.getenv("PROTON_PASSWORD")
+POLL_INTERVAL = int(os.getenv("PROTON_LUMO_POLL_INTERVAL", 60))
+UNSEEN_ONLY = os.getenv("PROTON_LUMO_UNSEEN_ONLY", "true").lower() == "true"
+DRY_RUN = os.getenv("PROTON_LUMO_DRY_RUN", "false").lower() == "true"
+
 
 class ProtonMailBox:
-    """MailBox personnalisé pour ProtonMail Bridge avec STARTTLS"""
+    """
+    Wrapper IMAP pour ProtonMail Bridge gérant spécifiquement STARTTLS.
+    Le Bridge n'utilise pas SSL direct (port 993) mais STARTTLS (port 1143).
+    """
     
     def __init__(self, host, port, username, password, timeout=None):
-        """Initialise la connexion avec STARTTLS"""
         self.host = host
         self.port = port
         self.username = username
         self.password = password
         self.timeout = timeout or 10
-        self.client = None
-        
-        # Établir la connexion
+        self.client: Optional[imaplib.IMAP4] = None
         self._connect()
     
     def _connect(self):
         """Établit la connexion STARTTLS avec ProtonMail Bridge"""
         try:
-            # Créer le contexte SSL pour accepter les certificats auto-signés
+            # Contexte SSL permissif pour le certificat auto-signé du Bridge
             ssl_context = ssl.create_default_context()
             ssl_context.check_hostname = False
             ssl_context.verify_mode = ssl.CERT_NONE
             
-            # Créer une connexion IMAP4 non sécurisée d'abord
-            logger.debug(f"Création connexion IMAP4 à {self.host}:{self.port}")
+            # 1. Connexion TCP simple (non chiffrée au départ)
+            logger.debug(f"Connexion IMAP à {self.host}:{self.port}...")
             self.client = imaplib.IMAP4(self.host, self.port, timeout=self.timeout)
             
-            # Appliquer STARTTLS
-            logger.debug("Envoi commande STARTTLS")
-            response = self.client.starttls(ssl_context=ssl_context)
-            logger.debug(f"Réponse STARTTLS: {response}")
+            # 2. Upgrade vers TLS via STARTTLS
+            logger.debug("Envoi de la commande STARTTLS...")
+            self.client.starttls(ssl_context=ssl_context)
             
-            # Se connecter avec les credentials
-            logger.debug(f"Authentification avec {self.username}")
-            response = self.client.login(self.username, self.password)
-            logger.debug(f"Réponse LOGIN: {response}")
+            # 3. Authentification
+            logger.debug(f"Authentification pour {self.username}...")
+            self.client.login(self.username, self.password)
             
-            logger.success(f"Connexion STARTTLS établie avec {self.host}:{self.port}")
+            logger.success(f"Connexion établie avec succès ({self.host}:{self.port})")
+            
         except Exception as e:
-            logger.error(f"Erreur connexion STARTTLS: {e}")
+            logger.error(f"Échec de la connexion IMAP/STARTTLS : {e}")
             if self.client:
                 try:
-                    self.client.close()
+                    self.client.logout()
                 except:
                     pass
             raise
-    
+
     def __enter__(self):
-        """Context manager support"""
         return self
     
     def __exit__(self, exc_type, exc_val, exc_tb):
-        """Context manager support"""
-        if self.client:
-            try:
-                self.client.close()
-            except:
-                pass
+        self.close()
     
     def close(self):
-        """Ferme la connexion"""
+        """Ferme proprement la connexion"""
         if self.client:
             try:
-                self.client.close()
+                self.client.close() # Close selected folder
+            except:
+                pass
+            try:
+                self.client.logout() # Logout from server
             except:
                 pass
 
-# ... (le reste du code reste le même)
 
 class EmailProcessor:
-    """Processeur principal pour le traitement des emails"""
+    """Processeur principal orchestrant le tri et l'apprentissage."""
 
     def __init__(self):
-        """Initialise le processeur"""
         self.classifier = EmailClassifier()
         self.parser = EmailParser()
-        self.feedback_manager = None
-        self.running = False
-        self.last_improvement = 0
-        self.processed_count = 0
-        self.error_count = 0
+        # FeedbackManager sera initialisé avec une connexion active
+        self.feedback_manager: Optional[FeedbackManager] = None
+        self.running = True
         
-        logger.info("EmailProcessor initialisé avec le nouveau parser robuste")
+        # Gestion des signaux pour arrêt propre (Ctrl+C)
+        signal.signal(signal.SIGINT, self._signal_handler)
+        signal.signal(signal.SIGTERM, self._signal_handler)
 
-    # ... (la méthode connect_mailbox reste la même)
+        logger.info(f"EmailProcessor démarré [Dry Run: {DRY_RUN}, Unseen Only: {UNSEEN_ONLY}]")
 
-    def process_folder(self, mailbox: ProtonMailBox, folder_name: str) -> int:
-        """Traite un dossier spécifique de manière robuste."""
-        processed = 0
-        try:
-            mailbox.client.select(f'\""{folder_name}\""')
+    def _signal_handler(self, sig, frame):
+        logger.info("Signal d'arrêt reçu. Fermeture...")
+        self.running = False
+
+    def connect_mailbox(self) -> ProtonMailBox:
+        """Crée et retourne une instance connectée de ProtonMailBox."""
+        if not PROTON_USERNAME or not PROTON_PASSWORD:
+            logger.error("Identifiants manquants. Vérifiez votre fichier .env")
+            sys.exit(1)
             
-            # ... (la recherche d'emails reste la même)
+        return ProtonMailBox(
+            PROTON_BRIDGE_HOST,
+            PROTON_BRIDGE_PORT,
+            PROTON_USERNAME,
+            PROTON_PASSWORD
+        )
+
+    def _get_target_folder(self, category: str) -> Optional[str]:
+        """Récupère le dossier cible pour une catégorie donnée."""
+        if category == "UNKNOWN":
+            return None
+            
+        cat_obj = self.classifier.categories.get(category)
+        if cat_obj:
+            return cat_obj.folder
+        return None
+
+    def process_folder(self, mailbox: ProtonMailBox, folder_name: str = "INBOX") -> int:
+        """
+        Traite les emails d'un dossier spécifique.
+        Récupère, parse, classifie et déplace les emails.
+        """
+        processed_count = 0
+        try:
+            # Sélection du dossier
+            status, _ = mailbox.client.select(f'"{folder_name}"')
+            if status != 'OK':
+                logger.warning(f"Impossible de sélectionner le dossier {folder_name}")
+                return 0
+
+            # Critère de recherche
+            criteria = 'UNSEEN' if UNSEEN_ONLY else 'ALL'
+            logger.debug(f"Recherche d'emails ({criteria}) dans {folder_name}...")
+            
+            status, messages = mailbox.client.search(None, criteria)
+            if status != 'OK' or not messages[0]:
+                logger.debug("Aucun email à traiter.")
+                return 0
+
+            email_ids = messages[0].split()
+            logger.info(f"{len(email_ids)} email(s) trouvé(s) dans {folder_name}")
 
             for email_id in email_ids:
+                if not self.running:
+                    break
+
                 try:
-                    status, msg_data = mailbox.client.fetch(email_id, '(RFC822)')
-                    if status != 'OK':
+                    # Récupération du contenu complet (RFC822)
+                    res, msg_data = mailbox.client.fetch(email_id, '(RFC822)')
+                    if res != 'OK':
+                        logger.error(f"Erreur fetch email ID {email_id}")
                         continue
 
-                    # Utilisation du nouveau parser robuste
-                    subject, sender, body = self.parser.parse(msg_data[0][1])
+                    raw_email = msg_data[0][1]
+                    
+                    # 1. Parsing robuste
+                    subject, sender, body = self.parser.parse(raw_email)
+                    
+                    # 2. Classification
+                    result = self.classifier.classify(email_id.decode(), subject, body)
+                    category = result.category
+                    confidence = result.confidence
 
-                    # Le classifieur reçoit maintenant des données propres et garanties
-                    category, confidence = self.classifier.classify(subject, body)
-                    logger.info(f"Email {email_id.decode()}: {category} (confiance: {confidence:.2f})")
+                    logger.info(f"Email '{subject[:30]}...' -> {category} ({confidence:.2f})")
 
-                    # ... (la logique de déplacement reste la même)
+                    # 3. Action (Déplacement)
+                    target_folder = self._get_target_folder(category)
+                    
+                    if target_folder:
+                        if not DRY_RUN:
+                            # Copier vers la destination
+                            res, _ = mailbox.client.copy(email_id, f'"{target_folder}"')
+                            if res == 'OK':
+                                # Marquer pour suppression dans la source (déplacement = copy + delete)
+                                mailbox.client.store(email_id, '+FLAGS', '\\Deleted')
+                                logger.success(f"✓ Déplacé vers {target_folder}")
+                                processed_count += 1
+                            else:
+                                logger.error(f"Échec copie vers {target_folder}")
+                        else:
+                            logger.info(f"[DRY-RUN] Serait déplacé vers {target_folder}")
+                    else:
+                        logger.debug("Pas de déplacement (Catégorie UNKNOWN ou pas de dossier cible)")
 
                 except Exception as e:
-                    logger.error(f"Erreur irrécupérable traitement email {email_id}: {e}")
-                    self.error_count += 1
-            
-            # ... (l'expunge reste le même)
+                    logger.error(f"Erreur traitement email {email_id}: {e}")
+                    continue
+
+            # Appliquer les suppressions (expunge)
+            if not DRY_RUN and processed_count > 0:
+                mailbox.client.expunge()
 
         except Exception as e:
             logger.error(f"Erreur critique traitement dossier {folder_name}: {e}")
         
-        return processed
+        return processed_count
 
-    # ... (le reste des méthodes _get_target_folder, run_once, etc. restent les mêmes)
+    def run(self):
+        """Boucle principale du service."""
+        logger.info("Démarrage de la boucle de traitement...")
+
+        while self.running:
+            try:
+                # Connexion (nouvelle à chaque cycle pour éviter les timeouts)
+                with self.connect_mailbox() as mailbox:
+                    
+                    # 1. Initialiser le FeedbackManager avec la connexion active
+                    if not self.feedback_manager:
+                        self.feedback_manager = FeedbackManager(self.classifier, mailbox)
+                    else:
+                        self.feedback_manager.mailbox = mailbox # Mise à jour de la connexion
+
+                    # 2. Vérifier les corrections utilisateur (Feedback Loop)
+                    # On suppose que check_for_feedback gère ses propres exceptions
+                    self.feedback_manager.check_for_feedback()
+
+                    # 3. Traiter la boîte de réception
+                    count = self.process_folder(mailbox, "INBOX")
+                    
+                    if count > 0:
+                        logger.info(f"Cycle terminé. {count} emails traités.")
+                    else:
+                        logger.debug("Cycle terminé. Aucun changement.")
+
+                # Attente avant le prochain cycle
+                time.sleep(POLL_INTERVAL)
+
+            except Exception as e:
+                logger.error(f"Erreur dans la boucle principale: {e}")
+                # Pause courte en cas d'erreur pour éviter le spam de logs
+                time.sleep(10)
+        
+        logger.info("Arrêt du processeur.")
+
+
+if __name__ == "__main__":
+    # Point d'entrée
+    try:
+        processor = EmailProcessor()
+        processor.run()
+    except KeyboardInterrupt:
+        pass
+    except Exception as e:
+        logger.critical(f"Crash fatal: {e}")
+        sys.exit(1)
