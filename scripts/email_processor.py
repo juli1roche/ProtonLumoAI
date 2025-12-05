@@ -456,12 +456,13 @@ class EmailProcessor:
         """Boucle principale du service."""
         logger.info("Démarrage de la boucle de traitement...")
 
-        # ✅ Dossiers système à exclure (UNIQUEMENT les dossiers techniques)
+        # ✅ Dossiers système à exclure (UNIQUEMENT les dossiers techniques IMAP)
         SYSTEM_FOLDERS = [
-            "All Mail", "Tous les messages",  # Duplicate de INBOX
-            "Labels/[Imap]/Sent",             # Duplicata Sent
-            "Labels/[Imap]/Trash",            # Duplicata Trash
-            "Labels/[Imap]\\",                 # Dossier technique IMAP
+            "All Mail", "Tous les messages",
+            "Labels/[Imap]",
+            "Labels/[Imap]/Sent",
+            "Labels/[Imap]/Trash",
+            "Labels/[Imap]\\",
             "Labels/[Imap]\\/Trash",
             "Labels/[Imap]\\/Sent",
         ]
@@ -496,15 +497,10 @@ class EmailProcessor:
                             else:
                                 continue
                             
-                            # ✅ Filtrer UNIQUEMENT les dossiers système
+                            # ✅ Filtrer UNIQUEMENT les dossiers système IMAP et Training/Feedback
                             if (folder_name not in SYSTEM_FOLDERS and 
                                 not folder_name.startswith("Training") and 
-                                not folder_name.startswith("Feedback") and
-                                '\\' not in folder_name and
-                                '*' not in folder_name and
-                                ':' not in folder_name and
-                                'undefined' not in folder_name.lower() and
-                                'gmail.com 23-12-2022' not in folder_name.lower()):
+                                not folder_name.startswith("Feedback")):
                                 
                                 logger.debug(f"Scan du dossier: {folder_name}")
                                 count = self.process_folder(mailbox, folder_name)
