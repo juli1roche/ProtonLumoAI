@@ -221,13 +221,25 @@ class EmailClassifier:
             return None, 0.0, ""
 
         try:
-            # Préparation du prompt pour l'IA
-            categories_list = ", ".join(self.categories.keys())
+            # Récupérer UNIQUEMENT les catégories de DEFAULT_CATEGORIES (pas celles auto-ajoutées)
+            valid_categories = list(DEFAULT_CATEGORIES.keys())
+            categories_desc = "\n".join([
+                f"- {cat}: {DEFAULT_CATEGORIES[cat].description} (Keywords: {', '.join(DEFAULT_CATEGORIES[cat].keywords[:5])})"
+                for cat in valid_categories
+            ])
+            
+            # Prompt amélioré avec descriptions détaillées
             prompt = (
-                f"Analyze this email and classify it into exactly one of these categories: {categories_list}.\n"
-                f"Subject: {subject}\n"
-                f"Body: {body[:1000]}\n\n"
-                "Return ONLY a JSON object with this format: {\\\"category\\\": \\\"CATEGORY_NAME\\\", \\\"confidence\\\": 0.9, \\\"explanation\\\": \\\"short reason\\\"}"
+                f"You MUST classify this email into EXACTLY ONE of these predefined categories:\n"
+                f"{categories_desc}\n\n"
+                f"Email Subject: {subject}\n"
+                f"Email Body: {body[:1000]}\n\n"
+                f"IMPORTANT RULES:\n"
+                f"1. You MUST return ONLY one of these category names: {', '.join(valid_categories)}\n"
+                f"2. Do NOT create new categories\n"
+                f"3. If the email doesn't clearly fit any category, return 'SPAM' with low confidence\n\n"
+                f"Return ONLY a JSON object with this exact format:\n"
+                f'{{"category": "CATEGORY_NAME", "confidence": 0.9, "explanation": "brief reason"}}'
             )
 
             # Appel API Perplexity
@@ -236,9 +248,12 @@ class EmailClassifier:
                 "Content-Type": "application/json"
             }
             data = {
-                "model": "sonar-pro", # Ou "sonar" pour moins cher
+                "model": "sonar-pro",
                 "messages": [
-                    {"role": "system", "content": "You are a helpful email classification assistant that outputs only JSON."},
+                    {
+                        "role": "system", 
+                        "content": f"You are an email classification assistant. You MUST choose from these categories ONLY: {', '.join(valid_categories)}. Never create new categories. Output only valid JSON."
+                    },
                     {"role": "user", "content": prompt}
                 ]
             }
@@ -257,9 +272,14 @@ class EmailClassifier:
 
                 output = json.loads(content)
                 
-                category = output.get("category", "UNKNOWN").upper()
+                category = output.get("category", "SPAM").upper()
                 confidence = float(output.get("confidence", 0.0))
                 explanation = output.get("explanation", "")
+                
+                # ✅ VALIDATION STRICTE : Vérifier que la catégorie retournée est valide
+                if category not in valid_categories:
+                    logger.warning(f"⚠️  Catégorie invalide '{category}' renvoyée par Perplexity, fallback sur mots-clés")
+                    return None, 0.0, f"Invalid category: {category}"
                 
                 logger.info(f"✓ Perplexity: {category} ({confidence:.2f})")
                 return category, confidence, explanation
@@ -274,6 +294,7 @@ class EmailClassifier:
     def classify_with_keywords(self, subject: str, body: str) -> Tuple[str, float, str]:
         """
         Classification par mots-clés (fallback)
+        Utilise UNIQUEMENT les catégories de DEFAULT_CATEGORIES
         
         Returns:
             (category, confidence, explanation)
@@ -281,7 +302,8 @@ class EmailClassifier:
         content = f"{subject} {body}".lower()
         scores = {}
         
-        for cat_name, category in self.categories.items():
+        # Utiliser UNIQUEMENT DEFAULT_CATEGORIES pour le fallback
+        for cat_name, category in DEFAULT_CATEGORIES.items():
             # Compter les correspondances
             matches = sum(1 for keyword in category.keywords if keyword.lower() in content)
             
