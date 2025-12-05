@@ -6,11 +6,12 @@ Wants=network-online.target
 [Service]
 Type=simple
 User=%u
-WorkingDirectory=%h/ProtonLumoAI
+WorkingDirectory=%h/ProtonLumoAI/scripts
 Environment="PATH=%h/ProtonLumoAI/venv/bin:/usr/local/bin:/usr/bin:/bin"
+Environment="PYTHONPATH=%h/ProtonLumoAI/scripts"
 EnvironmentFile=%h/ProtonLumoAI/.env
 ExecStartPre=/bin/sleep 15
-ExecStart=%h/ProtonLumoAI/venv/bin/python %h/ProtonLumoAI/scripts/main.py
+ExecStart=%h/ProtonLumoAI/venv/bin/python %h/ProtonLumoAI/scripts/email_processor.py
 Restart=on-failure
 RestartSec=30
 StandardOutput=journal
