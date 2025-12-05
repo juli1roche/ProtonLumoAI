@@ -175,6 +175,7 @@ class EmailProcessor:
         """
         # Vérifier le cache d'abord
         if mailbox.folder_exists(folder_path):
+            logger.debug(f"Dossier {folder_path} déjà dans le cache")
             return True
         
         # Créer récursivement
@@ -190,8 +191,20 @@ class EmailProcessor:
                 try:
                     logger.debug(f"Création du dossier: {current_path}")
                     mailbox.client.create(f'"{current_path}"')
-                    mailbox._existing_folders.add(current_path)
-                    logger.success(f"✓ Dossier créé: {current_path}")
+                    
+                    # Attendre un peu pour que le serveur synchronise
+                    time.sleep(0.5)
+                    
+                    # Rafraîchir le cache après création
+                    mailbox._refresh_folder_cache()
+                    
+                    # Vérifier que le dossier a bien été créé
+                    if mailbox.folder_exists(current_path):
+                        logger.success(f"✓ Dossier créé: {current_path}")
+                    else:
+                        logger.warning(f"Dossier {current_path} créé mais absent du cache")
+                        mailbox._existing_folders.add(current_path)
+                        
                 except Exception as e:
                     logger.error(f"Impossible de créer le dossier {current_path}: {e}")
                     return False
@@ -267,13 +280,20 @@ class EmailProcessor:
                                 logger.error(f"Impossible de créer le dossier {target_folder}, email non déplacé")
                                 continue
 
-                            res, _ = mailbox.client.copy(email_id, f'"{target_folder}"')
-                            if res == 'OK':
-                                mailbox.client.store(email_id, '+FLAGS', '\\Deleted')
-                                logger.success(f"✓ Déplacé vers {target_folder}")
-                                processed_count += 1
-                            else:
-                                logger.error(f"Échec copie vers {target_folder}")
+                            # Tentative de copie avec logs détaillés
+                            logger.debug(f"Tentative COPY email {email_id.decode()} vers '{target_folder}'")
+                            try:
+                                res, data = mailbox.client.copy(email_id, f'"{target_folder}"')
+                                logger.debug(f"Réponse COPY: status={res}, data={data}")
+                                
+                                if res == 'OK':
+                                    mailbox.client.store(email_id, '+FLAGS', '\\Deleted')
+                                    logger.success(f"✓ Déplacé vers {target_folder}")
+                                    processed_count += 1
+                                else:
+                                    logger.error(f"Échec copie vers {target_folder}: {res} - {data}")
+                            except Exception as copy_error:
+                                logger.error(f"Exception lors de COPY vers {target_folder}: {copy_error}")
                         else:
                             logger.info(f"[DRY-RUN] Serait déplacé vers {target_folder}")
                     else:
