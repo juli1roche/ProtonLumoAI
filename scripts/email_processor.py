@@ -18,7 +18,74 @@ from email_classifier import EmailClassifier
 from email_parser import EmailParser
 from feedback_manager import FeedbackManager
 
-# ... (le reste du code reste le même jusqu'à la classe EmailProcessor)
+class ProtonMailBox:
+    """MailBox personnalisé pour ProtonMail Bridge avec STARTTLS"""
+    
+    def __init__(self, host, port, username, password, timeout=None):
+        """Initialise la connexion avec STARTTLS"""
+        self.host = host
+        self.port = port
+        self.username = username
+        self.password = password
+        self.timeout = timeout or 10
+        self.client = None
+        
+        # Établir la connexion
+        self._connect()
+    
+    def _connect(self):
+        """Établit la connexion STARTTLS avec ProtonMail Bridge"""
+        try:
+            # Créer le contexte SSL pour accepter les certificats auto-signés
+            ssl_context = ssl.create_default_context()
+            ssl_context.check_hostname = False
+            ssl_context.verify_mode = ssl.CERT_NONE
+            
+            # Créer une connexion IMAP4 non sécurisée d'abord
+            logger.debug(f"Création connexion IMAP4 à {self.host}:{self.port}")
+            self.client = imaplib.IMAP4(self.host, self.port, timeout=self.timeout)
+            
+            # Appliquer STARTTLS
+            logger.debug("Envoi commande STARTTLS")
+            response = self.client.starttls(ssl_context=ssl_context)
+            logger.debug(f"Réponse STARTTLS: {response}")
+            
+            # Se connecter avec les credentials
+            logger.debug(f"Authentification avec {self.username}")
+            response = self.client.login(self.username, self.password)
+            logger.debug(f"Réponse LOGIN: {response}")
+            
+            logger.success(f"Connexion STARTTLS établie avec {self.host}:{self.port}")
+        except Exception as e:
+            logger.error(f"Erreur connexion STARTTLS: {e}")
+            if self.client:
+                try:
+                    self.client.close()
+                except:
+                    pass
+            raise
+    
+    def __enter__(self):
+        """Context manager support"""
+        return self
+    
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        """Context manager support"""
+        if self.client:
+            try:
+                self.client.close()
+            except:
+                pass
+    
+    def close(self):
+        """Ferme la connexion"""
+        if self.client:
+            try:
+                self.client.close()
+            except:
+                pass
+
+# ... (le reste du code reste le même)
 
 class EmailProcessor:
     """Processeur principal pour le traitement des emails"""
@@ -41,7 +108,7 @@ class EmailProcessor:
         """Traite un dossier spécifique de manière robuste."""
         processed = 0
         try:
-            mailbox.client.select(f'"{folder_name}"')
+            mailbox.client.select(f'\""{folder_name}\""')
             
             # ... (la recherche d'emails reste la même)
 
