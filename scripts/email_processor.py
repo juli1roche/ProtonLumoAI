@@ -61,12 +61,14 @@ class EmailProcessor:
         """Établit la connexion à la boîte mail"""
         logger.info(f"Connexion à {IMAP_HOST}:{IMAP_PORT}...")
         try:
-            # ProtonMail Bridge utilise un certificat auto-signé, désactiver la vérification SSL
+            # ProtonMail Bridge utilise STARTTLS (pas SSL direct)
             ssl_context = ssl.create_default_context()
             ssl_context.check_hostname = False
             ssl_context.verify_mode = ssl.CERT_NONE
             
-            mailbox = MailBox(IMAP_HOST, IMAP_PORT, ssl_context=ssl_context)
+            # Utiliser ssl=False pour STARTTLS
+            mailbox = MailBox(IMAP_HOST, IMAP_PORT, ssl=False)
+            mailbox.starttls(ssl_context=ssl_context)
             mailbox.login(IMAP_USERNAME, IMAP_PASSWORD)
             logger.success("Connexion établie")
             return mailbox
