@@ -96,7 +96,7 @@ class ProtonMailBox:
                     except UnicodeDecodeError:
                         folder_raw = folder_bytes.decode('latin-1')
                     
-                    parts = folder_raw.split(' "/' ')
+                    parts = folder_raw.split(' "/" ')
                     if len(parts) > 1:
                         folder_name = parts[-1].strip('"')
                         self._existing_folders.add(folder_name)
