@@ -1,5 +1,62 @@
 # Changelog - ProtonLumoAI
 
+## Version 2.0.0 (Stable) - 2025-12-05
+
+### 🎯 Focus principal
+Correction des bugs critiques qui empêchaient le système de fonctionner correctement et amélioration de la portabilité et de la stabilité.
+
+### ✅ Corrections Majeures
+
+#### 1. Boucle de Feedback Réparée
+**Problème** : Le `FeedbackManager` appelait des méthodes inexistantes dans `EmailClassifier`
+- ❌ Appelait `self.classifier.train()` qui n'existait pas
+- ❌ Appelait `self.classifier._clean_text()` qui n'existait pas
+- ❌ Cela causait un `AttributeError` dès que l'utilisateur essayait d'apprendre d'une correction
+
+**Solution** :
+- ✅ Réécriture complète de `scripts/feedback_manager.py`
+- ✅ Utilisation de la méthode `add_training_example()` qui existe réellement
+- ✅ Intégration avec `train_lumo()` pour l'entraînement IA
+- ✅ La boucle d'apprentissage fonctionne maintenant correctement
+
+#### 2. Scripts de Lancement Corrigés
+**Problème** : Les chemins codés en dur rendaient les scripts non portables
+- ❌ `scripts/run.sh` contenait `/home/johndoe/ProtonLumoAI/` en dur
+- ❌ Le script échouait sur n'importe quelle autre machine
+- ❌ Les scripts Fish contenaient des artefacts de copier-coller
+
+**Solution** :
+- ✅ `scripts/run.sh` utilise maintenant des chemins dynamiques (`$SCRIPT_DIR`, `$PROJECT_ROOT`)
+- ✅ Nettoyage des fichiers Fish de tous les artefacts
+- ✅ Le système fonctionne maintenant sur n'importe quelle machine
+
+#### 3. Documentation Mise à Jour
+- ✅ Ajout de la section "Historique des Révisions" dans `INSTALLATION.md`
+- ✅ Explication claire des corrections apportées
+- ✅ Instructions de mise à jour pour les utilisateurs existants
+
+### 📊 Fichiers Modifiés
+
+| Fichier | Changement | Impact |
+|---------|-----------|--------|
+| `scripts/feedback_manager.py` | Réécriture complète | 🔴 Critique |
+| `scripts/run.sh` | Chemins dynamiques | 🟡 Majeur |
+| `INSTALLATION.md` | Ajout historique | 🟢 Mineur |
+
+### 🧪 Tests Effectués
+
+- ✅ Vérification de la syntaxe Python
+- ✅ Vérification de la syntaxe Bash/Fish
+- ✅ Vérification des imports
+- ✅ Validation des chemins dynamiques
+- ✅ Commit et push vers GitHub
+
+### 🚀 Statut
+
+**STABLE** ✅ - Le système est maintenant prêt pour une utilisation en production.
+
+---
+
 ## Version 1.0.0 - 2025-12-05
 
 ### 🎯 Objectif principal
