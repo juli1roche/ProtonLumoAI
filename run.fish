@@ -17,12 +17,27 @@ if set -q VIRTUAL_ENV
     end
 end
 
-# Vérifier que le venv existe
+# Vérifier que le venv existe, sinon le créer
 if not test -d "venv"
-    echo "❌ Erreur: Environnement virtuel non trouvé"
-    echo "Créez-le avec: python3 -m venv venv"
-    exit 1
+    echo "🛠️  Environnement virtuel non trouvé. Création en cours..."
+    python3 -m venv venv
+    if test $status -ne 0
+        echo "❌ Erreur: Impossible de créer l'environnement virtuel."
+        exit 1
+    end
 end
+
+# Activer l'environnement virtuel
+source venv/bin/activate.fish
+
+# Installer les dépendances
+if test -f "requirements.txt"
+    echo "📦 Installation des dépendances..."
+    pip install -r requirements.txt
+else
+    echo "⚠️  Fichier requirements.txt non trouvé. L'installation des dépendances est ignorée."
+end
+
 
 # Vérifier que .env existe
 if not test -f ".env"

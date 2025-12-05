@@ -1,0 +1,6 @@
+imap-tools
+loguru
+pydantic
+scikit-learn
+pandas
+python-dotenv
