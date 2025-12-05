@@ -11,6 +11,7 @@ import signal
 import sys
 import ssl
 import imaplib
+import email
 from pathlib import Path
 from datetime import datetime
 from typing import Optional, Dict, List, Tuple
@@ -174,8 +175,8 @@ class EmailProcessor:
         processed = 0
         
         try:
-            # Sélectionner le dossier
-            mailbox.client.select(folder_name)
+            # Sélectionner le dossier (avec échappement)
+            mailbox.client.select(f'"{folder_name}"')
             
             # Récupérer les emails non lus ou tous les emails
             if PROCESS_UNSEEN_ONLY:
@@ -198,16 +199,19 @@ class EmailProcessor:
                     if status != 'OK':
                         continue
                     
-                    msg = msg_data[0][1]
+                    # Parser l'email
+                    msg = email.message_from_bytes(msg_data[0][1])
+                    subject = self._decode_header(msg["Subject"])
+                    body = self._get_body(msg)
                     
                     # Classifier l'email
-                    category, confidence = self.classifier.classify(msg)
+                    category, confidence = self.classifier.classify(subject, body)
                     logger.info(f"Email {email_id.decode()}: {category} (confiance: {confidence:.2f})")
                     
                     # Déplacer l'email vers le dossier approprié
                     if not DRY_RUN:
                         target_folder = self._get_target_folder(category, confidence)
-                        mailbox.client.copy(email_id, target_folder)
+                        mailbox.client.copy(email_id, f'"{target_folder}"')
                         mailbox.client.store(email_id, '+FLAGS', '\\Deleted')
                     
                     processed += 1
@@ -226,6 +230,26 @@ class EmailProcessor:
             logger.error(f"Erreur traitement dossier {folder_name}: {e}")
         
         return processed
+
+    def _decode_header(self, header: str) -> str:
+        """Décode un en-tête d'email."""
+        if header is None:
+            return ""
+        decoded_header = email.header.decode_header(header)
+        return ' '.join([str(text, charset or 'utf-8') for text, charset in decoded_header])
+
+    def _get_body(self, msg: email.message.Message) -> str:
+        """Extrait le corps de l'email."""
+        if msg.is_multipart():
+            for part in msg.walk():
+                content_type = part.get_content_type()
+                content_disposition = str(part.get("Content-Disposition"))
+
+                if content_type == "text/plain" and "attachment" not in content_disposition:
+                    return part.get_payload(decode=True).decode()
+        else:
+            return msg.get_payload(decode=True).decode()
+        return ""
 
     def _get_target_folder(self, category: str, confidence: float) -> str:
         """Retourne le dossier cible en fonction de la catégorie et de la confiance"""
