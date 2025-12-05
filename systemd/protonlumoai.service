@@ -1,8 +1,7 @@
 [Unit]
 Description=ProtonLumoAI - Automated Email Classifier with Adaptive Learning
-After=network-online.target protonmail-bridge.service
+After=network-online.target
 Wants=network-online.target
-Requires=protonmail-bridge.service
 
 [Service]
 Type=simple
@@ -10,7 +9,7 @@ User=%u
 WorkingDirectory=%h/ProtonLumoAI
 Environment="PATH=%h/ProtonLumoAI/venv/bin:/usr/local/bin:/usr/bin:/bin"
 EnvironmentFile=%h/ProtonLumoAI/.env
-ExecStartPre=/bin/sleep 10
+ExecStartPre=/bin/sleep 15
 ExecStart=%h/ProtonLumoAI/venv/bin/python %h/ProtonLumoAI/scripts/main.py
 Restart=on-failure
 RestartSec=30
