@@ -9,12 +9,9 @@ cd $SCRIPT_DIR
 # Désactiver tout venv actif (Fish shell)
 if set -q VIRTUAL_ENV
     echo "⚠️  Désactivation du venv actif..."
-    # En Fish shell, on peut appeler la fonction deactivate si elle existe
-    # Sinon, on réinitialise les variables manuellement
     if functions -q deactivate
         deactivate nondestructive
     else
-        # Réinitialiser les variables de venv manuellement
         set -e VIRTUAL_ENV
         set -e VIRTUAL_ENV_PROMPT
     end
@@ -59,7 +56,6 @@ echo "🚀 Démarrage du processeur d'emails..."
 echo ""
 
 # Lancer le processeur avec le Python du venv
-# Utiliser le chemin absolu pour éviter les conflits
 set -l PYTHON_BIN (pwd)"/venv/bin/python3"
 
 if not test -f $PYTHON_BIN
