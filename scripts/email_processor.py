@@ -151,6 +151,16 @@ class EmailProcessor:
             return cat_obj.folder
         return None
 
+    def create_folder_recursively(self, mailbox: ProtonMailBox, folder_path: str):
+        """Crée un dossier et ses parents s'ils n'existent pas."""
+        path_parts = folder_path.split('/')
+        current_path = ''
+        for part in path_parts:
+            if current_path:
+                current_path += '/'
+            current_path += part
+            mailbox.client.create(f'''{current_path}''')
+
     def process_folder(self, mailbox: ProtonMailBox, folder_name: str = "INBOX") -> int:
         """
         Traite les emails d'un dossier spécifique.
@@ -159,7 +169,7 @@ class EmailProcessor:
         processed_count = 0
         try:
             # Sélection du dossier
-            mailbox.client.select(f'"{folder_name}"')
+            mailbox.client.select(f'''{folder_name}''')
 
             # Critère de recherche
             # Modification pour le scan initial
@@ -207,9 +217,9 @@ class EmailProcessor:
                     if target_folder:
                         if not DRY_RUN:
                             # S'assurer que le dossier existe avant de copier
-                            mailbox.client.create(f'"{target_folder}"')
+                            self.create_folder_recursively(mailbox, target_folder)
 
-                            res, _ = mailbox.client.copy(email_id, f'"{target_folder.encode("utf-8").decode("ascii", "ignore")}"')
+                            res, _ = mailbox.client.copy(email_id, f'''{target_folder}''')
                             if res == 'OK':
                                 # Marquer pour suppression dans la source (déplacement = copy + delete)
                                 mailbox.client.store(email_id, '+FLAGS', '\\Deleted')
@@ -247,8 +257,7 @@ class EmailProcessor:
             "Trash", "Corbeille", 
             "Spam", "Junk",
             "Archive", 
-            "Sent",
-            "Labels/[Imap]/Trash", "Sent Messages", "Envoyés",
+            "Sent", "Sent Messages", "Envoyés",
             "Drafts", "Brouillons",
             "All Mail", "Tous les messages",
             "Folders/GMAIL", # Exclure le dossier d'archive volumineux
@@ -287,7 +296,7 @@ class EmailProcessor:
 
                             parts = folder_raw.split(' "/" ')
                             if len(parts) > 1:
-                                folder_name = parts[-1].strip('"')
+                                folder_name = parts[-1].strip('''"''')
                             else:
                                 continue # Skip invalid folder format
                             
