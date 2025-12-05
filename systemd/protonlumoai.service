@@ -1,0 +1,15 @@
+[Unit]
+Description=ProtonLumoAI - Processeur d'Emails Intelligent
+After=network.target
+
+[Service]
+Type=simple
+User=johndoe
+Group=johndoe
+WorkingDirectory=/home/johndoe/ProtonLumoAI
+ExecStart=/home/johndoe/ProtonLumoAI/run.fish
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
