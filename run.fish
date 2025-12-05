@@ -6,6 +6,12 @@
 set -l SCRIPT_DIR (dirname (status filename))
 cd $SCRIPT_DIR
 
+# Désactiver tout venv actif
+if set -q VIRTUAL_ENV
+    echo "⚠️  Désactivation du venv actif..."
+    deactivate
+end
+
 # Vérifier que le venv existe
 if not test -d "venv"
     echo "❌ Erreur: Environnement virtuel non trouvé"
@@ -45,8 +51,8 @@ echo "🚀 Démarrage du processeur d'emails..."
 echo ""
 
 # Lancer le processeur avec le Python du venv
-# Cela évite les problèmes d'activation du venv dans Fish shell
-set -l PYTHON_BIN "./venv/bin/python3"
+# Utiliser le chemin absolu pour éviter les conflits
+set -l PYTHON_BIN (pwd)"/venv/bin/python3"
 
 if not test -f $PYTHON_BIN
     echo "❌ Erreur: Python du venv non trouvé à $PYTHON_BIN"
