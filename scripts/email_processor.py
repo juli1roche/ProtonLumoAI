@@ -57,10 +57,12 @@ class EmailProcessor:
         logger.info("EmailProcessor initialisé")
 
     def connect_mailbox(self) -> MailBox:
-        """Établit une connexion à la boîte mail"""
+        """Établit la connexion à la boîte mail"""
         logger.info(f"Connexion à {IMAP_HOST}:{IMAP_PORT}...")
         try:
-            mailbox = MailBox(IMAP_HOST, IMAP_PORT).login(IMAP_USERNAME, IMAP_PASSWORD)
+            # ProtonMail Bridge utilise STARTTLS
+            mailbox = MailBox(IMAP_HOST, IMAP_PORT, ssl=False).login(IMAP_USERNAME, IMAP_PASSWORD)
+            mailbox.starttls()
             logger.success("Connexion établie")
             return mailbox
         except Exception as e:
