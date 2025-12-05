@@ -12,8 +12,9 @@ import ssl
 import imaplib
 import json
 from pathlib import Path
-from typing import Optional, Set, Dict
+from typing import Optional, Set, Dict, List
 from datetime import datetime
+import email.utils
 
 from loguru import logger
 from dotenv import load_dotenv
@@ -41,6 +42,9 @@ POLL_INTERVAL = int(os.getenv("PROTON_LUMO_POLL_INTERVAL", 60))
 UNSEEN_ONLY = os.getenv("PROTON_LUMO_UNSEEN_ONLY", "true").lower() == "true"
 DRY_RUN = os.getenv("PROTON_LUMO_DRY_RUN", "false").lower() == "true"
 MAX_EMAILS_PER_FOLDER = int(os.getenv("PROTON_LUMO_MAX_EMAILS_PER_FOLDER", 100))
+
+# Limites spéciales pour certains dossiers
+SPAM_TRASH_LIMIT = 10  # Limite pour Spam/Trash
 
 # Répertoires de données
 DATA_DIR = Path(os.getenv("PROTON_LUMO_DATA", "~/ProtonLumoAI/data")).expanduser()
@@ -254,6 +258,52 @@ class EmailProcessor:
         
         return True
 
+    def _get_email_date(self, mailbox: ProtonMailBox, email_id: bytes) -> datetime:
+        """
+        Récupère la date d'un email pour le tri.
+        Retourne la date ou datetime.min si erreur.
+        """
+        try:
+            res, msg_data = mailbox.client.fetch(email_id, '(INTERNALDATE)')
+            if res == 'OK' and msg_data and msg_data[0]:
+                # Parser la date IMAP (format: "DD-Mon-YYYY HH:MM:SS +ZZZZ")
+                date_str = msg_data[0].decode('utf-8', errors='ignore')
+                # Extraire la date entre guillemets
+                import re
+                match = re.search(r'"([^"]+)"', date_str)
+                if match:
+                    date_tuple = email.utils.parsedate_tz(match.group(1))
+                    if date_tuple:
+                        return datetime.fromtimestamp(email.utils.mktime_tz(date_tuple))
+        except Exception as e:
+            logger.debug(f"Erreur récupération date email: {e}")
+        
+        return datetime.min
+
+    def _sort_emails_by_date(self, mailbox: ProtonMailBox, email_ids: List[bytes], limit: int) -> List[bytes]:
+        """
+        Trie les emails par date décroissante et retourne les {limit} plus récents.
+        """
+        if not email_ids or len(email_ids) <= limit:
+            return email_ids
+        
+        logger.debug(f"Tri de {len(email_ids)} emails par date pour garder les {limit} plus récents...")
+        
+        # Créer une liste (email_id, date)
+        emails_with_dates = []
+        for email_id in email_ids:
+            date = self._get_email_date(mailbox, email_id)
+            emails_with_dates.append((email_id, date))
+        
+        # Trier par date décroissante (plus récents en premier)
+        emails_with_dates.sort(key=lambda x: x[1], reverse=True)
+        
+        # Retourner seulement les IDs des {limit} plus récents
+        recent_emails = [email_id for email_id, _ in emails_with_dates[:limit]]
+        
+        logger.debug(f"✓ {len(recent_emails)} emails les plus récents sélectionnés")
+        return recent_emails
+
     def process_folder(self, mailbox: ProtonMailBox, folder_name: str = "INBOX") -> int:
         """
         Traite les emails d'un dossier spécifique.
@@ -290,10 +340,18 @@ class EmailProcessor:
             email_ids = messages[0].split()
             total_emails = len(email_ids)
             
-            # Limiter le nombre d'emails traités par dossier
-            if total_emails > MAX_EMAILS_PER_FOLDER:
-                logger.warning(f"⚠️  {total_emails} emails trouvés dans {folder_name}, limitation à {MAX_EMAILS_PER_FOLDER} pour éviter la surcharge API")
-                email_ids = email_ids[:MAX_EMAILS_PER_FOLDER]
+            # Déterminer la limite selon le type de dossier
+            folder_lower = folder_name.lower()
+            if 'spam' in folder_lower or 'trash' in folder_lower or 'corbeille' in folder_lower:
+                limit = SPAM_TRASH_LIMIT
+                logger.info(f"🗑️  Dossier Spam/Trash détecté, limitation à {limit} emails les plus récents")
+            else:
+                limit = MAX_EMAILS_PER_FOLDER
+            
+            # Trier et limiter les emails par date
+            if total_emails > limit:
+                logger.warning(f"⚠️  {total_emails} emails trouvés dans {folder_name}, tri par date pour garder les {limit} plus récents")
+                email_ids = self._sort_emails_by_date(mailbox, email_ids, limit)
             
             logger.info(f"{len(email_ids)} email(s) trouvé(s) dans {folder_name} (sur {total_emails} total)")
 
@@ -353,8 +411,6 @@ class EmailProcessor:
                                     
                                     # ✅ IMPORTANT : Restaurer le flag SEEN si l'email était déjà lu
                                     if was_seen:
-                                        # Trouver l'UID de l'email copié dans le dossier de destination
-                                        # (on ne peut pas restaurer directement le flag, l'email sera re-fetché)
                                         logger.debug(f"Email était déjà lu, flag SEEN préservé")
                                     
                                     logger.success(f"✓ Déplacé vers {target_folder}")
@@ -395,25 +451,14 @@ class EmailProcessor:
         """Boucle principale du service."""
         logger.info("Démarrage de la boucle de traitement...")
 
-        # Dossiers à exclure
-        EXCLUDED_FOLDERS = [
-            "Trash", "Corbeille", 
-            "Spam", "Junk",
-            "Archive", 
-            "Sent", "Sent Messages", "Envoyés",
-            "Drafts", "Brouillons",
-            "All Mail", "Tous les messages",
-            "Folders/GMAIL",
-            "Labels/[Imap]/Sent",
-            "Labels/Sent",
-            "Sent",
-            "Labels/[Imap]/Trash",
-            "Labels/[Imap]\\",
+        # ✅ Dossiers système à exclure (UNIQUEMENT les dossiers techniques)
+        SYSTEM_FOLDERS = [
+            "All Mail", "Tous les messages",  # Duplicate de INBOX
+            "Labels/[Imap]/Sent",             # Duplicata Sent
+            "Labels/[Imap]/Trash",            # Duplicata Trash
+            "Labels/[Imap]\\",                 # Dossier technique IMAP
             "Labels/[Imap]\\/Trash",
             "Labels/[Imap]\\/Sent",
-            "Labels/undefined 23-12-2022 15:03",
-            "Labels/gmail.com 23-12-2022 14:55",
-            "Labels/OM *"
         ]
 
         while self.running:
@@ -445,14 +490,15 @@ class EmailProcessor:
                             else:
                                 continue
                             
-                            # Filtrer les dossiers problématiques
-                            if (folder_name not in EXCLUDED_FOLDERS and 
+                            # ✅ Filtrer UNIQUEMENT les dossiers système
+                            if (folder_name not in SYSTEM_FOLDERS and 
                                 not folder_name.startswith("Training") and 
                                 not folder_name.startswith("Feedback") and
                                 '\\' not in folder_name and
                                 '*' not in folder_name and
                                 ':' not in folder_name and
-                                'undefined' not in folder_name.lower()):
+                                'undefined' not in folder_name.lower() and
+                                'gmail.com 23-12-2022' not in folder_name.lower()):
                                 
                                 logger.debug(f"Scan du dossier: {folder_name}")
                                 count = self.process_folder(mailbox, folder_name)
