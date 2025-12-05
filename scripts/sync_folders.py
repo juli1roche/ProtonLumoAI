@@ -1,4 +1,3 @@
-
 #!/usr/bin/env python3
 # ============================================================================
 # SYNC FOLDERS - ProtonLumoAI
@@ -42,12 +41,12 @@ EXCLUDED_FOLDERS = [
 
 def load_config():
     if CONFIG_PATH.exists():
-        with open(CONFIG_PATH, 'r') as f:
+        with open(CONFIG_PATH, 'r', encoding='utf-8') as f:
             return json.load(f)
     return {}
 
 def save_config(data):
-    with open(CONFIG_PATH, 'w') as f:
+    with open(CONFIG_PATH, 'w', encoding='utf-8') as f:
         json.dump(data, f, indent=2, ensure_ascii=False)
     logger.success(f"Configuration sauvegardée dans {CONFIG_PATH}")
 
@@ -73,9 +72,16 @@ def sync():
             new_folders_count = 0
             
             for folder_bytes in folders:
-                folder_raw = folder_bytes.decode()
-                # Extraction du nom (gère les noms avec ou sans guillemets)
-                folder_name = folder_raw.split(' "/" ')[-1].strip('"')
+                try:
+                    folder_raw = folder_bytes.decode('utf-8')
+                except UnicodeDecodeError:
+                    folder_raw = folder_bytes.decode('latin-1') # Fallback
+
+                parts = folder_raw.split(' "/" ')
+                if len(parts) > 1:
+                    folder_name = parts[-1].strip('"')
+                else:
+                    continue # Skip invalid folder format
                 
                 # Ignorer dossiers système et dossiers d'entraînement
                 if (folder_name in EXCLUDED_FOLDERS or 

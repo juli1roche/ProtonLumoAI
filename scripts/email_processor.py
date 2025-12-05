@@ -247,7 +247,8 @@ class EmailProcessor:
             "Archive", 
             "Sent", "Sent Messages", "Envoyés",
             "Drafts", "Brouillons",
-            "All Mail", "Tous les messages"
+            "All Mail", "Tous les messages",
+            "Folders/GMAIL" # Exclure le dossier d'archive volumineux
         ]
 
         while self.running:
