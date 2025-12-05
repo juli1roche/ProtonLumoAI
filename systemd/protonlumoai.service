@@ -4,10 +4,10 @@ After=network.target
 
 [Service]
 Type=simple
-User=johndoe
-Group=johndoe
-WorkingDirectory=/home/johndoe/ProtonLumoAI
-ExecStart=/home/johndoe/ProtonLumoAI/run.fish
+User=%i
+Group=%i
+WorkingDirectory=/home/%i/ProtonLumoAI
+ExecStart=/home/%i/ProtonLumoAI/run.fish
 Restart=on-failure
 RestartSec=10
 

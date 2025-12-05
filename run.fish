@@ -39,7 +39,7 @@ end
 # Charger les variables d'environnement depuis .env
 echo "📝 Chargement des variables d'environnement..."
 set -l ENV_FILE ".env"
-for line in (grep -v '^#' $ENV_FILE | grep -v '^$')
+for line in (grep -v 	'^#' $ENV_FILE | grep -v 	'^$')
     set -l key (echo $line | cut -d '=' -f 1)
     set -l value (echo $line | cut -d '=' -f 2-)
     set -gx $key $value
