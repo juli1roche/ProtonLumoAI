@@ -168,8 +168,12 @@ class EmailProcessor:
         """
         processed_count = 0
         try:
-            # Sélection du dossier
-            mailbox.client.select(f'''{folder_name}''')
+            # Sélection du dossier (avec gestion des caractères spéciaux)
+            try:
+                mailbox.client.select(f'''{folder_name}''')
+            except Exception as e:
+                logger.error(f"Impossible de sélectionner le dossier {folder_name}: {e}")
+                return 0
 
             # Critère de recherche
             # Modification pour le scan initial
@@ -264,7 +268,9 @@ class EmailProcessor:
             "Labels/[Imap]/Sent",
             "Labels/Sent",
             "Sent",
-            "Labels/[Imap]/Trash"
+            "Labels/[Imap]/Trash",
+            "Labels/[Imap]\\",
+            "Labels/undefined 23-12-2022 15:03"
         ]
 
         while self.running:
@@ -301,9 +307,12 @@ class EmailProcessor:
                                 continue # Skip invalid folder format
                             
                             # Ignorer les dossiers exclus et les dossiers d'entraînement/feedback
+                            # Aussi ignorer les dossiers avec des caractères spéciaux problématiques
                             if (folder_name not in EXCLUDED_FOLDERS and 
                                 not folder_name.startswith("Training") and 
-                                not folder_name.startswith("Feedback")):
+                                not folder_name.startswith("Feedback") and
+                                '\\' not in folder_name and
+                                'undefined' not in folder_name.lower()):
                                 
                                 logger.debug(f"Scan du dossier: {folder_name}")
                                 count = self.process_folder(mailbox, folder_name)
