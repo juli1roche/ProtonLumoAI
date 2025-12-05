@@ -10,6 +10,7 @@ import json
 import signal
 import sys
 import ssl
+import imaplib
 from pathlib import Path
 from datetime import datetime
 from typing import Optional, Dict, List, Tuple
@@ -62,14 +63,20 @@ class EmailProcessor:
         logger.info(f"Connexion à {IMAP_HOST}:{IMAP_PORT}...")
         try:
             # ProtonMail Bridge utilise STARTTLS (pas SSL direct)
+            # Créer le contexte SSL
             ssl_context = ssl.create_default_context()
             ssl_context.check_hostname = False
             ssl_context.verify_mode = ssl.CERT_NONE
             
-            # Utiliser ssl=False pour STARTTLS
-            mailbox = MailBox(IMAP_HOST, IMAP_PORT, ssl=False)
-            mailbox.starttls(ssl_context=ssl_context)
-            mailbox.login(IMAP_USERNAME, IMAP_PASSWORD)
+            # Connexion avec imaplib directement pour STARTTLS
+            imap = imaplib.IMAP4(IMAP_HOST, IMAP_PORT, timeout=10)
+            imap.starttls(ssl_context=ssl_context)
+            imap.login(IMAP_USERNAME, IMAP_PASSWORD)
+            
+            # Créer un MailBox avec la connexion existante
+            mailbox = MailBox(IMAP_HOST, IMAP_PORT)
+            mailbox.client = imap
+            
             logger.success("Connexion établie")
             return mailbox
         except Exception as e:
