@@ -1,15 +1,29 @@
 [Unit]
-Description=ProtonLumoAI - Processeur d'Emails Intelligent
-After=network.target
+Description=ProtonLumoAI - Automated Email Classifier with Adaptive Learning
+After=network-online.target protonmail-bridge.service
+Wants=network-online.target
+Requires=protonmail-bridge.service
 
 [Service]
 Type=simple
-User=%i
-Group=%i
-WorkingDirectory=/home/%i/ProtonLumoAI
-ExecStart=/home/%i/ProtonLumoAI/run.fish
+User=%u
+WorkingDirectory=%h/ProtonLumoAI
+Environment="PATH=%h/ProtonLumoAI/venv/bin:/usr/local/bin:/usr/bin:/bin"
+EnvironmentFile=%h/ProtonLumoAI/.env
+ExecStartPre=/bin/sleep 10
+ExecStart=%h/ProtonLumoAI/venv/bin/python %h/ProtonLumoAI/scripts/main.py
 Restart=on-failure
-RestartSec=10
+RestartSec=30
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=protonlumoai
+
+# Protection et sécurité
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=read-only
+ReadWritePaths=%h/ProtonLumoAI/data %h/ProtonLumoAI/logs %h/ProtonLumoAI/config
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=default.target
