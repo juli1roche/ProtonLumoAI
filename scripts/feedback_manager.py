@@ -11,6 +11,7 @@ from pathlib import Path
 from typing import List, Dict
 
 from loguru import logger
+import email
 
 from email_classifier import EmailClassifier
 
