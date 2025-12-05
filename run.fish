@@ -22,11 +22,7 @@ if not test -f ".env"
     exit 1
 end
 
-# Activer le venv
-echo "🔧 Activation de l'environnement virtuel..."
-source venv/bin/activate.fish
-
-# Charger les variables d'environnement
+# Charger les variables d'environnement depuis .env
 echo "📝 Chargement des variables d'environnement..."
 set -l ENV_FILE ".env"
 for line in (grep -v '^#' $ENV_FILE | grep -v '^$')
@@ -41,12 +37,21 @@ if test -z "$PROTON_USERNAME" -o -z "$PROTON_PASSWORD"
     exit 1
 end
 
-echo "✓ Environnement prêt"
+echo "✓ Configuration chargée"
 echo "  - Host: $PROTON_BRIDGE_HOST:$PROTON_BRIDGE_PORT"
 echo "  - Username: $PROTON_USERNAME"
 echo ""
 echo "🚀 Démarrage du processeur d'emails..."
 echo ""
 
-# Lancer le processeur
-python3 scripts/email_processor.py
+# Lancer le processeur avec le Python du venv
+# Cela évite les problèmes d'activation du venv dans Fish shell
+set -l PYTHON_BIN "./venv/bin/python3"
+
+if not test -f $PYTHON_BIN
+    echo "❌ Erreur: Python du venv non trouvé à $PYTHON_BIN"
+    exit 1
+end
+
+# Exécuter avec le Python du venv
+$PYTHON_BIN scripts/email_processor.py
