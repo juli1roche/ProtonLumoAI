@@ -2,6 +2,7 @@
 # ============================================================================
 # EMAIL PROCESSOR - ProtonLumoAI
 # Processeur principal avec gestion STARTTLS et Parsing Robuste
+# + Executive Summary v1.1.0
 # ============================================================================
 
 import os
@@ -13,8 +14,9 @@ import imaplib
 import json
 from pathlib import Path
 from typing import Optional, Set, Dict, List
-from datetime import datetime
+from datetime import datetime, timedelta
 import email.utils
+import threading
 
 from loguru import logger
 from dotenv import load_dotenv
@@ -24,11 +26,15 @@ try:
     from email_classifier import EmailClassifier
     from email_parser import EmailParser
     from feedback_manager import FeedbackManager
+    from important_message_detector import ImportantMessageDetector, ImportantMessage
+    from summary_email_reporter import SummaryEmailReporter
 except ImportError:
     sys.path.append(os.path.dirname(os.path.abspath(__file__)))
     from email_classifier import EmailClassifier
     from email_parser import EmailParser
     from feedback_manager import FeedbackManager
+    from important_message_detector import ImportantMessageDetector, ImportantMessage
+    from summary_email_reporter import SummaryEmailReporter
 
 # Chargement des variables d'environnement
 load_dotenv()
@@ -42,6 +48,12 @@ POLL_INTERVAL = int(os.getenv("PROTON_LUMO_POLL_INTERVAL", 60))
 UNSEEN_ONLY = os.getenv("PROTON_LUMO_UNSEEN_ONLY", "true").lower() == "true"
 DRY_RUN = os.getenv("PROTON_LUMO_DRY_RUN", "false").lower() == "true"
 MAX_EMAILS_PER_FOLDER = int(os.getenv("PROTON_LUMO_MAX_EMAILS_PER_FOLDER", 100))
+
+# Executive Summary Configuration
+SUMMARY_ENABLED = os.getenv("PROTON_LUMO_SUMMARY_ENABLED", "true").lower() == "true"
+SUMMARY_HOURS = list(map(int, os.getenv("PROTON_LUMO_SUMMARY_HOURS", "09,13,17").split(",")))
+SUMMARY_MIN_SCORE = int(os.getenv("PROTON_LUMO_SUMMARY_MIN_SCORE", "30"))
+SUMMARY_FORMAT = os.getenv("PROTON_LUMO_SUMMARY_FORMAT", "email").lower()
 
 # Limites spéciales pour certains dossiers
 SPAM_TRASH_LIMIT = 10  # Limite pour Spam/Trash
@@ -141,13 +153,23 @@ class ProtonMailBox:
 
 
 class EmailProcessor:
-    """Processeur principal orchestrant le tri et l'apprentissage."""
+    """Processeur principal orchestrant le tri et l'apprentissage + Executive Summary."""
 
     def __init__(self):
         self.classifier = EmailClassifier()
         self.parser = EmailParser()
         self.feedback_manager: Optional[FeedbackManager] = None
         self.running = True
+        
+        # Initialiser le détecteur de messages importants (v1.1.0)
+        if SUMMARY_ENABLED:
+            self.detector = ImportantMessageDetector()
+            self.reporter = None  # Sera initialisé avec la connexion IMAP
+            self.last_summary_hour = -1
+            logger.info(f"✨ Executive Summary ACTIVÉ - Rapports à: {SUMMARY_HOURS}:00 CET")
+        else:
+            self.detector = None
+            self.reporter = None
         
         # Chargement du checkpoint pour éviter de retraiter les mêmes emails
         self.checkpoint = self._load_checkpoint()
@@ -267,10 +289,10 @@ class EmailProcessor:
         Retourne la date ou datetime.min si erreur.
         """
         try:
-            res, msg_data = mailbox.client.fetch(email_id, '(INTERNALDATE)')
-            if res == 'OK' and msg_data and msg_data[0]:
+            res_flags, flags_data = mailbox.client.fetch(email_id, '(INTERNALDATE)')
+            if res_flags == 'OK' and flags_data and flags_data[0]:
                 # Parser la date IMAP (format: "DD-Mon-YYYY HH:MM:SS +ZZZZ")
-                date_str = msg_data[0].decode('utf-8', errors='ignore')
+                date_str = flags_data[0].decode('utf-8', errors='ignore')
                 # Extraire la date entre guillemets
                 import re
                 match = re.search(r'"([^"]+)"', date_str)
@@ -307,10 +329,90 @@ class EmailProcessor:
         logger.debug(f"✓ {len(recent_emails)} emails les plus récents sélectionnés")
         return recent_emails
 
+    def _score_and_track_message(self, email_uid: str, from_email: str, subject: str, body: str, category: str, confidence: float) -> None:
+        """
+        Score le message pour l'Executive Summary et le sauvegarde.
+        Called after successful classification.
+        """
+        if not self.detector:
+            return
+        
+        try:
+            # Score le message selon plusieurs critères
+            score, breakdown, action_type = self.detector.score_message(
+                email_uid, from_email, subject, body, category, confidence
+            )
+            
+            # Si important (score >= seuil), créer et sauvegarder
+            if score >= SUMMARY_MIN_SCORE:
+                msg = ImportantMessage(
+                    message_id=email_uid,
+                    from_email=from_email,
+                    subject=subject[:100],  # Limiter la longueur
+                    score=score,
+                    category=category,
+                    criteria_breakdown=breakdown,
+                    action_type=action_type,
+                    status="new",
+                    detected_at=datetime.now().isoformat(),
+                    category_confidence=confidence
+                )
+                
+                self.detector.save_important_message(msg)
+                logger.debug(f"📊 Message important détecté: {subject[:30]}... (score: {score})")
+        except Exception as e:
+            logger.error(f"Erreur scoring message: {e}")
+
+    def _check_and_send_summary(self, mailbox: ProtonMailBox) -> None:
+        """
+        Vérifie si c'est l'heure d'envoyer un résumé et l'envoie si nécessaire.
+        Called during main loop.
+        """
+        if not self.detector or not self.reporter:
+            return
+        
+        try:
+            current_hour = datetime.now().hour
+            
+            # Vérifier si l'heure actuelle est dans la liste des heures de rapport
+            if current_hour in SUMMARY_HOURS and current_hour != self.last_summary_hour:
+                logger.info(f"🔔 Heure du rapport Executive Summary ({current_hour}:00 CET)")
+                
+                # Charger les messages importants
+                messages = self.detector._load_important_messages()
+                
+                if messages:
+                    # Générer le résumé
+                    summary = self.detector.generate_executive_summary(messages)
+                    
+                    # Générer et envoyer le rapport HTML
+                    html_content = self.reporter.generate_html_report(summary)
+                    
+                    if SUMMARY_FORMAT in ["email", "both"]:
+                        success = self.reporter.send_summary_email(html_content)
+                        if success:
+                            logger.success(f"📧 Résumé envoyé à {self.reporter.summary_folder}")
+                    
+                    if SUMMARY_FORMAT in ["console", "both"]:
+                        logger.info(f"📋 Résumé: {summary['urgent_count']} urgent, {summary['high_count']} high, {summary['medium_count']} medium")
+                    
+                    # Sauvegarder les backups locaux
+                    self.reporter.save_summary_locally(summary, html_content)
+                    
+                    # Marquer l'heure pour éviter les doublons
+                    self.last_summary_hour = current_hour
+                else:
+                    logger.debug(f"Aucun message important à rapporter à {current_hour}:00")
+                    self.last_summary_hour = current_hour
+        
+        except Exception as e:
+            logger.error(f"Erreur lors de la génération du résumé: {e}")
+
     def process_folder(self, mailbox: ProtonMailBox, folder_name: str = "INBOX") -> int:
         """
         Traite les emails d'un dossier spécifique.
         Récupère, parse, classifie et déplace les emails.
+        + Scoring pour Executive Summary.
         """
         processed_count = 0
         try:
@@ -396,6 +498,10 @@ class EmailProcessor:
 
                     logger.info(f"Email '{subject[:30]}...' -> {category} ({confidence:.2f})")
 
+                    # 🆕 SCORING POUR EXECUTIVE SUMMARY
+                    if SUMMARY_ENABLED:
+                        self._score_and_track_message(email_uid, sender, subject, body, category, confidence)
+
                     # Déplacement
                     target_folder = self._get_target_folder(category)
                     
@@ -456,7 +562,7 @@ class EmailProcessor:
         return processed_count
 
     def run(self):
-        """Boucle principale du service."""
+        """Boucle principale du service avec Executive Summary scheduling."""
         logger.info("Démarrage de la boucle de traitement...")
 
         # ✅ Dossiers système à exclure (UNIQUEMENT les dossiers techniques IMAP)
@@ -473,6 +579,10 @@ class EmailProcessor:
         while self.running:
             try:
                 with self.connect_mailbox() as mailbox:
+                    
+                    # Initialiser le reporter avec la connexion IMAP (v1.1.0)
+                    if SUMMARY_ENABLED and self.reporter is None:
+                        self.reporter = SummaryEmailReporter(imap_connection=mailbox)
                     
                     # FeedbackManager
                     if not self.feedback_manager:
@@ -514,6 +624,10 @@ class EmailProcessor:
                                 count = self.process_folder(mailbox, folder_name)
                                 total_processed += count
                                 folders_scanned += 1
+                    
+                    # 🆕 VÉRIFIER ET ENVOYER LE RÉSUMÉ (v1.1.0)
+                    if SUMMARY_ENABLED:
+                        self._check_and_send_summary(mailbox)
                     
                     # Sauvegarder le checkpoint après chaque cycle
                     self._save_checkpoint()
