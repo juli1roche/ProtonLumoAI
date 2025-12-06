@@ -5,11 +5,11 @@ Generates and sends HTML formatted executive summaries
 """
 
 import os
+import json
 from datetime import datetime
 from pathlib import Path
 from typing import Dict, List, Optional
 from loguru import logger
-import imapclient
 
 from important_message_detector import ImportantMessage
 
@@ -334,7 +334,6 @@ Content-Type: text/html; charset=utf-8
             timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
             json_file = data_dir / f"summary_{timestamp}.json"
             with open(json_file, "w") as f:
-                import json
                 json.dump(summary, f, indent=2)
 
             # Save HTML report
