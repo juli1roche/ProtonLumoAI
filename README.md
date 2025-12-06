@@ -2,25 +2,39 @@
 
 **Système de tri automatique intelligent d'emails ProtonMail avec apprentissage adaptatif**
 
-[![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-1.1.0-blue.svg)](CHANGELOG.md)
 [![Python](https://img.shields.io/badge/python-3.9%2B-blue.svg)](https://www.python.org/downloads/)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
 ---
 
-## 🎯 Caractéristiques
+## 🌟 Caractéristiques
 
 ### ✨ Fonctionnalités Principales
 
 - **🧠 Classification IA via Perplexity API** - Classification intelligente multi-catégories
-- **🔄 Apprentissage Adaptatif** - Détection automatique des déplacements manuels et apprentissage
-- **🎯 Few-Shot Learning** - Amélioration continue basée sur vos corrections
+- **📄 Executive Summary** - Rapports quotidiens des messages importants (3x/jour)
+- **🔍 Détection Intelligente** - Scoring multi-critères (urgence, contacts, domaines, relocation)
+- **🔄 Apprentissage Adaptatif** - Détection automatique des déplacements manuels
+- **🎈 Few-Shot Learning** - Amélioration continue basée sur vos corrections
 - **💾 Persistance Checkpoint** - Reprise intelligente après redémarrage
-- **👁️ Préservation du Statut** - Les emails non lus restent non lus après tri
+- **👁 Préservation du Statut** - Les emails non lus restent non lus après tri
 - **⚡ Performance** - Traitement batch avec limitation anti-surcharge
 - **🔒 Sécurité** - Connexion STARTTLS avec ProtonMail Bridge
 
-### 🎨 Catégories Par Défaut
+### 🔴 Executive Summary Feature (NEW v1.1.0)
+
+**Rapports automatiques des messages importants**
+
+- **Horaire**: 09:00 AM, 13:00 PM, 17:00 PM CET (configurable)
+- **Détection**: Scoring multi-critères (urgence, contacts clés, domaines, mots-clés)
+- **Rapports**: Format HTML avec action types (RESPOND, VERIFY, TRACK, REVIEW)
+- **Stockage**: Emails non lus dans dossier `Folders/Exec-Summary`
+- **Contexte**: Spécifiquement configuré pour votre relocation en Ecosse
+
+Voir [docs/EXECUTIVE_SUMMARY.md](docs/EXECUTIVE_SUMMARY.md) pour détails complets.
+
+### 🎎 Catégories Par Défaut
 
 | Catégorie | Dossier Cible | Description |
 |-----------|---------------|-------------|
@@ -70,6 +84,13 @@ PROTON_LUMO_POLL_INTERVAL=60          # Intervalle de scan en secondes
 PROTON_LUMO_UNSEEN_ONLY=true         # Traiter uniquement les non-lus
 PROTON_LUMO_DRY_RUN=false             # Mode test sans déplacement réel
 PROTON_LUMO_MAX_EMAILS_PER_FOLDER=100 # Limite par dossier pour éviter surcharge
+
+# Executive Summary (NEW)
+PROTON_LUMO_SUMMARY_ENABLED=true
+PROTON_LUMO_SUMMARY_HOURS=09,13,17    # Morning, midday, evening
+PROTON_LUMO_SUMMARY_EMAIL=your_email@pm.me
+PROTON_LUMO_IMPORTANT_CONTACTS=brigitte.clavel@gmail.com,frederic.roche@gmail.com
+PROTON_LUMO_RELOCATION_KEYWORDS=scotland,visa,relocation,edinburgh
 ```
 
 ### Étape 3 : Installation des Dépendances
@@ -90,7 +111,7 @@ python scripts/main.py
 
 ---
 
-## 🛠️ Configuration
+## 🔧 Configuration
 
 ### Personnaliser les Catégories
 
@@ -107,6 +128,22 @@ DEFAULT_CATEGORIES = {
         description="Description de ma catégorie"
     ),
 }
+```
+
+### Executive Summary - Contacts Importants
+
+Ajoutez des contacts dans `.env` :
+
+```env
+PROTON_LUMO_IMPORTANT_CONTACTS=brigitte@clavel.fr,frederic@roche.fr,paul@cirrus.com
+```
+
+### Executive Summary - Mots-clés Relocation
+
+Personnalisez pour votre contexte :
+
+```env
+PROTON_LUMO_RELOCATION_KEYWORDS=scotland,visa,relocation,edinburgh,school,enrollment
 ```
 
 ### Ajuster les Performances
@@ -149,6 +186,9 @@ grep "✓ Déplacé vers" ~/ProtonLumoAI/logs/email_processor.log | wc -l
 
 # Catégories les plus utilisées
 grep "Perplexity:" ~/ProtonLumoAI/logs/email_processor.log | awk '{print $6}' | sort | uniq -c | sort -rn
+
+# Voir les rapports Executive Summary
+ls -lh ~/ProtonLumoAI/data/summary_*.html | tail -3
 ```
 
 ---
@@ -169,11 +209,11 @@ grep "Perplexity:" ~/ProtonLumoAI/logs/email_processor.log | awk '{print $6}' | 
 👉 Vous déplacez vers: Folders/Travail
 
 🧠 Système apprend:
-  ➕ Règle expéditeur: john@entreprise.com → PRO
-  ➕ Règle domaine: @entreprise.com → PRO
-  ➕ Mot-clé sujet: "réunion" → PRO
+  ✚ Règle expéditeur: john@entreprise.com → PRO
+  ✚ Règle domaine: @entreprise.com → PRO
+  ✚ Mot-clé sujet: "réunion" → PRO
 
-🎯 Prochains emails de john@entreprise.com:
+🎎 Prochains emails de john@entreprise.com:
   → Automatiquement classés en PRO (confiance: 0.95)
 ```
 
@@ -194,27 +234,32 @@ cat ~/ProtonLumoAI/data/learning/learned_patterns.json | jq .
 ```
 ProtonLumoAI/
 ├── scripts/
-│   ├── main.py                  # Point d'entrée principal
-│   ├── email_processor.py       # Processeur IMAP + orchestration
-│   ├── email_classifier.py      # Classification IA (Perplexity)
-│   ├── adaptive_learner.py      # Apprentissage adaptatif
-│   ├── email_parser.py          # Parsing emails (UTF-8, HTML)
-│   ├── feedback_manager.py      # Gestion feedback utilisateur
-│   └── sync_folders.py          # Synchronisation dossiers ProtonMail
+│   ├── main.py                      # Point d'entrée principal
+│   ├── email_processor.py          # Processeur IMAP + orchestration
+│   ├── email_classifier.py         # Classification IA (Perplexity)
+│   ├── important_message_detector.py  # Détection messages importants (NEW)
+│   ├── summary_email_reporter.py    # Rapports Executive Summary (NEW)
+│   ├── adaptive_learner.py         # Apprentissage adaptatif
+│   ├── email_parser.py             # Parsing emails (UTF-8, HTML)
+│   ├── feedback_manager.py         # Gestion feedback utilisateur
+│   └── sync_folders.py             # Synchronisation dossiers ProtonMail
 ├── data/
-│   ├── checkpoint.json          # Checkpoint persistance
+│   ├── checkpoint.json             # Checkpoint persistance
+│   ├── important_messages.json     # Messages importants détectés (NEW)
 │   ├── learning/
-│   │   ├── user_corrections.jsonl  # Corrections utilisateur
-│   │   ├── learned_patterns.json   # Patterns appris
-│   │   └── email_signatures.json   # Signatures emails
+│   │   ├── user_corrections.jsonl     # Corrections utilisateur
+│   │   ├── learned_patterns.json      # Patterns appris
+│   │   └── email_signatures.json      # Signatures emails
 │   └── training/
-└── config/
-    └── categories.json          # Catégories sync ProtonMail
+├── config/
+│   └── categories.json             # Catégories sync ProtonMail
+└── docs/
+    └── EXECUTIVE_SUMMARY.md        # Executive Summary documentation (NEW)
 ```
 
 ---
 
-## 🔧 Dépannage
+## 🔒 Dépannage
 
 ### ProtonMail Bridge Non Connecté
 
@@ -247,15 +292,24 @@ rm ~/ProtonLumoAI/data/checkpoint.json
 fish run.fish
 ```
 
+### Rapports Executive Summary Non Générés
+
+Voir la section **Troubleshooting** dans [docs/EXECUTIVE_SUMMARY.md](docs/EXECUTIVE_SUMMARY.md).
+
 ---
 
 ## 📝 Changelog
 
 Voir [CHANGELOG.md](CHANGELOG.md) pour l'historique complet des versions.
 
+**v1.1.0** - Executive Summary Feature (2025-12-06)
+**v1.0.2** - IMAP Parsing Fix & Production Ready (2025-12-05)
+**v1.0.1** - Filter Optimization (2025-12-05)
+**v1.0.0** - Initial Release (2025-12-05)
+
 ---
 
-## 🤝 Contribution
+## 🤟 Contribution
 
 Les contributions sont les bienvenues ! Veuillez :
 
@@ -267,7 +321,7 @@ Les contributions sont les bienvenues ! Veuillez :
 
 ---
 
-## 📜 Licence
+## 📋 Licence
 
 Distribué sous licence MIT. Voir `LICENSE` pour plus d'informations.
 
@@ -279,7 +333,7 @@ Distribué sous licence MIT. Voir `LICENSE` pour plus d'informations.
 
 - Portfolio: [julien-roche-portfolio.netlify.app](https://julien-roche-portfolio.netlify.app/)
 - GitHub: [@juli1roche](https://github.com/juli1roche)
-- Location: Aix-en-Provence, France 🇫🇷
+- Location: Aix-en-Provence 🇫🇷 → Edinburgh 🇬🇧 (Jan 2026)
 
 ---
 
@@ -289,10 +343,11 @@ Distribué sous licence MIT. Voir `LICENSE` pour plus d'informations.
 - [ ] Support multi-comptes email
 - [ ] Export des statistiques (CSV, JSON)
 - [ ] Intégration avec d'autres providers (Gmail, Outlook)
-- [ ] Modèle local fine-tuné (sklearn/transformers)
+- [ ] Modèle local fine-tué (sklearn/transformers)
 - [ ] API REST pour intégrations tierces
 - [ ] Docker container pour déploiement facile
 - [ ] Mode "apprentissage assisté" avec UI
+- [ ] Slack/Teams notifications for urgent emails
 
 ---
 
@@ -302,4 +357,4 @@ Si ce projet vous a été utile, n'hésitez pas à lui donner une étoile ! ⭐
 
 ---
 
-**Made with ❤️ and 🤖 AI** | ProtonLumoAI v1.0.0
+**Made with ❤️ and 🤖 AI** | ProtonLumoAI v1.1.0
