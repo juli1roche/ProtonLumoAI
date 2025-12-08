@@ -15,7 +15,7 @@
   },
   "VENTE": {
     "name": "VENTE",
-    "folder": "Achats",
+    "folder": "Folders/Achats",
     "keywords": [
       "solde",
       "promo",
@@ -32,7 +32,7 @@
   },
   "BANQUE": {
     "name": "BANQUE",
-    "folder": "Administratif/Banque",
+    "folder": "Folders/Administratif/Banque",
     "keywords": [
       "virement",
       "compte",
@@ -48,7 +48,7 @@
   },
   "PRO": {
     "name": "PRO",
-    "folder": "Travail",
+    "folder": "Folders/Travail",
     "keywords": [
       "réunion",
       "projet",
@@ -64,7 +64,7 @@
   },
   "URGENT": {
     "name": "URGENT",
-    "folder": "À traiter",
+    "folder": "Folders/A_traiter",
     "keywords": [
       "urgent",
       "asap",
@@ -78,7 +78,7 @@
   },
   "VOYAGES": {
     "name": "VOYAGES",
-    "folder": "Voyages",
+    "folder": "Folders/Voyages",
     "keywords": [
       "billet",
       "train",
@@ -94,7 +94,7 @@
   },
   "SOCIAL": {
     "name": "SOCIAL",
-    "folder": "Réseaux sociaux",
+    "folder": "Folders/Reseaux_sociaux",
     "keywords": [
       "like",
       "comment",
@@ -110,7 +110,7 @@
   },
   "NEWSLETTER": {
     "name": "NEWSLETTER",
-    "folder": "Newsletters",
+    "folder": "Folders/Newsletters",
     "keywords": [
       "newsletter",
       "weekly",
