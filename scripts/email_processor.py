@@ -13,12 +13,15 @@ import sys
 import ssl
 import imaplib
 import json
-import re
 from pathlib import Path
 from typing import Optional, Set, Dict, List, Tuple
 from datetime import datetime, timedelta
 import email.utils
 import threading
+import re
+
+# === PERFORMANCE OPTIMIZATIONS (v1.2.0) ===
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 from loguru import logger
 from dotenv import load_dotenv
@@ -32,6 +35,7 @@ try:
     from summary_email_reporter import SummaryEmailReporter
     from email_classifier_batch import BatchClassifier, BatchEmail
     from email_processor_parallel import ParallelProcessor, ProcessingMetrics
+
 except ImportError:
     sys.path.append(os.path.dirname(os.path.abspath(__file__)))
     from email_classifier import EmailClassifier
@@ -125,6 +129,7 @@ class ProtonMailBox:
                     except UnicodeDecodeError:
                         folder_raw = folder_bytes.decode('latin-1')
                     
+                    # Parser correctement le format IMAP LIST
                     parts = folder_raw.split('"')
                     if len(parts) >= 3:
                         folder_name = parts[-2]
@@ -402,6 +407,7 @@ class EmailProcessor:
         
         logger.info(f"Using batch classification (size={self.batch_size}) for {len(email_ids)} emails")
         
+        # Fetch all email subjects/bodies first
         batch_emails = []
         for email_id in email_ids:
             try:
@@ -409,6 +415,8 @@ class EmailProcessor:
                 if res == 'OK':
                     raw_email = msg_data[0][1]
                     subject, sender, body = self.parser.parse(raw_email)
+                    
+                    # Truncate body for batch efficiency
                     body_truncated = body[:500]
                     
                     batch_emails.append(
@@ -425,14 +433,17 @@ class EmailProcessor:
         if not batch_emails:
             return {}
         
+        # Classify in batches
         valid_categories = list(self.classifier.categories.keys())
         results = {}
         
+        # Process in chunks of batch_size
         for i in range(0, len(batch_emails), self.batch_size):
             batch_chunk = batch_emails[i:i + self.batch_size]
             classifications = self.batch_classifier.classify_batch(batch_chunk, valid_categories)
             results.update(classifications)
         
+        # Format results to match expected output: (category, confidence)
         formatted_results = {}
         for eid, data in results.items():
             formatted_results[eid] = (data['category'], data['confidence'])
@@ -455,6 +466,7 @@ class EmailProcessor:
                 logger.error(f"Impossible de sélectionner le dossier {folder_name}: {e}")
                 return 0
 
+            # Critère de recherche
             if not self.initial_scan_done:
                 criteria = 'ALL'
                 logger.info("Premier démarrage : Scan de TOUS les emails.")
@@ -475,6 +487,7 @@ class EmailProcessor:
             email_ids = messages[0].split()
             total_emails = len(email_ids)
             
+            # Limites
             folder_lower = folder_name.lower()
             if 'spam' in folder_lower or 'trash' in folder_lower or 'corbeille' in folder_lower:
                 limit = SPAM_TRASH_LIMIT
@@ -482,14 +495,17 @@ class EmailProcessor:
             else:
                 limit = MAX_EMAILS_PER_FOLDER
             
+            # Tri
             if total_emails > limit:
                 logger.warning(f"⚠️  {total_emails} emails trouvés dans {folder_name}, tri par date pour garder les {limit} plus récents")
                 email_ids = self._sort_emails_by_date(mailbox, email_ids, limit)
             
             logger.info(f"{len(email_ids)} email(s) trouvé(s) dans {folder_name} (sur {total_emails} total)")
 
+            # === PRE-FETCH BATCH CLASSIFICATIONS (v1.2.0) ===
             batch_classifications = {}
             if self.enable_batch and len(email_ids) > 1:
+                # Identify emails that need processing (not in checkpoint)
                 emails_to_classify = []
                 for eid in email_ids:
                     uid = eid.decode()
@@ -500,6 +516,7 @@ class EmailProcessor:
                 if emails_to_classify:
                     batch_classifications = self._classify_batch(emails_to_classify, mailbox)
 
+            # === STANDARD SEQUENTIAL LOOP ===
             for email_id in email_ids:
                 if not self.running:
                     break
@@ -511,12 +528,16 @@ class EmailProcessor:
                     continue
 
                 try:
+                    # Fetch flags (fast)
                     res_flags, flags_data = mailbox.client.fetch(email_id, '(FLAGS)')
                     was_seen = b'\\Seen' in flags_data[0] if res_flags == 'OK' and flags_data[0] else False
                     
+                    # Use batch result if available
                     if email_uid in batch_classifications:
                         category, confidence = batch_classifications[email_uid]
                         
+                        # We still need header info for moving/logging
+                        # Fetch envelope only (faster than full body)
                         res, msg_data = mailbox.client.fetch(email_id, '(BODY.PEEK[HEADER.FIELDS (SUBJECT FROM)])')
                         if res == 'OK':
                             raw_header = msg_data[0][1]
@@ -542,6 +563,7 @@ class EmailProcessor:
                         logger.info(f"⚡ Batch Result: '{subject[:30]}...' -> {category} ({confidence:.2f})")
                         
                     else:
+                        # Fallback to standard processing if not in batch
                         res, msg_data = mailbox.client.fetch(email_id, '(RFC822)')
                         if res != 'OK':
                             continue
@@ -552,9 +574,11 @@ class EmailProcessor:
                         confidence = result.confidence
                         logger.info(f"Email '{subject[:30]}...' -> {category} ({confidence:.2f})")
 
+                    # Scoring
                     if SUMMARY_ENABLED:
                         self._score_and_track_message(email_uid, sender, subject, body, category, confidence)
 
+                    # Move
                     target_folder = self._get_target_folder(category)
                     if target_folder:
                         if not DRY_RUN:
@@ -580,6 +604,7 @@ class EmailProcessor:
                     logger.error(f"Error processing email {email_uid}: {e}")
                     continue
 
+            # Purge
             if not DRY_RUN and processed_count > 0:
                 logger.info(f"Purging {processed_count} emails from {folder_name}...")
                 mailbox.client.expunge()
@@ -627,9 +652,12 @@ class EmailProcessor:
                             else:
                                 continue
                             
+                            # Skip system folders and problematic folders with backslashes/[Imap]
                             if (folder_name not in SYSTEM_FOLDERS and 
                                 not folder_name.startswith("Training") and 
-                                not folder_name.startswith("Feedback")):
+                                not folder_name.startswith("Feedback") and
+                                '\\' not in folder_name and
+                                '[Imap]' not in folder_name):
                                 count = self.process_folder(mailbox, folder_name)
                                 total_processed += count
                                 folders_scanned += 1
