@@ -2,9 +2,10 @@
 
 **Système de tri automatique intelligent d'emails ProtonMail avec apprentissage adaptatif**
 
-[![Version](https://img.shields.io/badge/version-1.1.0-blue.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-1.1.1-blue.svg)](CHANGELOG.md)
 [![Python](https://img.shields.io/badge/python-3.9%2B-blue.svg)](https://www.python.org/downloads/)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
 ---
 
@@ -22,7 +23,7 @@
 - **⚡ Performance** - Traitement batch avec limitation anti-surcharge
 - **🔒 Sécurité** - Connexion STARTTLS avec ProtonMail Bridge
 
-### 🔴 Executive Summary Feature (NEW v1.1.0)
+### 🔴 Executive Summary Feature (v1.1.0)
 
 **Rapports automatiques des messages importants**
 
@@ -34,7 +35,7 @@
 
 Voir [docs/EXECUTIVE_SUMMARY.md](docs/EXECUTIVE_SUMMARY.md) pour détails complets.
 
-### 🎎 Catégories Par Défaut
+### 🏎 Catégories Par Défaut
 
 | Catégorie | Dossier Cible | Description |
 |-----------|---------------|-------------|
@@ -67,31 +68,30 @@ cd ProtonLumoAI
 
 ### Étape 2 : Configuration de l'Environnement
 
-Créez un fichier `.env` à la racine :
+Copiez le fichier template et remplissez vos credentials :
+
+```bash
+cp .env.example .env
+nano .env
+```
+
+**Variables critiques à définir :**
 
 ```env
-# ProtonMail Bridge
-PROTON_BRIDGE_HOST=127.0.0.1
-PROTON_BRIDGE_PORT=1143
+# ProtonMail Bridge (utilisez le mot de passe Bridge, PAS votre mot de passe compte)
 PROTON_USERNAME=votre_email@pm.me
 PROTON_PASSWORD=votre_mot_de_passe_bridge
 
 # Perplexity API
 PERPLEXITY_API_KEY=pplx-xxxxxxxxxxxxxxxxxxxxxxxx
 
-# Configuration (optionnel)
-PROTON_LUMO_POLL_INTERVAL=60          # Intervalle de scan en secondes
-PROTON_LUMO_UNSEEN_ONLY=true         # Traiter uniquement les non-lus
-PROTON_LUMO_DRY_RUN=false             # Mode test sans déplacement réel
-PROTON_LUMO_MAX_EMAILS_PER_FOLDER=100 # Limite par dossier pour éviter surcharge
-
-# Executive Summary (NEW)
+# Executive Summary (optionnel mais recommandé)
 PROTON_LUMO_SUMMARY_ENABLED=true
-PROTON_LUMO_SUMMARY_HOURS=09,13,17    # Morning, midday, evening
-PROTON_LUMO_SUMMARY_EMAIL=your_email@pm.me
-PROTON_LUMO_IMPORTANT_CONTACTS=brigitte.clavel@gmail.com,frederic.roche@gmail.com
-PROTON_LUMO_RELOCATION_KEYWORDS=scotland,visa,relocation,edinburgh
+PROTON_LUMO_SUMMARY_EMAIL=votre_email@pm.me
+PROTON_LUMO_IMPORTANT_CONTACTS=contact1@example.com,contact2@example.com
 ```
+
+Voir [.env.example](.env.example) pour toutes les options disponibles.
 
 ### Étape 3 : Installation des Dépendances
 
@@ -106,7 +106,7 @@ python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 python scripts/sync_folders.py
-python scripts/main.py
+python scripts/email_processor.py
 ```
 
 ---
@@ -213,7 +213,7 @@ ls -lh ~/ProtonLumoAI/data/summary_*.html | tail -3
   ✚ Règle domaine: @entreprise.com → PRO
   ✚ Mot-clé sujet: "réunion" → PRO
 
-🎎 Prochains emails de john@entreprise.com:
+🏎 Prochains emails de john@entreprise.com:
   → Automatiquement classés en PRO (confiance: 0.95)
 ```
 
@@ -237,15 +237,15 @@ ProtonLumoAI/
 │   ├── main.py                      # Point d'entrée principal
 │   ├── email_processor.py          # Processeur IMAP + orchestration
 │   ├── email_classifier.py         # Classification IA (Perplexity)
-│   ├── important_message_detector.py  # Détection messages importants (NEW)
-│   ├── summary_email_reporter.py    # Rapports Executive Summary (NEW)
+│   ├── important_message_detector.py  # Détection messages importants
+│   ├── summary_email_reporter.py    # Rapports Executive Summary
 │   ├── adaptive_learner.py         # Apprentissage adaptatif
 │   ├── email_parser.py             # Parsing emails (UTF-8, HTML)
 │   ├── feedback_manager.py         # Gestion feedback utilisateur
 │   └── sync_folders.py             # Synchronisation dossiers ProtonMail
 ├── data/
 │   ├── checkpoint.json             # Checkpoint persistance
-│   ├── important_messages.json     # Messages importants détectés (NEW)
+│   ├── important_messages.json     # Messages importants détectés
 │   ├── learning/
 │   │   ├── user_corrections.jsonl     # Corrections utilisateur
 │   │   ├── learned_patterns.json      # Patterns appris
@@ -254,7 +254,7 @@ ProtonLumoAI/
 ├── config/
 │   └── categories.json             # Catégories sync ProtonMail
 └── docs/
-    └── EXECUTIVE_SUMMARY.md        # Executive Summary documentation (NEW)
+    └── EXECUTIVE_SUMMARY.md        # Executive Summary documentation
 ```
 
 ---
@@ -284,6 +284,19 @@ curl https://api.perplexity.ai/chat/completions \
   -d '{"model":"sonar","messages":[{"role":"user","content":"test"}]}'
 ```
 
+### "Identifiants manquants" au démarrage
+
+**Cause**: Le fichier `.env` n'est pas chargé correctement ou les variables sont mal nommées.
+
+**Solution**:
+1. Vérifiez que `.env` existe : `ls -la ~/ProtonLumoAI/.env`
+2. Vérifiez les variables requises :
+   ```bash
+   grep -E "PROTON_USERNAME|PROTON_PASSWORD" ~/ProtonLumoAI/.env
+   ```
+3. Assurez-vous d'utiliser le **mot de passe Bridge**, pas votre mot de passe ProtonMail
+4. Ouvrez ProtonMail Bridge → Paramètres du compte → IMAP/SMTP Settings pour récupérer le mot de passe
+
 ### Réinitialiser le Checkpoint
 
 ```bash
@@ -298,26 +311,68 @@ Voir la section **Troubleshooting** dans [docs/EXECUTIVE_SUMMARY.md](docs/EXECUT
 
 ---
 
+## 🤝 Contribution & Collaboration
+
+**Les contributions sont les bienvenues !** Ce projet est en développement actif et nous recherchons spécifiquement de l'aide sur :
+
+### 🎯 Domaines Prioritaires
+
+#### 🧠 Machine Learning & Classification
+- **Amélioration de l'apprentissage adaptatif**
+  - Implémentation de modèles locaux (sklearn, transformers)
+  - Fine-tuning de modèles de langage pour classification d'emails
+  - Réduction de la dépendance à l'API Perplexity (coût)
+  - Active learning avec feedback utilisateur
+
+- **Optimisation du scoring multi-critères**
+  - Amélioration des poids de scoring pour Executive Summary
+  - Détection d'anomalies (phishing, urgences)
+  - Clustering automatique de nouveaux types d'emails
+
+#### 🔍 Filtrage & Détection
+- **Anti-spam avancé**
+  - Intégration de modèles anti-spam (SpamAssassin, Rspamd)
+  - Détection de phishing par analyse de liens
+  - Validation SPF/DKIM/DMARC
+
+- **Extraction d'entités**
+  - NER (Named Entity Recognition) pour contacts/dates/lieux
+  - Extraction automatique d'actions (RDV, deadlines, paiements)
+  - Génération de rappels intelligents
+
+### 📝 Comment Contribuer
+
+1. **Fork** le projet
+2. Créer une branche (`git checkout -b feature/AmazingFeature`)
+3. Commit vos changements (`git commit -m 'Add AmazingFeature'`)
+4. Push vers la branche (`git push origin feature/AmazingFeature`)
+5. Ouvrir une **Pull Request**
+
+### 💬 Discussion & Support
+
+- **Issues GitHub** : Pour bugs, features requests, questions
+- **Discussions** : Pour idées, brainstorming, architecture
+- **Email** : juli1.roche@gmail.com (collaboration sérieuse uniquement)
+
+### 🎓 Bon Premier Problème
+
+Cherchez les issues taggées `good first issue` ou `help wanted` :
+- Amélioration de la documentation
+- Ajout de tests unitaires
+- Optimisation de performances
+- Traduction (EN → FR, FR → EN)
+
+---
+
 ## 📝 Changelog
 
 Voir [CHANGELOG.md](CHANGELOG.md) pour l'historique complet des versions.
 
+**v1.1.1** - Configuration Fixes & Systemd Compatibility (2025-12-08)
 **v1.1.0** - Executive Summary Feature (2025-12-06)
 **v1.0.2** - IMAP Parsing Fix & Production Ready (2025-12-05)
 **v1.0.1** - Filter Optimization (2025-12-05)
 **v1.0.0** - Initial Release (2025-12-05)
-
----
-
-## 🤟 Contribution
-
-Les contributions sont les bienvenues ! Veuillez :
-
-1. Fork le projet
-2. Créer une branche (`git checkout -b feature/AmazingFeature`)
-3. Commit vos changements (`git commit -m 'Add AmazingFeature'`)
-4. Push vers la branche (`git push origin feature/AmazingFeature`)
-5. Ouvrir une Pull Request
 
 ---
 
@@ -339,15 +394,26 @@ Distribué sous licence MIT. Voir `LICENSE` pour plus d'informations.
 
 ## 🚀 Roadmap
 
-- [ ] Interface Web pour configuration et monitoring
-- [ ] Support multi-comptes email
-- [ ] Export des statistiques (CSV, JSON)
-- [ ] Intégration avec d'autres providers (Gmail, Outlook)
-- [ ] Modèle local fine-tué (sklearn/transformers)
-- [ ] API REST pour intégrations tierces
-- [ ] Docker container pour déploiement facile
-- [ ] Mode "apprentissage assisté" avec UI
-- [ ] Slack/Teams notifications for urgent emails
+### Court Terme (Q1 2026)
+- [ ] 🧠 Modèle local sklearn/transformers (réduction coûts API)
+- [ ] 🔍 Anti-spam avancé avec détection phishing
+- [ ] 📊 Dashboard web pour monitoring et configuration
+- [ ] 🐳 Docker container pour déploiement facile
+- [ ] 🧐 Tests unitaires complets (pytest)
+
+### Moyen Terme (Q2-Q3 2026)
+- [ ] 👥 Support multi-comptes email
+- [ ] 📤 Export statistiques (CSV, JSON, Grafana)
+- [ ] 🔔 Notifications Slack/Teams pour emails urgents
+- [ ] 🌐 API REST pour intégrations tierces
+- [ ] 📚 Documentation anglaise complète
+
+### Long Terme (2026+)
+- [ ] 🌎 Intégration Gmail, Outlook, autres providers
+- [ ] 🤖 Mode "apprentissage assisté" avec UI interactive
+- [ ] 📱 Application mobile (notifications push)
+- [ ] 📅 Intégration calendrier (extraction RDV automatique)
+- [ ] 🤝 Marketplace de règles partagées entre utilisateurs
 
 ---
 
@@ -357,4 +423,4 @@ Si ce projet vous a été utile, n'hésitez pas à lui donner une étoile ! ⭐
 
 ---
 
-**Made with ❤️ and 🤖 AI** | ProtonLumoAI v1.1.0
+**Made with ❤️ and 🤖 AI** | ProtonLumoAI v1.1.1
