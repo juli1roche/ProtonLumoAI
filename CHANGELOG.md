@@ -7,6 +7,73 @@ et ce projet adhère à [Semantic Versioning](https://semver.org/lang/fr/).
 
 ---
 
+## [1.1.1] - 2025-12-08
+
+### 🔧 Configuration & Systemd Fixes
+
+**Critical fixes for production deployment**
+
+#### Configuration Template
+- **Complete .env.example Update**
+  - Added missing `PROTON_USERNAME` and `PROTON_PASSWORD` variables (required by email_processor.py)
+  - Added all Executive Summary configuration variables
+  - Included both naming conventions (PROTON_USERNAME + PROTON_LUMO_IMAP_USER) for compatibility
+  - Added detailed comments for each section
+  - Fixed placeholder values to be secure (no real credentials)
+
+#### Environment Loading
+- **Fixed python-dotenv Path Resolution**
+  - Forced absolute path loading: `Path.home() / "ProtonLumoAI" / ".env"`
+  - Added debug logging when credentials are missing
+  - Works reliably when launched via systemd (working directory independent)
+
+#### Variable Naming Mismatch
+- **Root Cause Fixed**
+  - Script expects: `PROTON_USERNAME` and `PROTON_PASSWORD`
+  - Old .env had: `PROTON_LUMO_IMAP_USER` and `PROTON_LUMO_IMAP_PASSWORD`
+  - Solution: Support both naming conventions in .env.example
+
+#### Systemd Service Compatibility
+- **WorkingDirectory Fix**
+  - Changed from `/home/user/ProtonLumoAI/scripts` to `/home/user/ProtonLumoAI`
+  - Ensures .env is found at repository root
+  - Compatible with relative path resolution in python-dotenv
+
+#### Documentation Updates
+- **Security Best Practices**
+  - Clear separation between .env (local, git-ignored) and .env.example (public template)
+  - Instructions for ProtonMail Bridge password retrieval
+  - Explanation of Bridge password vs. account password difference
+
+### 🐛 Corrigé
+
+#### Startup Failures
+- **"Identifiants manquants" Error**
+  - Cause: Script couldn't load environment variables from .env
+  - Fixed: Absolute path loading + dual variable naming support
+  - Result: Service starts successfully via systemd
+
+#### Markdown Artifacts in .env
+- **Format Corruption**
+  - Issue: Some .env files contained `[VAR=value](mailto:...)` markdown links
+  - Impact: python-dotenv couldn't parse these lines
+  - Prevention: .env.example now shows plain text format only
+
+### 📚 Documentation
+
+- **.env.example** - Complete configuration template with all variables
+- **README.md** - Updated troubleshooting section (credential loading issues)
+- **Security notes** - ProtonMail Bridge password management
+
+### 🔒 Sécurité
+
+- **Credential Protection**
+  - .env excluded from git (via .gitignore)
+  - .env.example contains only placeholder values
+  - No real credentials ever committed to repository
+
+---
+
 ## [1.1.0] - 2025-12-06
 
 ### ✨ Executive Summary Feature
@@ -291,6 +358,7 @@ PROTON_LUMO_DRY_RUN=false
 ## Liens de Comparaison
 
 - [Non publié] : `git diff HEAD`
+- [1.1.1] : `git diff v1.1.0...v1.1.1`
 - [1.1.0] : `git diff v1.0.2...v1.1.0`
 - [1.0.2] : `git diff v1.0.1...v1.0.2`
 - [1.0.1] : `git diff v1.0.0...v1.0.1`
