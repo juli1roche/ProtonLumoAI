@@ -3,6 +3,7 @@
 # EMAIL PROCESSOR - ProtonLumoAI
 # Processeur principal avec gestion STARTTLS et Parsing Robuste
 # + Executive Summary v1.1.0
+# + Performance Optimization v1.2.0 (Parallel & Batch)
 # ============================================================================
 
 import os
@@ -12,8 +13,9 @@ import sys
 import ssl
 import imaplib
 import json
+import re
 from pathlib import Path
-from typing import Optional, Set, Dict, List
+from typing import Optional, Set, Dict, List, Tuple
 from datetime import datetime, timedelta
 import email.utils
 import threading
@@ -28,6 +30,8 @@ try:
     from feedback_manager import FeedbackManager
     from important_message_detector import ImportantMessageDetector, ImportantMessage
     from summary_email_reporter import SummaryEmailReporter
+    from email_classifier_batch import BatchClassifier, BatchEmail
+    from email_processor_parallel import ParallelProcessor, ProcessingMetrics
 except ImportError:
     sys.path.append(os.path.dirname(os.path.abspath(__file__)))
     from email_classifier import EmailClassifier
@@ -35,6 +39,8 @@ except ImportError:
     from feedback_manager import FeedbackManager
     from important_message_detector import ImportantMessageDetector, ImportantMessage
     from summary_email_reporter import SummaryEmailReporter
+    from email_classifier_batch import BatchClassifier, BatchEmail
+    from email_processor_parallel import ParallelProcessor, ProcessingMetrics
 
 # Chargement des variables d'environnement
 load_dotenv()
@@ -81,7 +87,7 @@ class ProtonMailBox:
         self._connect()
     
     def _connect(self):
-        """'Établit la connexion STARTTLS avec ProtonMail Bridge"""
+        """Établit la connexion STARTTLS avec ProtonMail Bridge"""
         try:
             ssl_context = ssl.create_default_context()
             ssl_context.check_hostname = False
@@ -119,11 +125,8 @@ class ProtonMailBox:
                     except UnicodeDecodeError:
                         folder_raw = folder_bytes.decode('latin-1')
                     
-                    # ✅ FIX: Parser correctement le format IMAP LIST
-                    # Format: (\\Flags) "/" "Nom/Du/Dossier"
                     parts = folder_raw.split('"')
                     if len(parts) >= 3:
-                        # Le nom est entre les deux derniers guillemets
                         folder_name = parts[-2]
                         self._existing_folders.add(folder_name)
         except Exception as e:
@@ -170,6 +173,35 @@ class EmailProcessor:
         else:
             self.detector = None
             self.reporter = None
+            
+        # === PERFORMANCE SETTINGS (v1.2.0) ===
+        self.enable_parallel = os.getenv("PROTON_LUMO_ENABLE_PARALLEL", "true").lower() == "true"
+        self.max_workers = int(os.getenv("PROTON_LUMO_MAX_WORKERS", 5))
+        self.enable_batch = os.getenv("PROTON_LUMO_ENABLE_BATCH", "true").lower() == "true"
+        self.batch_size = int(os.getenv("PROTON_LUMO_BATCH_SIZE", 10))
+        self.metrics_enabled = os.getenv("PROTON_LUMO_METRICS_ENABLED", "true").lower() == "true"
+
+        # Initialize optimizers
+        if self.enable_parallel:
+            self.parallel_processor = ParallelProcessor(
+                max_workers=self.max_workers,
+                enable_metrics=self.metrics_enabled
+            )
+        else:
+            self.parallel_processor = None
+
+        if self.enable_batch:
+            self.batch_classifier = BatchClassifier(
+                enable_batch=True,
+                batch_size=self.batch_size
+            )
+        else:
+            self.batch_classifier = None
+
+        logger.info(
+            f"Performance settings: parallel={self.enable_parallel} "
+            f"({self.max_workers} workers), batch={self.enable_batch} (size={self.batch_size})"
+        )
         
         # Chargement du checkpoint pour éviter de retraiter les mêmes emails
         self.checkpoint = self._load_checkpoint()
@@ -245,12 +277,9 @@ class EmailProcessor:
         S'assure qu'un dossier existe, le crée récursivement si nécessaire.
         Retourne True si le dossier existe ou a été créé, False en cas d'échec.
         """
-        # Vérifier le cache d'abord
         if mailbox.folder_exists(folder_path):
-            logger.debug(f"Dossier {folder_path} déjà dans le cache")
             return True
         
-        # Créer récursivement
         path_parts = folder_path.split('/')
         current_path = ''
         
@@ -263,38 +292,23 @@ class EmailProcessor:
                 try:
                     logger.debug(f"Création du dossier: {current_path}")
                     mailbox.client.create(f'"{current_path}"')
-                    
-                    # Attendre un peu pour que le serveur synchronise
                     time.sleep(0.5)
-                    
-                    # Rafraîchir le cache après création
                     mailbox._refresh_folder_cache()
-                    
-                    # Vérifier que le dossier a bien été créé
                     if mailbox.folder_exists(current_path):
                         logger.success(f"✓ Dossier créé: {current_path}")
                     else:
-                        logger.warning(f"Dossier {current_path} créé mais absent du cache")
                         mailbox._existing_folders.add(current_path)
-                        
                 except Exception as e:
                     logger.error(f"Impossible de créer le dossier {current_path}: {e}")
                     return False
-        
         return True
 
     def _get_email_date(self, mailbox: ProtonMailBox, email_id: bytes) -> datetime:
-        """
-        Récupère la date d'un email pour le tri.
-        Retourne la date ou datetime.min si erreur.
-        """
+        """Récupère la date d'un email pour le tri."""
         try:
             res_flags, flags_data = mailbox.client.fetch(email_id, '(INTERNALDATE)')
             if res_flags == 'OK' and flags_data and flags_data[0]:
-                # Parser la date IMAP (format: "DD-Mon-YYYY HH:MM:SS +ZZZZ")
                 date_str = flags_data[0].decode('utf-8', errors='ignore')
-                # Extraire la date entre guillemets
-                import re
                 match = re.search(r'"([^"]+)"', date_str)
                 if match:
                     date_tuple = email.utils.parsedate_tz(match.group(1))
@@ -302,53 +316,37 @@ class EmailProcessor:
                         return datetime.fromtimestamp(email.utils.mktime_tz(date_tuple))
         except Exception as e:
             logger.debug(f"Erreur récupération date email: {e}")
-        
         return datetime.min
 
     def _sort_emails_by_date(self, mailbox: ProtonMailBox, email_ids: List[bytes], limit: int) -> List[bytes]:
-        """
-        Trie les emails par date décroissante et retourne les {limit} plus récents.
-        """
+        """Trie les emails par date décroissante et retourne les {limit} plus récents."""
         if not email_ids or len(email_ids) <= limit:
             return email_ids
         
         logger.debug(f"Tri de {len(email_ids)} emails par date pour garder les {limit} plus récents...")
-        
-        # Créer une liste (email_id, date)
         emails_with_dates = []
         for email_id in email_ids:
             date = self._get_email_date(mailbox, email_id)
             emails_with_dates.append((email_id, date))
         
-        # Trier par date décroissante (plus récents en premier)
         emails_with_dates.sort(key=lambda x: x[1], reverse=True)
-        
-        # Retourner seulement les IDs des {limit} plus récents
         recent_emails = [email_id for email_id, _ in emails_with_dates[:limit]]
-        
         logger.debug(f"✓ {len(recent_emails)} emails les plus récents sélectionnés")
         return recent_emails
 
     def _score_and_track_message(self, email_uid: str, from_email: str, subject: str, body: str, category: str, confidence: float) -> None:
-        """
-        Score le message pour l'Executive Summary et le sauvegarde.
-        Called after successful classification.
-        """
+        """Score le message pour l'Executive Summary et le sauvegarde."""
         if not self.detector:
             return
-        
         try:
-            # Score le message selon plusieurs critères
             score, breakdown, action_type = self.detector.score_message(
                 email_uid, from_email, subject, body, category, confidence
             )
-            
-            # Si important (score >= seuil), créer et sauvegarder
             if score >= SUMMARY_MIN_SCORE:
                 msg = ImportantMessage(
                     message_id=email_uid,
                     from_email=from_email,
-                    subject=subject[:100],  # Limiter la longueur
+                    subject=subject[:100],
                     score=score,
                     category=category,
                     criteria_breakdown=breakdown,
@@ -357,99 +355,126 @@ class EmailProcessor:
                     detected_at=datetime.now().isoformat(),
                     category_confidence=confidence
                 )
-                
                 self.detector.save_important_message(msg)
                 logger.debug(f"📊 Message important détecté: {subject[:30]}... (score: {score})")
         except Exception as e:
             logger.error(f"Erreur scoring message: {e}")
 
     def _check_and_send_summary(self, mailbox: ProtonMailBox) -> None:
-        """
-        Vérifie si c'est l'heure d'envoyer un résumé et l'envoie si nécessaire.
-        Called during main loop.
-        """
+        """Vérifie si c'est l'heure d'envoyer un résumé et l'envoie si nécessaire."""
         if not self.detector or not self.reporter:
             return
-        
         try:
             current_hour = datetime.now().hour
-            
-            # Vérifier si l'heure actuelle est dans la liste des heures de rapport
             if current_hour in SUMMARY_HOURS and current_hour != self.last_summary_hour:
                 logger.info(f"🔔 Heure du rapport Executive Summary ({current_hour}:00 CET)")
-                
-                # Charger les messages importants
                 messages = self.detector._load_important_messages()
-                
                 if messages:
-                    # Générer le résumé
                     summary = self.detector.generate_executive_summary(messages)
-                    
-                    # Générer et envoyer le rapport HTML
                     html_content = self.reporter.generate_html_report(summary)
-                    
                     if SUMMARY_FORMAT in ["email", "both"]:
                         success = self.reporter.send_summary_email(html_content)
                         if success:
                             logger.success(f"📧 Résumé envoyé à {self.reporter.summary_folder}")
-                    
                     if SUMMARY_FORMAT in ["console", "both"]:
-                        logger.info(f"📋 Résumé: {summary['urgent_count']} urgent, {summary['high_count']} high, {summary['medium_count']} medium")
-                    
-                    # Sauvegarder les backups locaux
+                        logger.info(f"📋 Résumé: {summary['urgent_count']} urgent, {summary['high_count']} high")
                     self.reporter.save_summary_locally(summary, html_content)
-                    
-                    # Marquer l'heure pour éviter les doublons
                     self.last_summary_hour = current_hour
                 else:
                     logger.debug(f"Aucun message important à rapporter à {current_hour}:00")
                     self.last_summary_hour = current_hour
-        
         except Exception as e:
             logger.error(f"Erreur lors de la génération du résumé: {e}")
+
+    def _classify_batch(self, email_ids: List[bytes], mailbox) -> Dict[str, Tuple[str, float]]:
+        """
+        Classify multiple emails in batches (v1.2.0 optimization)
+        
+        Args:
+            email_ids: List of email IDs from IMAP
+            mailbox: IMAP connection object
+            
+        Returns:
+            Dict mapping email_id → (category, confidence)
+        """
+        if not self.enable_batch or not self.batch_classifier:
+            return {}
+        
+        logger.info(f"Using batch classification (size={self.batch_size}) for {len(email_ids)} emails")
+        
+        batch_emails = []
+        for email_id in email_ids:
+            try:
+                res, msg_data = mailbox.client.fetch(email_id, '(RFC822)')
+                if res == 'OK':
+                    raw_email = msg_data[0][1]
+                    subject, sender, body = self.parser.parse(raw_email)
+                    body_truncated = body[:500]
+                    
+                    batch_emails.append(
+                        BatchEmail(
+                            email_id=email_id.decode(),
+                            subject=subject,
+                            body=body_truncated
+                        )
+                    )
+            except Exception as e:
+                logger.error(f"Error fetching email {email_id}: {e}")
+                continue
+        
+        if not batch_emails:
+            return {}
+        
+        valid_categories = list(self.classifier.categories.keys())
+        results = {}
+        
+        for i in range(0, len(batch_emails), self.batch_size):
+            batch_chunk = batch_emails[i:i + self.batch_size]
+            classifications = self.batch_classifier.classify_batch(batch_chunk, valid_categories)
+            results.update(classifications)
+        
+        formatted_results = {}
+        for eid, data in results.items():
+            formatted_results[eid] = (data['category'], data['confidence'])
+            
+        logger.info(f"Batch classification complete: {len(formatted_results)} emails classified")
+        return formatted_results
 
     def process_folder(self, mailbox: ProtonMailBox, folder_name: str = "INBOX") -> int:
         """
         Traite les emails d'un dossier spécifique.
         Récupère, parse, classifie et déplace les emails.
         + Scoring pour Executive Summary.
+        + Support Parallel & Batch Processing (v1.2.0)
         """
         processed_count = 0
         try:
-            # Sélection du dossier avec échappement des guillemets
             try:
                 mailbox.client.select(f'"{folder_name}"')
             except Exception as e:
                 logger.error(f"Impossible de sélectionner le dossier {folder_name}: {e}")
                 return 0
 
-            # Critère de recherche basé sur le checkpoint
             if not self.initial_scan_done:
                 criteria = 'ALL'
                 logger.info("Premier démarrage : Scan de TOUS les emails.")
             elif self.last_check.get(folder_name):
-                # Si on a déjà traité ce dossier, chercher seulement les nouveaux
                 criteria = 'UNSEEN' if UNSEEN_ONLY else 'ALL'
                 logger.debug(f"Recherche des nouveaux emails ({criteria}) dans {folder_name}...")
             else:
-                # Premier passage dans ce dossier depuis le checkpoint
                 criteria = 'UNSEEN' if UNSEEN_ONLY else 'ALL'
                 logger.info(f"Premier scan de {folder_name}, recherche: {criteria}")
             
             status, messages = mailbox.client.search(None, criteria)
             if status != 'OK' or not messages[0]:
                 logger.debug(f"Aucun email à traiter dans {folder_name}.")
-                # ✅ FIX: Ne PAS marquer les dossiers vides comme traités pendant le scan initial
-                # Cela permet de les rescanner lors du prochain cycle si de nouveaux emails arrivent
                 if self.initial_scan_done:
-                    # Après le scan initial, on peut marquer les dossiers vides
                     self.last_check[folder_name] = datetime.now().isoformat()
                 return 0
 
             email_ids = messages[0].split()
             total_emails = len(email_ids)
             
-            # Déterminer la limite selon le type de dossier
             folder_lower = folder_name.lower()
             if 'spam' in folder_lower or 'trash' in folder_lower or 'corbeille' in folder_lower:
                 limit = SPAM_TRASH_LIMIT
@@ -457,142 +482,135 @@ class EmailProcessor:
             else:
                 limit = MAX_EMAILS_PER_FOLDER
             
-            # Trier et limiter les emails par date
             if total_emails > limit:
                 logger.warning(f"⚠️  {total_emails} emails trouvés dans {folder_name}, tri par date pour garder les {limit} plus récents")
                 email_ids = self._sort_emails_by_date(mailbox, email_ids, limit)
             
             logger.info(f"{len(email_ids)} email(s) trouvé(s) dans {folder_name} (sur {total_emails} total)")
 
+            batch_classifications = {}
+            if self.enable_batch and len(email_ids) > 1:
+                emails_to_classify = []
+                for eid in email_ids:
+                    uid = eid.decode()
+                    key = f"{folder_name}:{uid}"
+                    if key not in self.processed_emails:
+                        emails_to_classify.append(eid)
+                
+                if emails_to_classify:
+                    batch_classifications = self._classify_batch(emails_to_classify, mailbox)
+
             for email_id in email_ids:
                 if not self.running:
                     break
-
+                    
                 email_uid = email_id.decode()
-                
-                # ⚠️ Éviter de retraiter les emails déjà traités
                 email_key = f"{folder_name}:{email_uid}"
+                
                 if email_key in self.processed_emails:
-                    logger.debug(f"Email {email_uid} déjà traité, skip")
                     continue
 
                 try:
-                    # Récupérer le flag SEEN AVANT traitement
                     res_flags, flags_data = mailbox.client.fetch(email_id, '(FLAGS)')
                     was_seen = b'\\Seen' in flags_data[0] if res_flags == 'OK' and flags_data[0] else False
                     
-                    res, msg_data = mailbox.client.fetch(email_id, '(RFC822)')
-                    if res != 'OK':
-                        logger.error(f"Erreur fetch email ID {email_uid}")
-                        continue
+                    if email_uid in batch_classifications:
+                        category, confidence = batch_classifications[email_uid]
+                        
+                        res, msg_data = mailbox.client.fetch(email_id, '(BODY.PEEK[HEADER.FIELDS (SUBJECT FROM)])')
+                        if res == 'OK':
+                            raw_header = msg_data[0][1]
+                            msg = email.message_from_bytes(raw_header)
+                            try:
+                                subject_header = msg['Subject']
+                                if subject_header:
+                                    decoded_parts = email.header.decode_header(subject_header)
+                                    subject = decoded_parts[0][0]
+                                    if isinstance(subject, bytes):
+                                        subject = subject.decode()
+                                else:
+                                    subject = "Unknown"
+                            except:
+                                subject = "Unknown"
+                            sender = msg['From'] or "Unknown"
+                            body = "Batch processed body"
+                        else:
+                            subject = "Unknown"
+                            sender = "Unknown"
+                            body = ""
+                            
+                        logger.info(f"⚡ Batch Result: '{subject[:30]}...' -> {category} ({confidence:.2f})")
+                        
+                    else:
+                        res, msg_data = mailbox.client.fetch(email_id, '(RFC822)')
+                        if res != 'OK':
+                            continue
+                        raw_email = msg_data[0][1]
+                        subject, sender, body = self.parser.parse(raw_email)
+                        result = self.classifier.classify(email_uid, subject, body)
+                        category = result.category
+                        confidence = result.confidence
+                        logger.info(f"Email '{subject[:30]}...' -> {category} ({confidence:.2f})")
 
-                    raw_email = msg_data[0][1]
-                    
-                    # Parsing
-                    subject, sender, body = self.parser.parse(raw_email)
-                    
-                    # Classification
-                    result = self.classifier.classify(email_uid, subject, body)
-                    category = result.category
-                    confidence = result.confidence
-
-                    logger.info(f"Email '{subject[:30]}...' -> {category} ({confidence:.2f})")
-
-                    # 🆕 SCORING POUR EXECUTIVE SUMMARY
                     if SUMMARY_ENABLED:
                         self._score_and_track_message(email_uid, sender, subject, body, category, confidence)
 
-                    # Déplacement
                     target_folder = self._get_target_folder(category)
-                    
                     if target_folder:
                         if not DRY_RUN:
-                            # S'assurer que le dossier de destination existe
                             if not self.ensure_folder_exists(mailbox, target_folder):
-                                logger.error(f"Impossible de créer le dossier {target_folder}, email non déplacé")
                                 continue
-
-                            # Tentative de copie avec logs détaillés
-                            logger.debug(f"Tentative COPY email {email_uid} vers '{target_folder}'")
-                            try:
-                                res, data = mailbox.client.copy(email_id, f'"{target_folder}"')
-                                logger.debug(f"Réponse COPY: status={res}, data={data}")
-                                
-                                if res == 'OK':
-                                    # Marquer pour suppression
-                                    mailbox.client.store(email_id, '+FLAGS', '\\Deleted')
-                                    
-                                    # ✅ IMPORTANT : Restaurer le flag SEEN si l'email était déjà lu
-                                    if was_seen:
-                                        logger.debug(f"Email était déjà lu, flag SEEN préservé")
-                                    
-                                    logger.success(f"✓ Déplacé vers {target_folder}")
-                                    processed_count += 1
-                                    
-                                    # Marquer comme traité
-                                    self.processed_emails.add(email_key)
-                                else:
-                                    logger.error(f"Échec copie vers {target_folder}: {res} - {data}")
-                            except Exception as copy_error:
-                                logger.error(f"Exception lors de COPY vers {target_folder}: {copy_error}")
+                            res, data = mailbox.client.copy(email_id, f'"{target_folder}"')
+                            if res == 'OK':
+                                mailbox.client.store(email_id, '+FLAGS', '\\Deleted')
+                                if was_seen:
+                                    logger.debug("Preserving SEEN flag")
+                                logger.success(f"✓ Moved to {target_folder}")
+                                processed_count += 1
+                                self.processed_emails.add(email_key)
+                            else:
+                                logger.error(f"Copy failed: {res} - {data}")
                         else:
-                            logger.info(f"[DRY-RUN] Serait déplacé vers {target_folder}")
-                            self.processed_emails.add(email_key)  # Même en dry-run pour tests
+                            logger.info(f"[DRY-RUN] Would move to {target_folder}")
+                            self.processed_emails.add(email_key)
                     else:
-                        logger.debug("Pas de déplacement (Catégorie UNKNOWN ou pas de dossier cible)")
-                        self.processed_emails.add(email_key)  # Marquer quand même pour ne pas re-classifier
+                        self.processed_emails.add(email_key)
 
                 except Exception as e:
-                    logger.error(f"Erreur traitement email {email_uid}: {e}")
+                    logger.error(f"Error processing email {email_uid}: {e}")
                     continue
 
-            # Purge
             if not DRY_RUN and processed_count > 0:
-                logger.info(f"Purge de {processed_count} email(s) déplacé(s) de {folder_name}...")
+                logger.info(f"Purging {processed_count} emails from {folder_name}...")
                 mailbox.client.expunge()
-                logger.success(f"✓ Purge terminée pour {folder_name}.")
             
-            # ✅ Mettre à jour la date de dernière vérification SEULEMENT si des emails ont été traités
-            # Ou si le scan initial est terminé
             self.last_check[folder_name] = datetime.now().isoformat()
 
         except Exception as e:
-            logger.error(f"Erreur critique traitement dossier {folder_name}: {e}")
+            logger.error(f"Critical error in folder {folder_name}: {e}")
         
         return processed_count
 
     def run(self):
-        """Boucle principale du service avec Executive Summary scheduling."""
+        """Boucle principale du service."""
         logger.info("Démarrage de la boucle de traitement...")
-
-        # ✅ Dossiers système à exclure (UNIQUEMENT les dossiers techniques IMAP)
         SYSTEM_FOLDERS = [
             "All Mail", "Tous les messages",
-            "Labels/[Imap]",
-            "Labels/[Imap]/Sent",
-            "Labels/[Imap]/Trash",
-            "Labels/[Imap]\\",
-            "Labels/[Imap]\\/Trash",
-            "Labels/[Imap]\\/Sent",
+            "Labels/[Imap]", "Labels/[Imap]/Sent", "Labels/[Imap]/Trash",
+            "Labels/[Imap]\\", "Labels/[Imap]\\/Trash", "Labels/[Imap]\\/Sent",
         ]
 
         while self.running:
             try:
                 with self.connect_mailbox() as mailbox:
-                    
-                    # Initialiser le reporter avec la connexion IMAP (v1.1.0)
                     if SUMMARY_ENABLED and self.reporter is None:
                         self.reporter = SummaryEmailReporter(imap_connection=mailbox)
-                    
-                    # FeedbackManager
                     if not self.feedback_manager:
                         self.feedback_manager = FeedbackManager(self.classifier, mailbox)
                     else:
                         self.feedback_manager.mailbox = mailbox
-
                     self.feedback_manager.check_for_feedback()
 
-                    # Traiter tous les dossiers
                     status, folders = mailbox.client.list()
                     total_processed = 0
                     folders_scanned = 0
@@ -603,50 +621,36 @@ class EmailProcessor:
                                 folder_raw = folder_bytes.decode('utf-8')
                             except UnicodeDecodeError:
                                 folder_raw = folder_bytes.decode('latin-1')
-
-                            # ✅ FIX: Parser correctement le format IMAP LIST
-                            # Format: (\\Flags) "/" "Nom/Du/Dossier"
                             parts = folder_raw.split('"')
                             if len(parts) >= 3:
-                                # Le nom est entre les deux derniers guillemets (avant-dernier élément)
                                 folder_name = parts[-2]
                             else:
-                                # Fallback si format inattendu
-                                logger.warning(f"Format de dossier inattendu: {folder_raw}")
                                 continue
                             
-                            # ✅ Filtrer UNIQUEMENT les dossiers système IMAP et Training/Feedback
                             if (folder_name not in SYSTEM_FOLDERS and 
                                 not folder_name.startswith("Training") and 
                                 not folder_name.startswith("Feedback")):
-                                
-                                logger.debug(f"Scan du dossier: {folder_name}")
                                 count = self.process_folder(mailbox, folder_name)
                                 total_processed += count
                                 folders_scanned += 1
                     
-                    # 🆕 VÉRIFIER ET ENVOYER LE RÉSUMÉ (v1.1.0)
                     if SUMMARY_ENABLED:
                         self._check_and_send_summary(mailbox)
                     
-                    # Sauvegarder le checkpoint après chaque cycle
                     self._save_checkpoint()
-                    
                     if total_processed > 0:
-                        logger.info(f"Cycle terminé. {total_processed} emails traités sur {folders_scanned} dossiers scannés.")
-                    else:
-                        logger.debug(f"Cycle terminé. Aucun email traité ({folders_scanned} dossiers scannés).")
-
+                        logger.info(f"Cycle terminé. {total_processed} emails traités.")
+                    
                     if not self.initial_scan_done:
                         self.initial_scan_done = True
                         self._save_checkpoint()
-                        logger.success("✓ Scan initial terminé. Le système se concentrera désormais sur les nouveaux emails.")
+                        logger.success("✓ Scan initial terminé.")
 
                 time.sleep(POLL_INTERVAL)
 
             except Exception as e:
                 logger.error(f"Erreur dans la boucle principale: {e}")
-                self._save_checkpoint()  # Sauvegarder même en cas d'erreur
+                self._save_checkpoint()
                 time.sleep(10)
         
         logger.info("Arrêt du processeur.")
