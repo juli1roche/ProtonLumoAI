@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
 
+# ============================================================================
+# EMAIL PROCESSOR - ProtonLumoAI v1.2.2
+# Critical IMAP SEARCH State Bug Fix
+# ============================================================================
+
 import os
 import time
 import signal
@@ -12,7 +17,10 @@ from typing import Optional, Set, Dict, List
 from datetime import datetime, timedelta
 import email.utils
 import threading
-from concurrent.futures import ThreadPoolExecutor, ascompleted
+import re
+
+from loguru import logger
+from dotenv import load_dotenv
 
 try:
     from email_classifier import EmailClassifier
@@ -28,9 +36,6 @@ except ImportError:
     from important_message_detector import ImportantMessageDetector, ImportantMessage
     from summary_email_reporter import SummaryEmailReporter
 
-from loguru import logger
-from dotenv import load_dotenv
-
 load_dotenv()
 
 # Configuration IMAP
@@ -38,21 +43,21 @@ PROTON_BRIDGE_HOST = os.getenv('PROTON_BRIDGE_HOST', '127.0.0.1')
 PROTON_BRIDGE_PORT = int(os.getenv('PROTON_BRIDGE_PORT', 1143))
 PROTON_USERNAME = os.getenv('PROTON_USERNAME')
 PROTON_PASSWORD = os.getenv('PROTON_PASSWORD')
-POLL_INTERVAL = int(os.getenv('PROTONLUMO_POLL_INTERVAL', 60))
-UNSEEN_ONLY = os.getenv('PROTONLUMO_UNSEEN_ONLY', 'true').lower() == 'true'
-DRY_RUN = os.getenv('PROTONLUMO_DRY_RUN', 'false').lower() == 'true'
-MAX_EMAILS_PER_FOLDER = int(os.getenv('PROTONLUMO_MAX_EMAILS_PER_FOLDER', 100))
+POLL_INTERVAL = int(os.getenv('PROTON_LUMO_POLL_INTERVAL', 60))
+UNSEEN_ONLY = os.getenv('PROTON_LUMO_UNSEEN_ONLY', 'true').lower() == 'true'
+DRY_RUN = os.getenv('PROTON_LUMO_DRY_RUN', 'false').lower() == 'true'
+MAX_EMAILS_PER_FOLDER = int(os.getenv('PROTON_LUMO_MAX_EMAILS_PER_FOLDER', 100))
 
 # Configuration Executive Summary
-SUMMARY_ENABLED = os.getenv('PROTONLUMO_SUMMARY_ENABLED', 'true').lower() == 'true'
-SUMMARY_HOURS = list(map(int, os.getenv('PROTONLUMO_SUMMARY_HOURS', '09,13,17').split(',')))
-SUMMARY_MIN_SCORE = int(os.getenv('PROTONLUMO_SUMMARY_MIN_SCORE', 30))
-SUMMARY_FORMAT = os.getenv('PROTONLUMO_SUMMARY_FORMAT', 'email').lower()
+SUMMARY_ENABLED = os.getenv('PROTON_LUMO_SUMMARY_ENABLED', 'true').lower() == 'true'
+SUMMARY_HOURS = list(map(int, os.getenv('PROTON_LUMO_SUMMARY_HOURS', '09,13,17').split(',')))
+SUMMARY_MIN_SCORE = int(os.getenv('PROTON_LUMO_SUMMARY_MIN_SCORE', 30))
+SUMMARY_FORMAT = os.getenv('PROTON_LUMO_SUMMARY_FORMAT', 'email').lower()
 
 # Limites spéciales
 SPAM_TRASH_LIMIT = 10
 
-DATA_DIR = Path(os.getenv('PROTONLUMO_DATA', '~/ProtonLumoAI/data')).expanduser()
+DATA_DIR = Path(os.getenv('PROTON_LUMO_DATA', '~/ProtonLumoAI/data')).expanduser()
 DATA_DIR.mkdir(parents=True, exist_ok=True)
 CHECKPOINT_FILE = DATA_DIR / 'checkpoint.json'
 
@@ -255,7 +260,6 @@ class EmailProcessor:
             res_flags, flags_data = mailbox.client.fetch(email_id, 'INTERNALDATE')
             if res_flags == 'OK' and flags_data and flags_data[0]:
                 date_str = flags_data[0].decode('utf-8', errors='ignore')
-                import re
                 match = re.search(r'INTERNALDATE "([^"]+)"', date_str)
                 if match:
                     date_tuple = email.utils.parsedate_tz(match.group(1))
@@ -542,7 +546,7 @@ class EmailProcessor:
                         if success:
                             logger.success(f'✓ Résumé envoyé - {self.reporter.summary_folder}')
                     if SUMMARY_FORMAT in ['console', 'both']:
-                        logger.info(f'📊 Résumé: {summary["urgent_count"]} urgent, {summary["high_count"]} high, {summary["medium_count"]} medium')
+                        logger.info(f'📋 Résumé: {summary["urgent_count"]} urgent, {summary["high_count"]} high, {summary["medium_count"]} medium')
                     self.reporter.save_summary_locally(summary, html_content)
                     self.last_summary_hour = current_hour
                 else:
