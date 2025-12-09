@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 
 # ============================================================================
-# EMAIL PROCESSOR - ProtonLumoAI v1.2.2
-# Critical IMAP SEARCH State Bug Fix
+# EMAIL PROCESSOR - ProtonLumoAI v1.2.3
+# Critical IMAP SEARCH State Bug Fix + Special Folder Exclusions
 # ============================================================================
 
 import os
@@ -37,6 +37,17 @@ except ImportError:
     from summary_email_reporter import SummaryEmailReporter
 
 load_dotenv()
+
+# ============================================================================
+# IMAP FOLDER EXCLUSIONS (v1.2.3)
+# Special system folders that cause "command SEARCH illegal in state AUTH" errors
+# ============================================================================
+SKIP_FOLDERS = [
+    '[Imap]',      # Special IMAP namespace folders
+    '[Gmail]',     # Gmail system folders
+    'All Mail',    # Redundant "all mail" folder
+    'Tous les messages',  # French version
+]
 
 # Configuration IMAP
 PROTON_BRIDGE_HOST = os.getenv('PROTON_BRIDGE_HOST', '127.0.0.1')
@@ -140,7 +151,15 @@ class ProtonMailBox:
 
 
 class EmailProcessor:
-    """Processeur principal orchestrant le tri et l'apprentissage."""
+    """Processeur principal orchestrant le tri et l'apprentissage.
+    
+    Le système de checkpoint assure la persistance:
+    - initial_scan_done: True après le premier scan complet
+    - processed_emails: Set[str] des emails déjà traités (format "folder:uid")
+    - last_check: Dict[str, str] du dernier timestamp de vérification par dossier
+    
+    Après le scan initial, seuls les emails UNSEEN sont traités pour économiser les tokens.
+    """
 
     def __init__(self):
         self.classifier = EmailClassifier()
@@ -157,6 +176,8 @@ class EmailProcessor:
             self.detector = None
             self.reporter = None
 
+        # ========== CHECKPOINT SYSTEM ==========
+        # Charge l'état précédent pour éviter de retraiter les emails
         self.checkpoint = self.load_checkpoint()
         self.initial_scan_done = self.checkpoint.get('initial_scan_done', False)
         self.last_check: Dict[str, str] = self.checkpoint.get('last_check', {})
@@ -167,7 +188,10 @@ class EmailProcessor:
 
         logger.info(f'EmailProcessor démarré (Dry Run: {DRY_RUN}, Unseen Only: {UNSEEN_ONLY}, Max/Folder: {MAX_EMAILS_PER_FOLDER})')
         if self.initial_scan_done:
-            logger.info(f'Reprise depuis checkpoint ({len(self.processed_emails)} emails déjà traités)')
+            logger.info(f'✓ Reprise depuis checkpoint ({len(self.processed_emails)} emails déjà traités)')
+            logger.info('ℹ️  Mode incrémental: seuls les nouveaux emails (UNSEEN) seront traités')
+        else:
+            logger.info('⚠️  Premier scan: TOUS les emails seront analysés (peut prendre du temps)')
 
     def load_checkpoint(self) -> dict:
         """Charge le checkpoint depuis le disque."""
@@ -182,7 +206,11 @@ class EmailProcessor:
         return {}
 
     def save_checkpoint(self):
-        """Sauvegarde le checkpoint sur disque."""
+        """Sauvegarde le checkpoint sur disque.
+        
+        Appelé après chaque cycle de traitement et lors de l'arrêt.
+        Permet de reprendre exactement où le système s'est arrêté.
+        """
         try:
             checkpoint_data = {
                 'initial_scan_done': self.initial_scan_done,
@@ -298,6 +326,7 @@ class EmailProcessor:
         
         Récupère, parse, classifie et déplace les emails.
         Scoring pour Executive Summary.
+        Respecte le checkpoint pour éviter les retraitements.
         """
         processed_count = 0
         try:
@@ -315,7 +344,10 @@ class EmailProcessor:
                 logger.error(f'Impossible de sélectionner le dossier {folder_name}: {e}')
                 return 0
 
-            # Now that folder is selected, we can execute SEARCH
+            # ========== CHECKPOINT LOGIC ==========
+            # Premier scan: on traite TOUT
+            # Scans suivants: seulement UNSEEN pour économiser les tokens
+            # =====================================
             if not self.initial_scan_done:
                 criteria = 'ALL'
                 logger.info('Premier démarrage - Scan de TOUS les emails.')
@@ -358,6 +390,7 @@ class EmailProcessor:
                 email_uid = email_id.decode()
                 email_key = f'{folder_name}:{email_uid}'
 
+                # ========== CHECKPOINT: Skip déjà traités ==========
                 if email_key in self.processed_emails:
                     logger.debug(f'Email {email_uid} déjà traité, skip')
                     continue
@@ -414,6 +447,7 @@ class EmailProcessor:
                     else:
                         logger.info(f'DRY-RUN: Serait déplacé vers {target_folder}')
 
+                    # ========== CHECKPOINT: Marquer comme traité ==========
                     self.processed_emails.add(email_key)
 
                 except Exception as e:
@@ -434,7 +468,12 @@ class EmailProcessor:
         return processed_count
 
     def run(self):
-        """Boucle principale du service avec Executive Summary scheduling."""
+        """Boucle principale du service avec Executive Summary scheduling.
+        
+        - Sauvegarde automatique du checkpoint après chaque cycle
+        - Mode incrémental après le scan initial (économise les tokens)
+        - Filtre les dossiers IMAP spéciaux
+        """
         logger.info('Démarrage de la boucle de traitement...')
 
         while self.running:
@@ -463,12 +502,28 @@ class EmailProcessor:
                                 continue
                             folder_name = parts[-2]
 
-                            # Filtrer les dossiers système
-                            system_folders = ['All Mail', 'Tous les messages', '[Gmail]', '[Imap]', '[Sent]', '[Trash]', '[Draft]']
-                            if any(x in folder_name for x in system_folders):
-                                logger.debug(f'Skip dossier système: {folder_name}')
+                            # ============================================================================
+                            # FIX v1.2.3: IMAP FOLDER EXCLUSIONS
+                            # Skip special system folders that cause SEARCH errors
+                            # ============================================================================
+                            should_skip = False
+                            
+                            # Check against skip patterns
+                            for skip_pattern in SKIP_FOLDERS:
+                                if skip_pattern in folder_name:
+                                    logger.debug(f'⊘ Skip special IMAP folder: {folder_name}')
+                                    should_skip = True
+                                    break
+                            
+                            # Skip folders with backslashes (malformed IMAP)
+                            if '\\\\' in folder_name:
+                                logger.warning(f'⊘ Skip malformed IMAP folder (backslashes): {folder_name}')
+                                should_skip = True
+                            
+                            if should_skip:
                                 continue
 
+                            # Skip Training/Feedback folders (used for learning)
                             if folder_name.startswith('Training') or folder_name.startswith('Feedback'):
                                 logger.debug(f'Skip dossier Training/Feedback: {folder_name}')
                                 continue
@@ -482,6 +537,7 @@ class EmailProcessor:
                     if SUMMARY_ENABLED and self.detector and self.reporter:
                         self.check_and_send_summary(mailbox)
 
+                    # ========== SAVE CHECKPOINT AFTER EACH CYCLE ==========
                     self.save_checkpoint()
 
                     if total_processed > 0:
@@ -489,10 +545,12 @@ class EmailProcessor:
                     else:
                         logger.debug(f'Cycle terminé. Aucun email traité sur {folders_scanned} dossiers scannés.')
 
+                    # ========== MARK INITIAL SCAN COMPLETE ==========
                     if not self.initial_scan_done:
                         self.initial_scan_done = True
                         self.save_checkpoint()
                         logger.success('✓ Scan initial terminé. Le système se concentrera désormais sur les nouveaux emails.')
+                        logger.info('ℹ️  Mode économie de tokens activé: seuls les emails UNSEEN seront traités')
 
             except Exception as e:
                 logger.error(f'Erreur dans la boucle principale: {e}')
