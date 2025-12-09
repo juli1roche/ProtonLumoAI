@@ -1,0 +1,2721 @@
+{
+  "timestamp": "2025-12-09T17:52:15.481335",
+  "urgent_count": 0,
+  "high_count": 170,
+  "medium_count": 131,
+  "total_count": 301,
+  "urgent": [],
+  "high": [
+    {
+      "id": "278",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-10-25 10:01:11 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:18:42.749083"
+    },
+    {
+      "id": "279",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Recurring buy success - 2023-10-25 07:02:10 (UTC)",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:18:46.468302"
+    },
+    {
+      "id": "280",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-10-25 07:00:34 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:18:50.027595"
+    },
+    {
+      "id": "284",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Recurring buy success - 2023-10-24 07:02:06 (UTC)",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:19:02.781338"
+    },
+    {
+      "id": "285",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-10-24 07:00:45 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:19:06.516721"
+    },
+    {
+      "id": "289",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Recurring buy success - 2023-10-23 07:02:24 (UTC)",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:19:13.455539"
+    },
+    {
+      "id": "291",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-10-23 07:00:37 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:19:16.551850"
+    },
+    {
+      "id": "294",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Recurring buy success - 2023-10-22 07:02:06 (UTC)",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:19:23.717155"
+    },
+    {
+      "id": "431",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Recurring buy success - 2023-09-06 07:02:01 (UTC)",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:22:00.693360"
+    },
+    {
+      "id": "432",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-09-06 07:00:11 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:22:03.851099"
+    },
+    {
+      "id": "444",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Recurring buy success - 2023-09-02 07:02:01 (UTC)",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:22:14.306210"
+    },
+    {
+      "id": "445",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-09-02 07:00:12 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:22:17.523345"
+    },
+    {
+      "id": "447",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Recurring buy success - 2023-09-01 07:02:03 (UTC)",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:22:27.066434"
+    },
+    {
+      "id": "448",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-09-01 07:00:12 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:22:30.252361"
+    },
+    {
+      "id": "450",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Recurring buy success - 2023-08-31 07:02:01 (UTC)",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:22:37.353904"
+    },
+    {
+      "id": "451",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Recurring buy success - 2023-08-31 07:02:00 (UTC)",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:22:41.820436"
+    },
+    {
+      "id": "452",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-08-31 07:00:19 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:22:45.974692"
+    },
+    {
+      "id": "453",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-08-31 07:00:11 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:22:50.018917"
+    },
+    {
+      "id": "272",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-10-22 07:00:50 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:23:36.617959"
+    },
+    {
+      "id": "275",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Recurring buy success - 2023-10-21 07:02:07 (UTC)",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:23:42.218120"
+    },
+    {
+      "id": "276",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-10-21 07:00:41 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:23:45.872690"
+    },
+    {
+      "id": "286",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-10-19 07:00:45 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:23:49.143725"
+    },
+    {
+      "id": "287",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-10-19 07:00:35 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:23:52.742722"
+    },
+    {
+      "id": "293",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Recurring buy success - 2023-10-18 10:02:04 (UTC)",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:23:55.899025"
+    },
+    {
+      "id": "295",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Recurring buy success - 2023-10-18 07:02:06 (UTC)",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:23:59.257631"
+    },
+    {
+      "id": "301",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Recurring buy success - 2023-10-17 07:02:07 (UTC)",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:24:12.712824"
+    },
+    {
+      "id": "302",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-10-17 07:00:43 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:24:16.294329"
+    },
+    {
+      "id": "362",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-10-05 07:00:50 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:24:33.468049"
+    },
+    {
+      "id": "367",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Recurring buy success - 2023-10-04 10:02:03 (UTC)",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:24:50.522714"
+    },
+    {
+      "id": "368",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-10-04 10:00:46 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:24:53.452183"
+    },
+    {
+      "id": "369",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Recurring buy success - 2023-10-04 07:02:01 (UTC)",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:24:56.702869"
+    },
+    {
+      "id": "370",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-10-04 07:00:44 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:24:59.981665"
+    },
+    {
+      "id": "376",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Recurring buy success - 2023-10-03 07:02:02 (UTC)",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:25:10.620560"
+    },
+    {
+      "id": "377",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-10-03 07:00:55 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:25:13.798398"
+    },
+    {
+      "id": "420",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-09-26 07:00:39 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:25:33.992580"
+    },
+    {
+      "id": "443",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Recurring buy success - 2023-09-20 13:02:01 (UTC)",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:25:37.570360"
+    },
+    {
+      "id": "444",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-09-20 13:00:50 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:25:42.895996"
+    },
+    {
+      "id": "446",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Recurring buy success - 2023-09-20 10:02:01 (UTC)",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:25:46.093889"
+    },
+    {
+      "id": "447",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-09-20 10:00:55 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:25:48.786875"
+    },
+    {
+      "id": "449",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-09-20 07:00:40 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:25:51.752771"
+    },
+    {
+      "id": "454",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Recurring buy success - 2023-09-19 07:02:01 (UTC)",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:26:09.931846"
+    },
+    {
+      "id": "455",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-09-19 07:00:14 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:26:13.088711"
+    },
+    {
+      "id": "457",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Recurring buy success - 2023-09-18 07:02:02 (UTC)",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:26:20.327117"
+    },
+    {
+      "id": "458",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-09-18 07:00:14 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:26:25.214633"
+    },
+    {
+      "id": "461",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Recurring buy success - 2023-09-17 07:02:01 (UTC)",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:26:32.371953"
+    },
+    {
+      "id": "462",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-09-17 07:00:13 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:26:35.496874"
+    },
+    {
+      "id": "464",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Recurring buy success - 2023-09-16 07:02:01 (UTC)",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:26:42.140641"
+    },
+    {
+      "id": "465",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-09-16 07:00:13 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:26:44.915813"
+    },
+    {
+      "id": "467",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Recurring buy success - 2023-09-15 07:02:02 (UTC)",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:26:52.084908"
+    },
+    {
+      "id": "468",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-09-15 07:00:12 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:26:55.446071"
+    },
+    {
+      "id": "470",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Recurring buy success - 2023-09-14 07:02:01 (UTC)",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:27:02.295902"
+    },
+    {
+      "id": "499",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-09-10 07:00:11 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:27:09.044960"
+    },
+    {
+      "id": "501",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Recurring buy success - 2023-09-09 07:02:01 (UTC)",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:27:15.746527"
+    },
+    {
+      "id": "502",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-09-09 07:00:12 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:27:18.963911"
+    },
+    {
+      "id": "504",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Recurring buy success - 2023-09-08 07:02:01 (UTC)",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:27:28.482292"
+    },
+    {
+      "id": "505",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-09-08 07:00:11 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:27:31.545586"
+    },
+    {
+      "id": "508",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Recurring buy success - 2023-09-07 07:02:02 (UTC)",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:27:41.137630"
+    },
+    {
+      "id": "509",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Recurring buy success - 2023-09-07 07:02:02 (UTC)",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:27:45.403451"
+    },
+    {
+      "id": "510",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-09-07 07:00:14 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:27:48.672714"
+    },
+    {
+      "id": "511",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-09-07 07:00:12 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:27:51.738402"
+    },
+    {
+      "id": "515",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Recurring buy success - 2023-09-06 13:02:01 (UTC)",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:28:05.257263"
+    },
+    {
+      "id": "516",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-09-06 13:00:21 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:28:08.724784"
+    },
+    {
+      "id": "517",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Recurring buy success - 2023-09-06 10:02:01 (UTC)",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:28:12.405517"
+    },
+    {
+      "id": "518",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-09-06 10:00:23 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:28:15.847071"
+    },
+    {
+      "id": "535",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Recurring buy success - 2023-08-30 13:02:00 (UTC)",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:28:23.439608"
+    },
+    {
+      "id": "530",
+      "from": "\"Binance\" <donotreply@directmail.binance.com>",
+      "subject": "[Binance] Recurring buy success - 2025-12-08 09:04:03 (UTC)",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:28:28.096377"
+    },
+    {
+      "id": "277",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-10-20 07:00:40 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:29:32.840697"
+    },
+    {
+      "id": "473",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Recurring buy success - 2023-08-26 07:02:01 (UTC)",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:29:46.690010"
+    },
+    {
+      "id": "474",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-08-26 07:00:11 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:29:50.073853"
+    },
+    {
+      "id": "479",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Recurring buy success - 2023-08-25 07:02:01 (UTC)",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:29:59.750189"
+    },
+    {
+      "id": "480",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-08-25 07:00:12 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:30:04.387146"
+    },
+    {
+      "id": "483",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Recurring buy success - 2023-08-24 07:02:01 (UTC)",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:30:12.903674"
+    },
+    {
+      "id": "484",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Recurring buy success - 2023-08-24 07:02:01 (UTC)",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:30:16.316795"
+    },
+    {
+      "id": "485",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-08-24 07:00:12 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:30:20.500916"
+    },
+    {
+      "id": "486",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-08-24 07:00:10 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:30:24.690666"
+    },
+    {
+      "id": "490",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-08-23 13:00:21 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:30:37.790467"
+    },
+    {
+      "id": "491",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Recurring buy success - 2023-08-23 10:02:01 (UTC)",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:30:40.129701"
+    },
+    {
+      "id": "492",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-08-23 10:00:22 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:30:43.504318"
+    },
+    {
+      "id": "493",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Recurring buy success - 2023-08-23 07:02:01 (UTC)",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:30:46.885097"
+    },
+    {
+      "id": "494",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-08-23 07:00:11 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:30:52.554572"
+    },
+    {
+      "id": "523",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Recurring buy success - 2023-08-16 13:02:01 (UTC)",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:31:13.989933"
+    },
+    {
+      "id": "522",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-08-16 13:00:22 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:31:17.510840"
+    },
+    {
+      "id": "525",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Recurring buy success - 2023-08-16 07:02:01 (UTC)",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:31:21.086561"
+    },
+    {
+      "id": "526",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-08-16 07:00:11 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:31:25.592152"
+    },
+    {
+      "id": "530",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Recurring buy success - 2023-08-15 07:02:02 (UTC)",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:31:45.456918"
+    },
+    {
+      "id": "536",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Recurring buy success - 2023-08-14 07:02:03 (UTC)",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:31:48.646480"
+    },
+    {
+      "id": "537",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-08-14 07:00:14 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:31:51.795014"
+    },
+    {
+      "id": "539",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Recurring buy success - 2023-08-13 07:02:01 (UTC)",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:31:54.998388"
+    },
+    {
+      "id": "542",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Recurring buy success - 2023-08-12 07:02:01 (UTC)",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:32:15.080737"
+    },
+    {
+      "id": "543",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-08-12 07:00:17 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:32:19.424471"
+    },
+    {
+      "id": "546",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Recurring buy success - 2023-08-11 07:02:02 (UTC)",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:32:25.779902"
+    },
+    {
+      "id": "547",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-08-11 07:00:09 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:32:29.357758"
+    },
+    {
+      "id": "549",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Recurring buy success - 2023-08-10 07:02:01 (UTC)",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:32:36.231340"
+    },
+    {
+      "id": "550",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Recurring buy success - 2023-08-10 07:02:01 (UTC)",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:32:39.245666"
+    },
+    {
+      "id": "551",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-08-10 07:00:15 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:32:42.565827"
+    },
+    {
+      "id": "552",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-08-10 07:00:14 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:32:46.808526"
+    },
+    {
+      "id": "441",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-08-30 13:00:24 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:32:51.469981"
+    },
+    {
+      "id": "442",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Recurring buy success - 2023-08-30 10:02:01 (UTC)",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:32:55.883647"
+    },
+    {
+      "id": "456",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-08-27 07:00:13 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:32:59.523758"
+    },
+    {
+      "id": "479",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Recurring buy success - 2023-08-22 07:02:01 (UTC)",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:33:02.799611"
+    },
+    {
+      "id": "480",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-08-22 07:00:12 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:33:06.246198"
+    },
+    {
+      "id": "482",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Recurring buy success - 2023-08-21 07:02:02 (UTC)",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:33:13.797895"
+    },
+    {
+      "id": "483",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-08-21 07:00:09 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:33:17.904436"
+    },
+    {
+      "id": "485",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Recurring buy success - 2023-08-20 07:02:01 (UTC)",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:33:27.279776"
+    },
+    {
+      "id": "486",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-08-20 07:00:12 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:33:30.303840"
+    },
+    {
+      "id": "489",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-08-19 07:00:10 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:33:33.347797"
+    },
+    {
+      "id": "491",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Recurring buy success - 2023-08-18 07:02:01 (UTC)",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:33:36.677992"
+    },
+    {
+      "id": "492",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-08-18 07:00:12 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:33:40.041141"
+    },
+    {
+      "id": "494",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Recurring buy success - 2023-08-17 07:02:01 (UTC)",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:33:46.969100"
+    },
+    {
+      "id": "495",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Recurring buy success - 2023-08-17 07:02:00 (UTC)",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:33:50.279763"
+    },
+    {
+      "id": "496",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-08-17 07:00:19 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:33:53.717336"
+    },
+    {
+      "id": "497",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-08-17 07:00:09 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:33:56.786788"
+    },
+    {
+      "id": "529",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Recurring buy success - 2023-08-09 13:02:01 (UTC)",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:34:14.112289"
+    },
+    {
+      "id": "530",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-08-09 13:00:28 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:34:17.783252"
+    },
+    {
+      "id": "531",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Recurring buy success - 2023-08-09 10:02:02 (UTC)",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:34:21.992744"
+    },
+    {
+      "id": "532",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-08-09 10:00:32 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:34:26.305224"
+    },
+    {
+      "id": "533",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Recurring buy success - 2023-08-09 07:02:01 (UTC)",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:34:30.084016"
+    },
+    {
+      "id": "534",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-08-09 07:00:15 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:34:33.990948"
+    },
+    {
+      "id": "538",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Recurring buy success - 2023-08-08 07:02:01 (UTC)",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:34:54.299780"
+    },
+    {
+      "id": "539",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-08-08 07:00:18 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:34:58.962460"
+    },
+    {
+      "id": "541",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Recurring buy success - 2023-08-07 07:02:03 (UTC)",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:35:07.520788"
+    },
+    {
+      "id": "542",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-08-07 07:00:10 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:35:11.364704"
+    },
+    {
+      "id": "544",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Recurring buy success - 2023-08-06 07:02:02 (UTC)",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:35:19.906554"
+    },
+    {
+      "id": "545",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-08-06 07:00:16 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:35:25.078399"
+    },
+    {
+      "id": "547",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Recurring buy success - 2023-08-05 07:02:02 (UTC)",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:35:33.657229"
+    },
+    {
+      "id": "548",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-08-05 07:00:10 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:35:39.175763"
+    },
+    {
+      "id": "550",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Recurring buy success - 2023-08-04 07:02:02 (UTC)",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:35:47.057150"
+    },
+    {
+      "id": "551",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-08-04 07:00:10 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:35:51.744439"
+    },
+    {
+      "id": "553",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Recurring buy success - 2023-08-03 07:02:01 (UTC)",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:36:00.652172"
+    },
+    {
+      "id": "554",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Recurring buy success - 2023-08-03 07:02:00 (UTC)",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:36:05.463288"
+    },
+    {
+      "id": "555",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-08-03 07:00:22 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:36:09.351066"
+    },
+    {
+      "id": "556",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-08-03 07:00:11 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:36:13.358708"
+    },
+    {
+      "id": "560",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Recurring buy success - 2023-08-02 13:02:01 (UTC)",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:36:30.362028"
+    },
+    {
+      "id": "561",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-08-02 13:00:29 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:36:34.849609"
+    },
+    {
+      "id": "562",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Recurring buy success - 2023-08-02 10:02:02 (UTC)",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:36:38.650543"
+    },
+    {
+      "id": "563",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-08-02 10:00:17 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:36:43.040846"
+    },
+    {
+      "id": "564",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Recurring buy success - 2023-08-02 07:02:03 (UTC)",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:36:48.072696"
+    },
+    {
+      "id": "565",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-08-02 07:00:18 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:36:51.161966"
+    },
+    {
+      "id": "569",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Recurring buy success - 2023-08-01 07:02:04 (UTC)",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:37:05.279187"
+    },
+    {
+      "id": "570",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-08-01 07:00:18 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:37:08.208087"
+    },
+    {
+      "id": "572",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Recurring buy success - 2023-07-31 07:02:04 (UTC)",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:37:14.084877"
+    },
+    {
+      "id": "573",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-07-31 07:00:18 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:37:17.906450"
+    },
+    {
+      "id": "575",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Recurring buy success - 2023-07-30 07:02:02 (UTC)",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:37:25.425267"
+    },
+    {
+      "id": "576",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-07-30 07:00:12 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:37:29.178433"
+    },
+    {
+      "id": "578",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Recurring buy success - 2023-07-29 07:02:02 (UTC)",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:37:36.844182"
+    },
+    {
+      "id": "579",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-07-29 07:00:17 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:37:39.722894"
+    },
+    {
+      "id": "581",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Recurring buy success - 2023-07-28 07:02:02 (UTC)",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:37:46.835339"
+    },
+    {
+      "id": "582",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-07-28 07:00:19 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:37:50.535857"
+    },
+    {
+      "id": "507",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Recurring buy success - 2023-07-27 07:02:01 (UTC)",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:39:06.775528"
+    },
+    {
+      "id": "508",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Recurring buy success - 2023-07-27 07:02:01 (UTC)",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:39:10.048697"
+    },
+    {
+      "id": "509",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-07-27 07:00:14 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:39:13.154118"
+    },
+    {
+      "id": "513",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Recurring buy success - 2023-07-26 13:02:01 (UTC)",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:39:23.258060"
+    },
+    {
+      "id": "514",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-07-26 13:00:29 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:39:26.342304"
+    },
+    {
+      "id": "515",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Recurring buy success - 2023-07-26 10:02:01 (UTC)",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:39:29.862909"
+    },
+    {
+      "id": "516",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-07-26 10:00:33 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:39:34.529423"
+    },
+    {
+      "id": "517",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Recurring buy success - 2023-07-26 07:02:01 (UTC)",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:39:38.877960"
+    },
+    {
+      "id": "518",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-07-26 07:00:18 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:39:42.893386"
+    },
+    {
+      "id": "522",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Recurring buy success - 2023-07-25 07:02:02 (UTC)",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:39:59.224001"
+    },
+    {
+      "id": "523",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-07-25 07:00:16 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:40:04.518676"
+    },
+    {
+      "id": "525",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Recurring buy success - 2023-07-24 07:02:03 (UTC)",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:40:11.307571"
+    },
+    {
+      "id": "526",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-07-24 07:00:19 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:40:15.049706"
+    },
+    {
+      "id": "584",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Recurring buy success - 2023-07-06 07:02:00 (UTC)",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:40:19.787233"
+    },
+    {
+      "id": "519",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-07-17 07:00:09 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:40:30.555536"
+    },
+    {
+      "id": "531",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Recurring buy success - 2023-07-13 07:02:01 (UTC)",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:40:38.169604"
+    },
+    {
+      "id": "532",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-07-13 07:00:18 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:40:42.077321"
+    },
+    {
+      "id": "533",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-07-13 07:00:15 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:40:46.653448"
+    },
+    {
+      "id": "556",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Recurring buy success - 2023-07-08 07:02:01 (UTC)",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:41:05.830504"
+    },
+    {
+      "id": "557",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Buy with card successful - 2023-07-08 07:00:23 (UT",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:41:09.432819"
+    },
+    {
+      "id": "538",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[Binance] Recurring buy success - 2023-07-11 07:02:01 (UTC)",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T10:42:14.009478"
+    },
+    {
+      "id": "384",
+      "from": "\"Crypto.com\" <hello@crypto.com>",
+      "subject": "Achat r\u00e9current effectu\u00e9",
+      "category": "BANQUE",
+      "score": 50,
+      "action": "verify",
+      "time": "2025-12-08T21:58:28.089575"
+    }
+  ],
+  "medium": [
+    {
+      "id": "186",
+      "from": "\"Revolut\" <no-reply@revolut.com>",
+      "subject": "Your balance has dropped below zero \ud83d\ude2d",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:18:09.888707"
+    },
+    {
+      "id": "231",
+      "from": "\"Proton\" <no-reply@calendar.proton.me>",
+      "subject": "Reminder: event starting on Wednesday, November 1 (all day)",
+      "category": "PRO",
+      "score": 30,
+      "action": "review",
+      "time": "2025-12-08T10:18:16.849723"
+    },
+    {
+      "id": "238",
+      "from": "\"Bybit\" <notification@bybit.com>",
+      "subject": "[Bybit]API Key Created Successfully",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:18:20.159368"
+    },
+    {
+      "id": "239",
+      "from": "\"Bybit\" <notification@bybit.com>",
+      "subject": "[Bybit]Login notification",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:18:23.198386"
+    },
+    {
+      "id": "240",
+      "from": "\"Bybit\" <notification@bybit.com>",
+      "subject": "[Bybit]Login notification",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:18:26.481195"
+    },
+    {
+      "id": "241",
+      "from": "\"Bybit\" <notification@bybit.com>",
+      "subject": "[Bybit]Login from a new device",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:18:29.956512"
+    },
+    {
+      "id": "261",
+      "from": "\"Proton\" <no-reply@calendar.proton.me>",
+      "subject": "Reminder: event starting at 9:30 AM (GMT+2) on Friday, Octob",
+      "category": "PRO",
+      "score": 30,
+      "action": "review",
+      "time": "2025-12-08T10:18:36.524353"
+    },
+    {
+      "id": "281",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-10-24 14:01:02 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:18:53.713846"
+    },
+    {
+      "id": "282",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-10-24 14:00:52 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:18:57.088243"
+    },
+    {
+      "id": "283",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-10-24 14:00:41 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:18:59.966644"
+    },
+    {
+      "id": "288",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-10-23 14:00:53 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:19:09.902018"
+    },
+    {
+      "id": "292",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-10-22 14:01:01 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:19:19.734581"
+    },
+    {
+      "id": "7",
+      "from": "\"NVIDIA\" <donotreply@nvidia.com>",
+      "subject": "Rappel relatif \u00e0 la facturation de votre abonnement \u00e0 GeForc",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:20:46.185056"
+    },
+    {
+      "id": "41",
+      "from": "\"Gemini Trust\" <Gemini.com@gambaru.io>",
+      "subject": "Monthly Activity Statement for November 2025",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:21:56.195243"
+    },
+    {
+      "id": "433",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-09-05 14:00:49 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:22:07.642584"
+    },
+    {
+      "id": "443",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-09-02 14:00:53 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:22:10.657491"
+    },
+    {
+      "id": "446",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-09-01 14:00:48 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:22:22.694821"
+    },
+    {
+      "id": "449",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-08-31 14:01:07 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:22:33.703194"
+    },
+    {
+      "id": "454",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-08-30 14:00:51 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:22:55.632270"
+    },
+    {
+      "id": "455",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-08-30 14:00:49 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:22:58.847799"
+    },
+    {
+      "id": "4",
+      "from": "\u00c9quipe des comptes Microsoft <account-security-noreply@accountprotection.microsoft.com>",
+      "subject": "Nouvelle(s) application(s) connect\u00e9e(s) \u00e0 votre compte Micro",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:23:03.060820"
+    },
+    {
+      "id": "274",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-10-21 14:00:59 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:23:39.280940"
+    },
+    {
+      "id": "297",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-10-17 14:00:46 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:24:02.564233"
+    },
+    {
+      "id": "298",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-10-17 14:00:40 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:24:05.815675"
+    },
+    {
+      "id": "303",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-10-16 14:00:43 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:24:19.692757"
+    },
+    {
+      "id": "304",
+      "from": "\"SG\" <news@communications.socgen.com>",
+      "subject": " Monsieur Roche, et si c'\u00e9tait le bon moment pour changer de",
+      "category": "VENTE",
+      "score": 30,
+      "action": "track",
+      "time": "2025-12-08T10:24:25.728218"
+    },
+    {
+      "id": "361",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[BN] Recurring buy Declined - 2023-10-05 07:02:01 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:24:30.110014"
+    },
+    {
+      "id": "363",
+      "from": "\"Proton\" <no-reply@calendar.proton.me>",
+      "subject": "Reminder: event starting at 9:00 AM (GMT+2) on Thursday, Oct",
+      "category": "PRO",
+      "score": 30,
+      "action": "review",
+      "time": "2025-12-08T10:24:36.266138"
+    },
+    {
+      "id": "364",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-10-04 14:00:55 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:24:40.048172"
+    },
+    {
+      "id": "365",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-10-04 14:00:55 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:24:43.548908"
+    },
+    {
+      "id": "366",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[BN] Recurring buy Declined - 2023-10-04 13:02:02 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:24:47.390796"
+    },
+    {
+      "id": "371",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-10-03 14:00:54 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:25:03.991186"
+    },
+    {
+      "id": "372",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-10-03 14:00:46 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:25:07.324967"
+    },
+    {
+      "id": "393",
+      "from": "\"Proton\" <no-reply@calendar.proton.me>",
+      "subject": "Reminder: event starting at 9:30 AM (GMT+2) on Friday, Septe",
+      "category": "PRO",
+      "score": 30,
+      "action": "review",
+      "time": "2025-12-08T10:25:21.885771"
+    },
+    {
+      "id": "415",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-09-26 14:00:50 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:25:30.885773"
+    },
+    {
+      "id": "450",
+      "from": "\"Proton\" <no-reply@calendar.proton.me>",
+      "subject": "Reminder: event starting on Wednesday, September 20 (all day",
+      "category": "PRO",
+      "score": 30,
+      "action": "review",
+      "time": "2025-12-08T10:25:55.166006"
+    },
+    {
+      "id": "451",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-09-19 14:00:48 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:26:00.210674"
+    },
+    {
+      "id": "452",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-09-19 14:00:41 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:26:03.251146"
+    },
+    {
+      "id": "453",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-09-19 14:00:32 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:26:06.955867"
+    },
+    {
+      "id": "456",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-09-18 14:00:41 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:26:16.519707"
+    },
+    {
+      "id": "460",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-09-17 14:00:51 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:26:28.773557"
+    },
+    {
+      "id": "463",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-09-16 14:00:46 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:26:39.158603"
+    },
+    {
+      "id": "466",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-09-15 14:00:43 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:26:48.542115"
+    },
+    {
+      "id": "469",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-09-14 14:00:55 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:26:59.191132"
+    },
+    {
+      "id": "475",
+      "from": "\"Proton\" <no-reply@calendar.proton.me>",
+      "subject": "Reminder: event starting on Thursday, September 14 (all day)",
+      "category": "PRO",
+      "score": 30,
+      "action": "review",
+      "time": "2025-12-08T10:27:05.875225"
+    },
+    {
+      "id": "500",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-09-09 14:00:55 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:27:12.317709"
+    },
+    {
+      "id": "503",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-09-08 14:00:43 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:27:22.270722"
+    },
+    {
+      "id": "506",
+      "from": "\"Proton\" <no-reply@calendar.proton.me>",
+      "subject": "Reminder: event starting on Friday, September 8 (all day)",
+      "category": "PRO",
+      "score": 30,
+      "action": "review",
+      "time": "2025-12-08T10:27:34.569720"
+    },
+    {
+      "id": "507",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-09-07 14:00:50 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:27:37.500892"
+    },
+    {
+      "id": "512",
+      "from": "\"Proton\" <no-reply@calendar.proton.me>",
+      "subject": "Reminder: event starting at 9:00 AM (GMT+2) on Thursday, Sep",
+      "category": "PRO",
+      "score": 30,
+      "action": "review",
+      "time": "2025-12-08T10:27:55.452126"
+    },
+    {
+      "id": "513",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-09-06 14:00:44 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:27:58.536001"
+    },
+    {
+      "id": "514",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-09-06 14:00:44 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:28:01.755299"
+    },
+    {
+      "id": "534",
+      "from": "\"Proton\" <no-reply@calendar.proton.me>",
+      "subject": "Reminder: event starting on Saturday, September 2 (all day)",
+      "category": "PRO",
+      "score": 30,
+      "action": "review",
+      "time": "2025-12-08T10:28:20.286844"
+    },
+    {
+      "id": "459",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-08-29 14:00:55 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:29:35.895136"
+    },
+    {
+      "id": "471",
+      "from": "\"Proton\" <no-reply@calendar.proton.me>",
+      "subject": "Reminder: event starting on Sunday, August 27 (all day)",
+      "category": "PRO",
+      "score": 30,
+      "action": "review",
+      "time": "2025-12-08T10:29:40.466126"
+    },
+    {
+      "id": "472",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-08-26 14:00:48 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:29:43.631954"
+    },
+    {
+      "id": "476",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-08-25 14:00:42 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:29:53.167539"
+    },
+    {
+      "id": "478",
+      "from": "\"Proton\" <no-reply@calendar.proton.me>",
+      "subject": "Reminder: event starting at 9:30 AM (GMT+2) on Friday, Augus",
+      "category": "PRO",
+      "score": 30,
+      "action": "review",
+      "time": "2025-12-08T10:29:56.517038"
+    },
+    {
+      "id": "481",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-08-24 14:00:46 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:30:09.335513"
+    },
+    {
+      "id": "487",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-08-23 14:00:40 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:30:29.180760"
+    },
+    {
+      "id": "488",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-08-23 14:00:40 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:30:33.733321"
+    },
+    {
+      "id": "496",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-08-22 14:00:48 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:30:55.997905"
+    },
+    {
+      "id": "497",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-08-22 14:00:42 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:30:59.077237"
+    },
+    {
+      "id": "498",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-08-22 14:00:32 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:31:02.637607"
+    },
+    {
+      "id": "520",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-08-16 14:00:45 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:31:05.863636"
+    },
+    {
+      "id": "521",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-08-16 14:00:44 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:31:10.546752"
+    },
+    {
+      "id": "527",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-08-15 14:00:47 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:31:30.858359"
+    },
+    {
+      "id": "528",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-08-15 14:00:39 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:31:35.198079"
+    },
+    {
+      "id": "529",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-08-15 14:00:31 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:31:40.077678"
+    },
+    {
+      "id": "541",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-08-12 14:00:47 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:32:10.460072"
+    },
+    {
+      "id": "545",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-08-11 14:00:44 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:32:22.305588"
+    },
+    {
+      "id": "548",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-08-10 14:00:52 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:32:33.270643"
+    },
+    {
+      "id": "481",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-08-21 14:00:43 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:33:09.564713"
+    },
+    {
+      "id": "484",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-08-20 14:00:54 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:33:22.864291"
+    },
+    {
+      "id": "493",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-08-17 14:00:49 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:33:43.551506"
+    },
+    {
+      "id": "510",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-08-14 14:00:48 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:34:00.314464"
+    },
+    {
+      "id": "527",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-08-09 14:00:48 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:34:06.972564"
+    },
+    {
+      "id": "528",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-08-09 14:00:47 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:34:10.380578"
+    },
+    {
+      "id": "535",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-08-08 14:00:52 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:34:37.597816"
+    },
+    {
+      "id": "536",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-08-08 14:00:45 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:34:42.156343"
+    },
+    {
+      "id": "537",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-08-08 14:00:35 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:34:46.429949"
+    },
+    {
+      "id": "540",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-08-07 14:00:56 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:35:03.373804"
+    },
+    {
+      "id": "543",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-08-06 14:01:10 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:35:15.148716"
+    },
+    {
+      "id": "546",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-08-05 14:01:06 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:35:29.468390"
+    },
+    {
+      "id": "549",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-08-04 14:01:04 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:35:43.752863"
+    },
+    {
+      "id": "552",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-08-03 14:01:03 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:35:56.369087"
+    },
+    {
+      "id": "557",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "[BINANCE] Mise \u00e0 jour des conditions d\u2019utilisation des cl\u00e9s ",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:36:17.944065"
+    },
+    {
+      "id": "558",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-08-02 14:00:58 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:36:21.750219"
+    },
+    {
+      "id": "559",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-08-02 14:00:56 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:36:25.919582"
+    },
+    {
+      "id": "566",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-08-01 14:01:03 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:36:54.307307"
+    },
+    {
+      "id": "567",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-08-01 14:00:52 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:36:57.856964"
+    },
+    {
+      "id": "568",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-08-01 14:00:41 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:37:01.367611"
+    },
+    {
+      "id": "571",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-07-31 14:01:27 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:37:11.054023"
+    },
+    {
+      "id": "574",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-07-30 14:01:18 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:37:21.575886"
+    },
+    {
+      "id": "577",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-07-29 14:01:08 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:37:32.471525"
+    },
+    {
+      "id": "580",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-07-28 14:00:56 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:37:43.370728"
+    },
+    {
+      "id": "583",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-07-27 14:01:00 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:37:54.098323"
+    },
+    {
+      "id": "511",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-07-26 14:00:49 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:39:16.372963"
+    },
+    {
+      "id": "512",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-07-26 14:00:49 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:39:19.811336"
+    },
+    {
+      "id": "519",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-07-25 14:00:54 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:39:46.651561"
+    },
+    {
+      "id": "520",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-07-25 14:00:46 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:39:50.772864"
+    },
+    {
+      "id": "521",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-07-25 14:00:36 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:39:55.173051"
+    },
+    {
+      "id": "524",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-07-24 14:00:51 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:40:07.951257"
+    },
+    {
+      "id": "489",
+      "from": "\"Proton\" <no-reply@calendar.proton.me>",
+      "subject": "Reminder: event starting at 9:30 AM (GMT+2) on Friday, July ",
+      "category": "PRO",
+      "score": 30,
+      "action": "review",
+      "time": "2025-12-08T10:40:24.150549"
+    },
+    {
+      "id": "495",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-07-23 14:00:57 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:40:27.037466"
+    },
+    {
+      "id": "524",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-07-15 14:00:54 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:40:34.084540"
+    },
+    {
+      "id": "544",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-07-11 14:00:42 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:40:50.700599"
+    },
+    {
+      "id": "553",
+      "from": "\"Proton\" <no-reply@calendar.proton.me>",
+      "subject": "Reminder: event starting on Monday, July 10 (all day)",
+      "category": "PRO",
+      "score": 30,
+      "action": "review",
+      "time": "2025-12-08T10:40:54.314751"
+    },
+    {
+      "id": "554",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-07-09 14:00:59 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:40:59.192990"
+    },
+    {
+      "id": "555",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-07-08 14:00:51 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T10:41:02.623999"
+    },
+    {
+      "id": "279",
+      "from": "\"Binance\" <donotreply@directmail.binance.com>",
+      "subject": "[Binance] Spot Grid Exceeds Price Range Notification - 2025-",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T11:14:49.910229"
+    },
+    {
+      "id": "3286",
+      "from": "\"EcoleDirecte\" <information@ecoledirecte.fr>",
+      "subject": "EcoleDirecte : APEL : Fete de la Lumiere - vendredi 12 d\u00e9cem",
+      "category": "PRO",
+      "score": 30,
+      "action": "review",
+      "time": "2025-12-08T11:24:42.895680"
+    },
+    {
+      "id": "3350",
+      "from": "\"Beverley Harper\" <beverley.harper@iqaimmigration.com>",
+      "subject": "Re: Application Update",
+      "category": "PRO",
+      "score": 40,
+      "action": "review",
+      "time": "2025-12-08T11:30:14.075427"
+    },
+    {
+      "id": "3473",
+      "from": "\"Arles Axenergie\" <arles@axenergie.eu>",
+      "subject": "RE: devis et reparation PAC",
+      "category": "PRO",
+      "score": 30,
+      "action": "review",
+      "time": "2025-12-08T11:52:53.992245"
+    },
+    {
+      "id": "3496",
+      "from": "\"AXENERGIE\" <admin@payplug.com>",
+      "subject": "AXENERGIE - Payment of \u20ac300.00 approved",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T12:19:01.924418"
+    },
+    {
+      "id": "559",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-07-04 14:00:45 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T12:34:47.496873"
+    },
+    {
+      "id": "560",
+      "from": "\"Binance\" <do-not-reply@ses.binance.com>",
+      "subject": "Recurring Buy Deduction Reminder - 2023-07-04 14:00:35 (UTC)",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T12:34:50.254687"
+    },
+    {
+      "id": "3628",
+      "from": "\"SAP Cloud Identity Services No Reply\" <ias@notifications.sap.com>",
+      "subject": "Welcome to Cirrus Logic!",
+      "category": "PRO",
+      "score": 30,
+      "action": "review",
+      "time": "2025-12-08T13:02:56.466845"
+    },
+    {
+      "id": "3732",
+      "from": "\"CHERI Alliance\" <nextcloud@cheri-alliance.org>",
+      "subject": "CHERI Alliance Nextcloud will be down for maintenance  from ",
+      "category": "PRO",
+      "score": 45,
+      "action": "respond",
+      "time": "2025-12-08T13:31:10.638392"
+    },
+    {
+      "id": "3890",
+      "from": "\"Google Agenda\" <calendar-notification@google.com>",
+      "subject": "Notification: rdv Claude ferret  avenue d'Angoul\u00eame Montpell",
+      "category": "PRO",
+      "score": 45,
+      "action": "respond",
+      "time": "2025-12-08T14:31:36.735810"
+    },
+    {
+      "id": "3932",
+      "from": "<no-reply@uptevia.com>",
+      "subject": " [202] - Ex\u00e9cution de votre ordre de vente",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T15:15:47.856273"
+    },
+    {
+      "id": "4023",
+      "from": "<support@hetzner.com>",
+      "subject": "Your access details",
+      "category": "PRO",
+      "score": 45,
+      "action": "respond",
+      "time": "2025-12-08T16:47:55.848911"
+    },
+    {
+      "id": "4109",
+      "from": "\"Google Families\" <families-noreply@google.com>",
+      "subject": "Rappel : Modifications \u00e0 venir du r\u00f4le de julie dans votre g",
+      "category": "PRO",
+      "score": 45,
+      "action": "respond",
+      "time": "2025-12-08T18:00:44.790528"
+    },
+    {
+      "id": "4141",
+      "from": "\"Google\" <no-reply@accounts.google.com>",
+      "subject": "Demande de cr\u00e9ation d'archive des donn\u00e9es Google",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T18:14:54.109709"
+    },
+    {
+      "id": "77",
+      "from": "\"Amazon.fr\" <order-update@amazon.fr>",
+      "subject": "Livraison\u00a0: 1\u00a0article | Num\u00e9ro de commande 405-7397022-52475",
+      "category": "BANQUE",
+      "score": 40,
+      "action": "verify",
+      "time": "2025-12-08T21:58:23.472014"
+    },
+    {
+      "id": "60",
+      "from": "\"Votre Banque Populaire\" <contact@md.banquepopulaire.fr>",
+      "subject": "Faites des \u00e9conomies en pr\u00e9parant les f\u00eates avec Extra +X",
+      "category": "VENTE",
+      "score": 30,
+      "action": "track",
+      "time": "2025-12-09T16:39:14.343507"
+    },
+    {
+      "id": "5221",
+      "from": "\"NETH-Nursery Admin\" <neth-nurseryadmin@nethercurrie.edin.sch.uk>",
+      "subject": "RE: RE: Nursery Place Enquiry for January 2026",
+      "category": "PRO",
+      "score": 30,
+      "action": "review",
+      "time": "2025-12-09T16:39:32.846985"
+    },
+    {
+      "id": "116",
+      "from": "\"dan.sullivan@cheri-alliance.org\" <dan.sullivan@cheri-alliance.org>",
+      "subject": "[Ambassadors] Action Required: Your Ambassador Hub Profile",
+      "category": "PRO",
+      "score": 45,
+      "action": "respond",
+      "time": "2025-12-09T16:39:53.842793"
+    },
+    {
+      "id": "117",
+      "from": "\"dan.sullivan@cheri-alliance.org\" <dan.sullivan@cheri-alliance.org>",
+      "subject": "[CHERI Alliance - All] Ambassador Talk: Tariq Kurd - \"Why th",
+      "category": "PRO",
+      "score": 30,
+      "action": "review",
+      "time": "2025-12-09T16:39:57.477795"
+    },
+    {
+      "id": "107",
+      "from": "\"Wellfound\" <team@hi.wellfound.com>",
+      "subject": "New jobs: Manager, Cybersecurity Operations NA (Remote) at J",
+      "category": "PRO",
+      "score": 45,
+      "action": "respond",
+      "time": "2025-12-09T16:40:08.554557"
+    },
+    {
+      "id": "2",
+      "from": "Enqu\u00eate France Travail <enquetefrancetravail@satisfaction.francetravail.fr>",
+      "subject": "Suite \u00e0 votre dernier \u00e9change par mail avec votre conseiller",
+      "category": "PRO",
+      "score": 45,
+      "action": "respond",
+      "time": "2025-12-09T17:14:39.664473"
+    }
+  ]
+}

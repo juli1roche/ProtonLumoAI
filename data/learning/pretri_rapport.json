@@ -1,0 +1,17 @@
+{
+  "dossiers_analyses": [
+    "Gmail"
+  ],
+  "sous_dossiers_crees": [],
+  "emails_deplaces": 20,
+  "categories_detectees": {
+    "Gmail": {
+      "COMMERCE": 40,
+      "PRO": 4,
+      "MIXED": 47,
+      "NEWSLETTER": 4,
+      "FINANCE": 4,
+      "PERSONNEL": 1
+    }
+  }
+}
