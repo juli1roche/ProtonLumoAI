@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 # ============================================================================
-# SYNC & LEARN - ProtonLumoAI v1.3.0
+# SYNC & LEARN - ProtonLumoAI v1.3.1 (FIXED)
 # Synchronise les dossiers et analyse les patterns pour apprentissage
+# FIXES:
+# - Skip special IMAP folders (Labels/[Imap]\\\\, etc.)
+# - Better error handling for folder selection failures
 # ============================================================================
 
 import os
@@ -29,10 +32,38 @@ PROTON_BRIDGE_PORT = int(os.getenv("PROTON_BRIDGE_PORT", 1143))
 PROTON_USERNAME = os.getenv("PROTON_USERNAME")
 PROTON_PASSWORD = os.getenv("PROTON_PASSWORD")
 
-# v1.3.0 Settings
+# v1.3.1 Settings
 LEARNING_ENABLED = os.getenv("PROTON_LUMO_LEARNING_ENABLED", "true").lower() == "true"
 LEARNING_EMAILS_PER_FOLDER = int(os.getenv("PROTON_LUMO_LEARNING_EMAILS_PER_FOLDER", 10))
 LEARNING_MIN_CONFIDENCE = float(os.getenv("PROTON_LUMO_LEARNING_MIN_CONFIDENCE", 0.7))
+
+# IMAP folders to skip (special system folders that cause SEARCH errors)
+SKIP_FOLDERS = [
+    '[Imap]',      # Special IMAP namespace folders
+    'All Mail',
+    'All mail',
+    'Drafts',
+    'Sent',
+]
+
+
+def should_skip_folder(folder_name: str) -> bool:
+    """Check if folder should be skipped based on special patterns"""
+    if not folder_name:
+        return True
+    
+    # Skip special IMAP folders
+    for skip_pattern in SKIP_FOLDERS:
+        if skip_pattern in folder_name:
+            logger.debug(f"Skipping special folder: {folder_name}")
+            return True
+    
+    # Skip folders with double backslashes (malformed IMAP)
+    if '\\\\' in folder_name:
+        logger.warning(f"Skipping malformed IMAP folder: {folder_name}")
+        return True
+    
+    return False
 
 
 class SyncAndLearn:
@@ -97,14 +128,23 @@ class SyncAndLearn:
         emails_data = []
         
         try:
-            # Sélectionner le dossier
-            status, messages = self.mailbox.select(f'"{folder_name}"')
-            if status != 'OK':
-                logger.warning(f"Could not select folder: {folder_name}")
+            # Sélectionner le dossier avec error handling
+            try:
+                status, messages = self.mailbox.select(f'"{folder_name}"')
+                if status != 'OK':
+                    logger.warning(f"Could not select folder: {folder_name}")
+                    return []
+            except imaplib.IMAP4.error as e:
+                logger.warning(f"IMAP error selecting {folder_name}: {e}")
                 return []
             
             # Récupérer tous les IDs
-            status, msg_ids = self.mailbox.search(None, 'ALL')
+            try:
+                status, msg_ids = self.mailbox.search(None, 'ALL')
+            except imaplib.IMAP4.error as e:
+                logger.error(f"IMAP SEARCH error in {folder_name}: {e}")
+                return []
+                
             if status != 'OK' or not msg_ids[0]:
                 logger.debug(f"No emails in {folder_name}")
                 return []
@@ -196,20 +236,28 @@ class SyncAndLearn:
             
             # Parser les noms de dossiers
             folder_names = []
+            skipped_folders = []
+            
             for folder_bytes in folders:
                 try:
                     folder_raw = folder_bytes.decode('utf-8', errors='ignore')
                     parts = folder_raw.split('"')
                     if len(parts) >= 3:
                         folder_name = parts[-2]
-                        # Filtrer dossiers systèmes
-                        if not any(x in folder_name.lower() for x in ['[imap]', 'drafts', 'sent', 'all mail']):
-                            folder_names.append(folder_name)
+                        
+                        # CRITICAL FIX: Skip special IMAP folders
+                        if should_skip_folder(folder_name):
+                            skipped_folders.append(folder_name)
+                            continue
+                        
+                        folder_names.append(folder_name)
                 except Exception as e:
                     logger.debug(f"Error parsing folder: {e}")
                     continue
             
             logger.info(f"Found {len(folder_names)} folders to analyze")
+            if skipped_folders:
+                logger.info(f"Skipped {len(skipped_folders)} special IMAP folders")
             
             # Analyser chaque dossier
             for folder_name in folder_names:
@@ -241,7 +289,7 @@ class SyncAndLearn:
                             f"🧠 Learned from {folder_name}: {len(pattern.common_keywords)} keywords, "
                             f"{len(pattern.common_senders)} senders, confidence: {pattern.confidence:.0%}"
                         )
-                    
+                
                 except Exception as e:
                     logger.error(f"Error analyzing folder {folder_name}: {e}")
                     continue
