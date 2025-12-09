@@ -1,0 +1,4671 @@
+[
+  {
+    "message_id": "186",
+    "from_email": "\"Revolut\" <no-reply@revolut.com>",
+    "subject": "Your balance has dropped below zero \ud83d\ude2d",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:18:09.888707",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "231",
+    "from_email": "\"Proton\" <no-reply@calendar.proton.me>",
+    "subject": "Reminder: event starting on Wednesday, November 1 (all day)",
+    "score": 30,
+    "category": "PRO",
+    "criteria_breakdown": {
+      "category_PRO": 30
+    },
+    "action_type": "review",
+    "status": "new",
+    "detected_at": "2025-12-08T10:18:16.849723",
+    "category_confidence": 0.7
+  },
+  {
+    "message_id": "238",
+    "from_email": "\"Bybit\" <notification@bybit.com>",
+    "subject": "[Bybit]API Key Created Successfully",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:18:20.159368",
+    "category_confidence": 0.72
+  },
+  {
+    "message_id": "239",
+    "from_email": "\"Bybit\" <notification@bybit.com>",
+    "subject": "[Bybit]Login notification",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:18:23.198386",
+    "category_confidence": 0.82
+  },
+  {
+    "message_id": "240",
+    "from_email": "\"Bybit\" <notification@bybit.com>",
+    "subject": "[Bybit]Login notification",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:18:26.481195",
+    "category_confidence": 0.84
+  },
+  {
+    "message_id": "241",
+    "from_email": "\"Bybit\" <notification@bybit.com>",
+    "subject": "[Bybit]Login from a new device",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:18:29.956512",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "261",
+    "from_email": "\"Proton\" <no-reply@calendar.proton.me>",
+    "subject": "Reminder: event starting at 9:30 AM (GMT+2) on Friday, October 27",
+    "score": 30,
+    "category": "PRO",
+    "criteria_breakdown": {
+      "category_PRO": 30
+    },
+    "action_type": "review",
+    "status": "new",
+    "detected_at": "2025-12-08T10:18:36.524353",
+    "category_confidence": 0.74
+  },
+  {
+    "message_id": "278",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-10-25 10:01:11 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:18:42.749083",
+    "category_confidence": 0.9
+  },
+  {
+    "message_id": "279",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Recurring buy success - 2023-10-25 07:02:10 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:18:46.468302",
+    "category_confidence": 0.9
+  },
+  {
+    "message_id": "280",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-10-25 07:00:34 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:18:50.027595",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "281",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-10-24 14:01:02 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:18:53.713846",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "282",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-10-24 14:00:52 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:18:57.088243",
+    "category_confidence": 0.95
+  },
+  {
+    "message_id": "283",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-10-24 14:00:41 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:18:59.966644",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "284",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Recurring buy success - 2023-10-24 07:02:06 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:19:02.781338",
+    "category_confidence": 0.9
+  },
+  {
+    "message_id": "285",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-10-24 07:00:45 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:19:06.516721",
+    "category_confidence": 0.95
+  },
+  {
+    "message_id": "288",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-10-23 14:00:53 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:19:09.902018",
+    "category_confidence": 0.78
+  },
+  {
+    "message_id": "289",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Recurring buy success - 2023-10-23 07:02:24 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:19:13.455539",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "291",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-10-23 07:00:37 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:19:16.551850",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "292",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-10-22 14:01:01 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:19:19.734581",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "294",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Recurring buy success - 2023-10-22 07:02:06 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:19:23.717155",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "7",
+    "from_email": "\"NVIDIA\" <donotreply@nvidia.com>",
+    "subject": "Rappel relatif \u00e0 la facturation de votre abonnement \u00e0 GeForce\u00a0NOW",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:20:46.185056",
+    "category_confidence": 0.9
+  },
+  {
+    "message_id": "41",
+    "from_email": "\"Gemini Trust\" <Gemini.com@gambaru.io>",
+    "subject": "Monthly Activity Statement for November 2025",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:21:56.195243",
+    "category_confidence": 0.95
+  },
+  {
+    "message_id": "431",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Recurring buy success - 2023-09-06 07:02:01 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:22:00.693360",
+    "category_confidence": 0.9
+  },
+  {
+    "message_id": "432",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-09-06 07:00:11 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:22:03.851099",
+    "category_confidence": 0.9
+  },
+  {
+    "message_id": "433",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-09-05 14:00:49 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:22:07.642584",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "443",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-09-02 14:00:53 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:22:10.657491",
+    "category_confidence": 0.83
+  },
+  {
+    "message_id": "444",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Recurring buy success - 2023-09-02 07:02:01 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:22:14.306210",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "445",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-09-02 07:00:12 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:22:17.523345",
+    "category_confidence": 0.88
+  },
+  {
+    "message_id": "446",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-09-01 14:00:48 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:22:22.694821",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "447",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Recurring buy success - 2023-09-01 07:02:03 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:22:27.066434",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "448",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-09-01 07:00:12 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:22:30.252361",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "449",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-08-31 14:01:07 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:22:33.703194",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "450",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Recurring buy success - 2023-08-31 07:02:01 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:22:37.353904",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "451",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Recurring buy success - 2023-08-31 07:02:00 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:22:41.820436",
+    "category_confidence": 0.93
+  },
+  {
+    "message_id": "452",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-08-31 07:00:19 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:22:45.974692",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "453",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-08-31 07:00:11 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:22:50.018917",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "454",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-08-30 14:00:51 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:22:55.632270",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "455",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-08-30 14:00:49 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:22:58.847799",
+    "category_confidence": 0.9
+  },
+  {
+    "message_id": "4",
+    "from_email": "\u00c9quipe des comptes Microsoft <account-security-noreply@accountprotection.microsoft.com>",
+    "subject": "Nouvelle(s) application(s) connect\u00e9e(s) \u00e0 votre compte Microsoft",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:23:03.060820",
+    "category_confidence": 0.72
+  },
+  {
+    "message_id": "272",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-10-22 07:00:50 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:23:36.617959",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "274",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-10-21 14:00:59 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:23:39.280940",
+    "category_confidence": 0.95
+  },
+  {
+    "message_id": "275",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Recurring buy success - 2023-10-21 07:02:07 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:23:42.218120",
+    "category_confidence": 0.9
+  },
+  {
+    "message_id": "276",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-10-21 07:00:41 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:23:45.872690",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "286",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-10-19 07:00:45 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:23:49.143725",
+    "category_confidence": 0.88
+  },
+  {
+    "message_id": "287",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-10-19 07:00:35 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:23:52.742722",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "293",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Recurring buy success - 2023-10-18 10:02:04 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:23:55.899025",
+    "category_confidence": 0.9
+  },
+  {
+    "message_id": "295",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Recurring buy success - 2023-10-18 07:02:06 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:23:59.257631",
+    "category_confidence": 0.9
+  },
+  {
+    "message_id": "297",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-10-17 14:00:46 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:24:02.564233",
+    "category_confidence": 0.9
+  },
+  {
+    "message_id": "298",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-10-17 14:00:40 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:24:05.815675",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "301",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Recurring buy success - 2023-10-17 07:02:07 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:24:12.712824",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "302",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-10-17 07:00:43 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:24:16.294329",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "303",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-10-16 14:00:43 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:24:19.692757",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "304",
+    "from_email": "\"SG\" <news@communications.socgen.com>",
+    "subject": " Monsieur Roche, et si c'\u00e9tait le bon moment pour changer de v\u00e9hicule ?",
+    "score": 30,
+    "category": "VENTE",
+    "criteria_breakdown": {
+      "category_VENTE": 5,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "track",
+    "status": "new",
+    "detected_at": "2025-12-08T10:24:25.728218",
+    "category_confidence": 0.9
+  },
+  {
+    "message_id": "361",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[BN] Recurring buy Declined - 2023-10-05 07:02:01 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:24:30.110014",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "362",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-10-05 07:00:50 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:24:33.468049",
+    "category_confidence": 0.9
+  },
+  {
+    "message_id": "363",
+    "from_email": "\"Proton\" <no-reply@calendar.proton.me>",
+    "subject": "Reminder: event starting at 9:00 AM (GMT+2) on Thursday, October 5",
+    "score": 30,
+    "category": "PRO",
+    "criteria_breakdown": {
+      "category_PRO": 30
+    },
+    "action_type": "review",
+    "status": "new",
+    "detected_at": "2025-12-08T10:24:36.266138",
+    "category_confidence": 0.8
+  },
+  {
+    "message_id": "364",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-10-04 14:00:55 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:24:40.048172",
+    "category_confidence": 0.87
+  },
+  {
+    "message_id": "365",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-10-04 14:00:55 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:24:43.548908",
+    "category_confidence": 0.82
+  },
+  {
+    "message_id": "366",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[BN] Recurring buy Declined - 2023-10-04 13:02:02 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:24:47.390796",
+    "category_confidence": 0.8
+  },
+  {
+    "message_id": "367",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Recurring buy success - 2023-10-04 10:02:03 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:24:50.522714",
+    "category_confidence": 0.9
+  },
+  {
+    "message_id": "368",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-10-04 10:00:46 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:24:53.452183",
+    "category_confidence": 0.88
+  },
+  {
+    "message_id": "369",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Recurring buy success - 2023-10-04 07:02:01 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:24:56.702869",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "370",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-10-04 07:00:44 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:24:59.981665",
+    "category_confidence": 0.84
+  },
+  {
+    "message_id": "371",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-10-03 14:00:54 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:25:03.991186",
+    "category_confidence": 0.8
+  },
+  {
+    "message_id": "372",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-10-03 14:00:46 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:25:07.324967",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "376",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Recurring buy success - 2023-10-03 07:02:02 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:25:10.620560",
+    "category_confidence": 0.9
+  },
+  {
+    "message_id": "377",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-10-03 07:00:55 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:25:13.798398",
+    "category_confidence": 0.9
+  },
+  {
+    "message_id": "393",
+    "from_email": "\"Proton\" <no-reply@calendar.proton.me>",
+    "subject": "Reminder: event starting at 9:30 AM (GMT+2) on Friday, September 29",
+    "score": 30,
+    "category": "PRO",
+    "criteria_breakdown": {
+      "category_PRO": 30
+    },
+    "action_type": "review",
+    "status": "new",
+    "detected_at": "2025-12-08T10:25:21.885771",
+    "category_confidence": 0.8
+  },
+  {
+    "message_id": "415",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-09-26 14:00:50 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:25:30.885773",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "420",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-09-26 07:00:39 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:25:33.992580",
+    "category_confidence": 0.9
+  },
+  {
+    "message_id": "443",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Recurring buy success - 2023-09-20 13:02:01 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:25:37.570360",
+    "category_confidence": 0.9
+  },
+  {
+    "message_id": "444",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-09-20 13:00:50 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:25:42.895996",
+    "category_confidence": 0.9
+  },
+  {
+    "message_id": "446",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Recurring buy success - 2023-09-20 10:02:01 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:25:46.093889",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "447",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-09-20 10:00:55 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:25:48.786875",
+    "category_confidence": 0.94
+  },
+  {
+    "message_id": "449",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-09-20 07:00:40 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:25:51.752771",
+    "category_confidence": 0.9
+  },
+  {
+    "message_id": "450",
+    "from_email": "\"Proton\" <no-reply@calendar.proton.me>",
+    "subject": "Reminder: event starting on Wednesday, September 20 (all day)",
+    "score": 30,
+    "category": "PRO",
+    "criteria_breakdown": {
+      "category_PRO": 30
+    },
+    "action_type": "review",
+    "status": "new",
+    "detected_at": "2025-12-08T10:25:55.166006",
+    "category_confidence": 0.7
+  },
+  {
+    "message_id": "451",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-09-19 14:00:48 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:26:00.210674",
+    "category_confidence": 0.95
+  },
+  {
+    "message_id": "452",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-09-19 14:00:41 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:26:03.251146",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "453",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-09-19 14:00:32 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:26:06.955867",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "454",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Recurring buy success - 2023-09-19 07:02:01 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:26:09.931846",
+    "category_confidence": 0.95
+  },
+  {
+    "message_id": "455",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-09-19 07:00:14 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:26:13.088711",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "456",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-09-18 14:00:41 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:26:16.519707",
+    "category_confidence": 0.83
+  },
+  {
+    "message_id": "457",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Recurring buy success - 2023-09-18 07:02:02 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:26:20.327117",
+    "category_confidence": 0.9
+  },
+  {
+    "message_id": "458",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-09-18 07:00:14 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:26:25.214633",
+    "category_confidence": 0.95
+  },
+  {
+    "message_id": "460",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-09-17 14:00:51 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:26:28.773557",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "461",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Recurring buy success - 2023-09-17 07:02:01 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:26:32.371953",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "462",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-09-17 07:00:13 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:26:35.496874",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "463",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-09-16 14:00:46 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:26:39.158603",
+    "category_confidence": 0.78
+  },
+  {
+    "message_id": "464",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Recurring buy success - 2023-09-16 07:02:01 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:26:42.140641",
+    "category_confidence": 0.9
+  },
+  {
+    "message_id": "465",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-09-16 07:00:13 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:26:44.915813",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "466",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-09-15 14:00:43 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:26:48.542115",
+    "category_confidence": 0.85
+  },
+  {
+    "message_id": "467",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Recurring buy success - 2023-09-15 07:02:02 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:26:52.084908",
+    "category_confidence": 0.9
+  },
+  {
+    "message_id": "468",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-09-15 07:00:12 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:26:55.446071",
+    "category_confidence": 0.9
+  },
+  {
+    "message_id": "469",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-09-14 14:00:55 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:26:59.191132",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "470",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Recurring buy success - 2023-09-14 07:02:01 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:27:02.295902",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "475",
+    "from_email": "\"Proton\" <no-reply@calendar.proton.me>",
+    "subject": "Reminder: event starting on Thursday, September 14 (all day)",
+    "score": 30,
+    "category": "PRO",
+    "criteria_breakdown": {
+      "category_PRO": 30
+    },
+    "action_type": "review",
+    "status": "new",
+    "detected_at": "2025-12-08T10:27:05.875225",
+    "category_confidence": 0.7
+  },
+  {
+    "message_id": "499",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-09-10 07:00:11 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:27:09.044960",
+    "category_confidence": 0.9
+  },
+  {
+    "message_id": "500",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-09-09 14:00:55 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:27:12.317709",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "501",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Recurring buy success - 2023-09-09 07:02:01 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:27:15.746527",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "502",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-09-09 07:00:12 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:27:18.963911",
+    "category_confidence": 0.9
+  },
+  {
+    "message_id": "503",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-09-08 14:00:43 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:27:22.270722",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "504",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Recurring buy success - 2023-09-08 07:02:01 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:27:28.482292",
+    "category_confidence": 0.88
+  },
+  {
+    "message_id": "505",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-09-08 07:00:11 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:27:31.545586",
+    "category_confidence": 0.9
+  },
+  {
+    "message_id": "506",
+    "from_email": "\"Proton\" <no-reply@calendar.proton.me>",
+    "subject": "Reminder: event starting on Friday, September 8 (all day)",
+    "score": 30,
+    "category": "PRO",
+    "criteria_breakdown": {
+      "category_PRO": 30
+    },
+    "action_type": "review",
+    "status": "new",
+    "detected_at": "2025-12-08T10:27:34.569720",
+    "category_confidence": 0.7
+  },
+  {
+    "message_id": "507",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-09-07 14:00:50 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:27:37.500892",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "508",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Recurring buy success - 2023-09-07 07:02:02 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:27:41.137630",
+    "category_confidence": 0.85
+  },
+  {
+    "message_id": "509",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Recurring buy success - 2023-09-07 07:02:02 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:27:45.403451",
+    "category_confidence": 0.93
+  },
+  {
+    "message_id": "510",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-09-07 07:00:14 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:27:48.672714",
+    "category_confidence": 0.9
+  },
+  {
+    "message_id": "511",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-09-07 07:00:12 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:27:51.738402",
+    "category_confidence": 0.9
+  },
+  {
+    "message_id": "512",
+    "from_email": "\"Proton\" <no-reply@calendar.proton.me>",
+    "subject": "Reminder: event starting at 9:00 AM (GMT+2) on Thursday, September 7",
+    "score": 30,
+    "category": "PRO",
+    "criteria_breakdown": {
+      "category_PRO": 30
+    },
+    "action_type": "review",
+    "status": "new",
+    "detected_at": "2025-12-08T10:27:55.452126",
+    "category_confidence": 0.7
+  },
+  {
+    "message_id": "513",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-09-06 14:00:44 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:27:58.536001",
+    "category_confidence": 0.84
+  },
+  {
+    "message_id": "514",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-09-06 14:00:44 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:28:01.755299",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "515",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Recurring buy success - 2023-09-06 13:02:01 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:28:05.257263",
+    "category_confidence": 0.87
+  },
+  {
+    "message_id": "516",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-09-06 13:00:21 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:28:08.724784",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "517",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Recurring buy success - 2023-09-06 10:02:01 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:28:12.405517",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "518",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-09-06 10:00:23 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:28:15.847071",
+    "category_confidence": 0.9
+  },
+  {
+    "message_id": "534",
+    "from_email": "\"Proton\" <no-reply@calendar.proton.me>",
+    "subject": "Reminder: event starting on Saturday, September 2 (all day)",
+    "score": 30,
+    "category": "PRO",
+    "criteria_breakdown": {
+      "category_PRO": 30
+    },
+    "action_type": "review",
+    "status": "new",
+    "detected_at": "2025-12-08T10:28:20.286844",
+    "category_confidence": 0.7
+  },
+  {
+    "message_id": "535",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Recurring buy success - 2023-08-30 13:02:00 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:28:23.439608",
+    "category_confidence": 0.9
+  },
+  {
+    "message_id": "530",
+    "from_email": "\"Binance\" <donotreply@directmail.binance.com>",
+    "subject": "[Binance] Recurring buy success - 2025-12-08 09:04:03 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:28:28.096377",
+    "category_confidence": 0.9
+  },
+  {
+    "message_id": "277",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-10-20 07:00:40 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:29:32.840697",
+    "category_confidence": 0.9
+  },
+  {
+    "message_id": "459",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-08-29 14:00:55 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:29:35.895136",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "471",
+    "from_email": "\"Proton\" <no-reply@calendar.proton.me>",
+    "subject": "Reminder: event starting on Sunday, August 27 (all day)",
+    "score": 30,
+    "category": "PRO",
+    "criteria_breakdown": {
+      "category_PRO": 30
+    },
+    "action_type": "review",
+    "status": "new",
+    "detected_at": "2025-12-08T10:29:40.466126",
+    "category_confidence": 0.7
+  },
+  {
+    "message_id": "472",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-08-26 14:00:48 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:29:43.631954",
+    "category_confidence": 0.83
+  },
+  {
+    "message_id": "473",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Recurring buy success - 2023-08-26 07:02:01 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:29:46.690010",
+    "category_confidence": 0.87
+  },
+  {
+    "message_id": "474",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-08-26 07:00:11 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:29:50.073853",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "476",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-08-25 14:00:42 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:29:53.167539",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "478",
+    "from_email": "\"Proton\" <no-reply@calendar.proton.me>",
+    "subject": "Reminder: event starting at 9:30 AM (GMT+2) on Friday, August 25",
+    "score": 30,
+    "category": "PRO",
+    "criteria_breakdown": {
+      "category_PRO": 30
+    },
+    "action_type": "review",
+    "status": "new",
+    "detected_at": "2025-12-08T10:29:56.517038",
+    "category_confidence": 0.7
+  },
+  {
+    "message_id": "479",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Recurring buy success - 2023-08-25 07:02:01 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:29:59.750189",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "480",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-08-25 07:00:12 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:30:04.387146",
+    "category_confidence": 0.9
+  },
+  {
+    "message_id": "481",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-08-24 14:00:46 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:30:09.335513",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "483",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Recurring buy success - 2023-08-24 07:02:01 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:30:12.903674",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "484",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Recurring buy success - 2023-08-24 07:02:01 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:30:16.316795",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "485",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-08-24 07:00:12 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:30:20.500916",
+    "category_confidence": 0.88
+  },
+  {
+    "message_id": "486",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-08-24 07:00:10 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:30:24.690666",
+    "category_confidence": 0.89
+  },
+  {
+    "message_id": "487",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-08-23 14:00:40 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:30:29.180760",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "488",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-08-23 14:00:40 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:30:33.733321",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "490",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-08-23 13:00:21 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:30:37.790467",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "491",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Recurring buy success - 2023-08-23 10:02:01 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:30:40.129701",
+    "category_confidence": 0.9
+  },
+  {
+    "message_id": "492",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-08-23 10:00:22 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:30:43.504318",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "493",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Recurring buy success - 2023-08-23 07:02:01 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:30:46.885097",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "494",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-08-23 07:00:11 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:30:52.554572",
+    "category_confidence": 0.9
+  },
+  {
+    "message_id": "496",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-08-22 14:00:48 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:30:55.997905",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "497",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-08-22 14:00:42 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:30:59.077237",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "498",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-08-22 14:00:32 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:31:02.637607",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "520",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-08-16 14:00:45 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:31:05.863636",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "521",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-08-16 14:00:44 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:31:10.546752",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "523",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Recurring buy success - 2023-08-16 13:02:01 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:31:13.989933",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "522",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-08-16 13:00:22 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:31:17.510840",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "525",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Recurring buy success - 2023-08-16 07:02:01 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:31:21.086561",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "526",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-08-16 07:00:11 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:31:25.592152",
+    "category_confidence": 0.9
+  },
+  {
+    "message_id": "527",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-08-15 14:00:47 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:31:30.858359",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "528",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-08-15 14:00:39 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:31:35.198079",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "529",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-08-15 14:00:31 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:31:40.077678",
+    "category_confidence": 0.83
+  },
+  {
+    "message_id": "530",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Recurring buy success - 2023-08-15 07:02:02 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:31:45.456918",
+    "category_confidence": 0.92
+  },
+  {
+    "message_id": "536",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Recurring buy success - 2023-08-14 07:02:03 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:31:48.646480",
+    "category_confidence": 0.9
+  },
+  {
+    "message_id": "537",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-08-14 07:00:14 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:31:51.795014",
+    "category_confidence": 0.88
+  },
+  {
+    "message_id": "539",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Recurring buy success - 2023-08-13 07:02:01 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:31:54.998388",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "541",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-08-12 14:00:47 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:32:10.460072",
+    "category_confidence": 0.84
+  },
+  {
+    "message_id": "542",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Recurring buy success - 2023-08-12 07:02:01 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:32:15.080737",
+    "category_confidence": 0.9
+  },
+  {
+    "message_id": "543",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-08-12 07:00:17 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:32:19.424471",
+    "category_confidence": 0.93
+  },
+  {
+    "message_id": "545",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-08-11 14:00:44 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:32:22.305588",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "546",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Recurring buy success - 2023-08-11 07:02:02 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:32:25.779902",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "547",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-08-11 07:00:09 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:32:29.357758",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "548",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-08-10 14:00:52 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:32:33.270643",
+    "category_confidence": 0.9
+  },
+  {
+    "message_id": "549",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Recurring buy success - 2023-08-10 07:02:01 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:32:36.231340",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "550",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Recurring buy success - 2023-08-10 07:02:01 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:32:39.245666",
+    "category_confidence": 0.9
+  },
+  {
+    "message_id": "551",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-08-10 07:00:15 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:32:42.565827",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "552",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-08-10 07:00:14 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:32:46.808526",
+    "category_confidence": 0.9
+  },
+  {
+    "message_id": "441",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-08-30 13:00:24 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:32:51.469981",
+    "category_confidence": 0.95
+  },
+  {
+    "message_id": "442",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Recurring buy success - 2023-08-30 10:02:01 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:32:55.883647",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "456",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-08-27 07:00:13 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:32:59.523758",
+    "category_confidence": 0.95
+  },
+  {
+    "message_id": "479",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Recurring buy success - 2023-08-22 07:02:01 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:33:02.799611",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "480",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-08-22 07:00:12 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:33:06.246198",
+    "category_confidence": 0.93
+  },
+  {
+    "message_id": "481",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-08-21 14:00:43 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:33:09.564713",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "482",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Recurring buy success - 2023-08-21 07:02:02 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:33:13.797895",
+    "category_confidence": 0.88
+  },
+  {
+    "message_id": "483",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-08-21 07:00:09 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:33:17.904436",
+    "category_confidence": 0.9
+  },
+  {
+    "message_id": "484",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-08-20 14:00:54 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:33:22.864291",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "485",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Recurring buy success - 2023-08-20 07:02:01 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:33:27.279776",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "486",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-08-20 07:00:12 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:33:30.303840",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "489",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-08-19 07:00:10 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:33:33.347797",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "491",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Recurring buy success - 2023-08-18 07:02:01 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:33:36.677992",
+    "category_confidence": 0.9
+  },
+  {
+    "message_id": "492",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-08-18 07:00:12 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:33:40.041141",
+    "category_confidence": 0.95
+  },
+  {
+    "message_id": "493",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-08-17 14:00:49 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:33:43.551506",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "494",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Recurring buy success - 2023-08-17 07:02:01 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:33:46.969100",
+    "category_confidence": 0.9
+  },
+  {
+    "message_id": "495",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Recurring buy success - 2023-08-17 07:02:00 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:33:50.279763",
+    "category_confidence": 0.9
+  },
+  {
+    "message_id": "496",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-08-17 07:00:19 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:33:53.717336",
+    "category_confidence": 0.9
+  },
+  {
+    "message_id": "497",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-08-17 07:00:09 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:33:56.786788",
+    "category_confidence": 0.9
+  },
+  {
+    "message_id": "510",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-08-14 14:00:48 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:34:00.314464",
+    "category_confidence": 0.81
+  },
+  {
+    "message_id": "527",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-08-09 14:00:48 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:34:06.972564",
+    "category_confidence": 0.85
+  },
+  {
+    "message_id": "528",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-08-09 14:00:47 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:34:10.380578",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "529",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Recurring buy success - 2023-08-09 13:02:01 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:34:14.112289",
+    "category_confidence": 0.9
+  },
+  {
+    "message_id": "530",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-08-09 13:00:28 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:34:17.783252",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "531",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Recurring buy success - 2023-08-09 10:02:02 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:34:21.992744",
+    "category_confidence": 0.9
+  },
+  {
+    "message_id": "532",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-08-09 10:00:32 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:34:26.305224",
+    "category_confidence": 0.9
+  },
+  {
+    "message_id": "533",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Recurring buy success - 2023-08-09 07:02:01 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:34:30.084016",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "534",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-08-09 07:00:15 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:34:33.990948",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "535",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-08-08 14:00:52 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:34:37.597816",
+    "category_confidence": 0.85
+  },
+  {
+    "message_id": "536",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-08-08 14:00:45 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:34:42.156343",
+    "category_confidence": 0.88
+  },
+  {
+    "message_id": "537",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-08-08 14:00:35 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:34:46.429949",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "538",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Recurring buy success - 2023-08-08 07:02:01 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:34:54.299780",
+    "category_confidence": 0.9
+  },
+  {
+    "message_id": "539",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-08-08 07:00:18 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:34:58.962460",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "540",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-08-07 14:00:56 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:35:03.373804",
+    "category_confidence": 0.82
+  },
+  {
+    "message_id": "541",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Recurring buy success - 2023-08-07 07:02:03 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:35:07.520788",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "542",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-08-07 07:00:10 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:35:11.364704",
+    "category_confidence": 0.94
+  },
+  {
+    "message_id": "543",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-08-06 14:01:10 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:35:15.148716",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "544",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Recurring buy success - 2023-08-06 07:02:02 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:35:19.906554",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "545",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-08-06 07:00:16 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:35:25.078399",
+    "category_confidence": 0.94
+  },
+  {
+    "message_id": "546",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-08-05 14:01:06 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:35:29.468390",
+    "category_confidence": 0.9
+  },
+  {
+    "message_id": "547",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Recurring buy success - 2023-08-05 07:02:02 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:35:33.657229",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "548",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-08-05 07:00:10 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:35:39.175763",
+    "category_confidence": 0.9
+  },
+  {
+    "message_id": "549",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-08-04 14:01:04 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:35:43.752863",
+    "category_confidence": 0.84
+  },
+  {
+    "message_id": "550",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Recurring buy success - 2023-08-04 07:02:02 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:35:47.057150",
+    "category_confidence": 0.88
+  },
+  {
+    "message_id": "551",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-08-04 07:00:10 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:35:51.744439",
+    "category_confidence": 0.9
+  },
+  {
+    "message_id": "552",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-08-03 14:01:03 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:35:56.369087",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "553",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Recurring buy success - 2023-08-03 07:02:01 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:36:00.652172",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "554",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Recurring buy success - 2023-08-03 07:02:00 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:36:05.463288",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "555",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-08-03 07:00:22 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:36:09.351066",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "556",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-08-03 07:00:11 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:36:13.358708",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "557",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[BINANCE] Mise \u00e0 jour des conditions d\u2019utilisation des cl\u00e9s API Binance - 2023-08-03 06:47:52 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:36:17.944065",
+    "category_confidence": 0.9
+  },
+  {
+    "message_id": "558",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-08-02 14:00:58 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:36:21.750219",
+    "category_confidence": 0.79
+  },
+  {
+    "message_id": "559",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-08-02 14:00:56 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:36:25.919582",
+    "category_confidence": 0.95
+  },
+  {
+    "message_id": "560",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Recurring buy success - 2023-08-02 13:02:01 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:36:30.362028",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "561",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-08-02 13:00:29 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:36:34.849609",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "562",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Recurring buy success - 2023-08-02 10:02:02 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:36:38.650543",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "563",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-08-02 10:00:17 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:36:43.040846",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "564",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Recurring buy success - 2023-08-02 07:02:03 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:36:48.072696",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "565",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-08-02 07:00:18 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:36:51.161966",
+    "category_confidence": 0.9
+  },
+  {
+    "message_id": "566",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-08-01 14:01:03 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:36:54.307307",
+    "category_confidence": 0.82
+  },
+  {
+    "message_id": "567",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-08-01 14:00:52 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:36:57.856964",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "568",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-08-01 14:00:41 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:37:01.367611",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "569",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Recurring buy success - 2023-08-01 07:02:04 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:37:05.279187",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "570",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-08-01 07:00:18 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:37:08.208087",
+    "category_confidence": 0.9
+  },
+  {
+    "message_id": "571",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-07-31 14:01:27 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:37:11.054023",
+    "category_confidence": 0.9
+  },
+  {
+    "message_id": "572",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Recurring buy success - 2023-07-31 07:02:04 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:37:14.084877",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "573",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-07-31 07:00:18 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:37:17.906450",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "574",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-07-30 14:01:18 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:37:21.575886",
+    "category_confidence": 0.83
+  },
+  {
+    "message_id": "575",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Recurring buy success - 2023-07-30 07:02:02 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:37:25.425267",
+    "category_confidence": 0.87
+  },
+  {
+    "message_id": "576",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-07-30 07:00:12 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:37:29.178433",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "577",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-07-29 14:01:08 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:37:32.471525",
+    "category_confidence": 0.9
+  },
+  {
+    "message_id": "578",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Recurring buy success - 2023-07-29 07:02:02 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:37:36.844182",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "579",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-07-29 07:00:17 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:37:39.722894",
+    "category_confidence": 0.95
+  },
+  {
+    "message_id": "580",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-07-28 14:00:56 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:37:43.370728",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "581",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Recurring buy success - 2023-07-28 07:02:02 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:37:46.835339",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "582",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-07-28 07:00:19 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:37:50.535857",
+    "category_confidence": 0.9
+  },
+  {
+    "message_id": "583",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-07-27 14:01:00 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:37:54.098323",
+    "category_confidence": 0.82
+  },
+  {
+    "message_id": "507",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Recurring buy success - 2023-07-27 07:02:01 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:39:06.775528",
+    "category_confidence": 0.9
+  },
+  {
+    "message_id": "508",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Recurring buy success - 2023-07-27 07:02:01 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:39:10.048697",
+    "category_confidence": 0.9
+  },
+  {
+    "message_id": "509",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-07-27 07:00:14 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:39:13.154118",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "511",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-07-26 14:00:49 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:39:16.372963",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "512",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-07-26 14:00:49 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:39:19.811336",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "513",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Recurring buy success - 2023-07-26 13:02:01 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:39:23.258060",
+    "category_confidence": 0.92
+  },
+  {
+    "message_id": "514",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-07-26 13:00:29 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:39:26.342304",
+    "category_confidence": 0.94
+  },
+  {
+    "message_id": "515",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Recurring buy success - 2023-07-26 10:02:01 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:39:29.862909",
+    "category_confidence": 0.9
+  },
+  {
+    "message_id": "516",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-07-26 10:00:33 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:39:34.529423",
+    "category_confidence": 0.9
+  },
+  {
+    "message_id": "517",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Recurring buy success - 2023-07-26 07:02:01 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:39:38.877960",
+    "category_confidence": 0.9
+  },
+  {
+    "message_id": "518",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-07-26 07:00:18 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:39:42.893386",
+    "category_confidence": 0.9
+  },
+  {
+    "message_id": "519",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-07-25 14:00:54 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:39:46.651561",
+    "category_confidence": 0.95
+  },
+  {
+    "message_id": "520",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-07-25 14:00:46 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:39:50.772864",
+    "category_confidence": 0.84
+  },
+  {
+    "message_id": "521",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-07-25 14:00:36 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:39:55.173051",
+    "category_confidence": 0.9
+  },
+  {
+    "message_id": "522",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Recurring buy success - 2023-07-25 07:02:02 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:39:59.224001",
+    "category_confidence": 0.9
+  },
+  {
+    "message_id": "523",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-07-25 07:00:16 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:40:04.518676",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "524",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-07-24 14:00:51 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:40:07.951257",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "525",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Recurring buy success - 2023-07-24 07:02:03 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:40:11.307571",
+    "category_confidence": 0.9
+  },
+  {
+    "message_id": "526",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-07-24 07:00:19 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:40:15.049706",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "584",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Recurring buy success - 2023-07-06 07:02:00 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:40:19.787233",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "489",
+    "from_email": "\"Proton\" <no-reply@calendar.proton.me>",
+    "subject": "Reminder: event starting at 9:30 AM (GMT+2) on Friday, July 28",
+    "score": 30,
+    "category": "PRO",
+    "criteria_breakdown": {
+      "category_PRO": 30
+    },
+    "action_type": "review",
+    "status": "new",
+    "detected_at": "2025-12-08T10:40:24.150549",
+    "category_confidence": 0.78
+  },
+  {
+    "message_id": "495",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-07-23 14:00:57 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:40:27.037466",
+    "category_confidence": 0.84
+  },
+  {
+    "message_id": "519",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-07-17 07:00:09 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:40:30.555536",
+    "category_confidence": 0.95
+  },
+  {
+    "message_id": "524",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-07-15 14:00:54 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:40:34.084540",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "531",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Recurring buy success - 2023-07-13 07:02:01 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:40:38.169604",
+    "category_confidence": 0.9
+  },
+  {
+    "message_id": "532",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-07-13 07:00:18 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:40:42.077321",
+    "category_confidence": 0.9
+  },
+  {
+    "message_id": "533",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-07-13 07:00:15 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:40:46.653448",
+    "category_confidence": 0.9
+  },
+  {
+    "message_id": "544",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-07-11 14:00:42 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:40:50.700599",
+    "category_confidence": 0.78
+  },
+  {
+    "message_id": "553",
+    "from_email": "\"Proton\" <no-reply@calendar.proton.me>",
+    "subject": "Reminder: event starting on Monday, July 10 (all day)",
+    "score": 30,
+    "category": "PRO",
+    "criteria_breakdown": {
+      "category_PRO": 30
+    },
+    "action_type": "review",
+    "status": "new",
+    "detected_at": "2025-12-08T10:40:54.314751",
+    "category_confidence": 0.8
+  },
+  {
+    "message_id": "554",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-07-09 14:00:59 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:40:59.192990",
+    "category_confidence": 0.84
+  },
+  {
+    "message_id": "555",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-07-08 14:00:51 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:41:02.623999",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "556",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Recurring buy success - 2023-07-08 07:02:01 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:41:05.830504",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "557",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Buy with card successful - 2023-07-08 07:00:23 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:41:09.432819",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "538",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "[Binance] Recurring buy success - 2023-07-11 07:02:01 (UTC)",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T10:42:14.009478",
+    "category_confidence": 0.88
+  },
+  {
+    "message_id": "279",
+    "from_email": "\"Binance\" <donotreply@directmail.binance.com>",
+    "subject": "[Binance] Spot Grid Exceeds Price Range Notification - 2025-12-08 08:11:30 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T11:14:49.910229",
+    "category_confidence": 0.8
+  },
+  {
+    "message_id": "3286",
+    "from_email": "\"EcoleDirecte\" <information@ecoledirecte.fr>",
+    "subject": "EcoleDirecte : APEL : Fete de la Lumiere - vendredi 12 d\u00e9cembre",
+    "score": 30,
+    "category": "PRO",
+    "criteria_breakdown": {
+      "category_PRO": 30
+    },
+    "action_type": "review",
+    "status": "new",
+    "detected_at": "2025-12-08T11:24:42.895680",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "3350",
+    "from_email": "\"Beverley Harper\" <beverley.harper@iqaimmigration.com>",
+    "subject": "Re: Application Update",
+    "score": 40,
+    "category": "PRO",
+    "criteria_breakdown": {
+      "category_PRO": 30,
+      "relocation_keyword": 10
+    },
+    "action_type": "review",
+    "status": "new",
+    "detected_at": "2025-12-08T11:30:14.075427",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "3473",
+    "from_email": "\"Arles Axenergie\" <arles@axenergie.eu>",
+    "subject": "RE: devis et reparation PAC",
+    "score": 30,
+    "category": "PRO",
+    "criteria_breakdown": {
+      "category_PRO": 30
+    },
+    "action_type": "review",
+    "status": "new",
+    "detected_at": "2025-12-08T11:52:53.992245",
+    "category_confidence": 0.9
+  },
+  {
+    "message_id": "3496",
+    "from_email": "\"AXENERGIE\" <admin@payplug.com>",
+    "subject": "AXENERGIE - Payment of \u20ac300.00 approved",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T12:19:01.924418",
+    "category_confidence": 0.9
+  },
+  {
+    "message_id": "559",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-07-04 14:00:45 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T12:34:47.496873",
+    "category_confidence": 0.78
+  },
+  {
+    "message_id": "560",
+    "from_email": "\"Binance\" <do-not-reply@ses.binance.com>",
+    "subject": "Recurring Buy Deduction Reminder - 2023-07-04 14:00:35 (UTC)",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T12:34:50.254687",
+    "category_confidence": 0.84
+  },
+  {
+    "message_id": "3628",
+    "from_email": "\"SAP Cloud Identity Services No Reply\" <ias@notifications.sap.com>",
+    "subject": "Welcome to Cirrus Logic!",
+    "score": 30,
+    "category": "PRO",
+    "criteria_breakdown": {
+      "category_PRO": 30
+    },
+    "action_type": "review",
+    "status": "new",
+    "detected_at": "2025-12-08T13:02:56.466845",
+    "category_confidence": 0.84
+  },
+  {
+    "message_id": "3732",
+    "from_email": "\"CHERI Alliance\" <nextcloud@cheri-alliance.org>",
+    "subject": "CHERI Alliance Nextcloud will be down for maintenance  from 18:00 UTC today, 08 Dec 2025",
+    "score": 45,
+    "category": "PRO",
+    "criteria_breakdown": {
+      "category_PRO": 30,
+      "urgent_keywords": 15
+    },
+    "action_type": "respond",
+    "status": "new",
+    "detected_at": "2025-12-08T13:31:10.638392",
+    "category_confidence": 0.9
+  },
+  {
+    "message_id": "3890",
+    "from_email": "\"Google Agenda\" <calendar-notification@google.com>",
+    "subject": "Notification: rdv Claude ferret  avenue d'Angoul\u00eame Montpellier - lun. 8 d\u00e9c. 2025 15:00 - 16:00 (UT",
+    "score": 45,
+    "category": "PRO",
+    "criteria_breakdown": {
+      "category_PRO": 30,
+      "urgent_keywords": 15
+    },
+    "action_type": "respond",
+    "status": "new",
+    "detected_at": "2025-12-08T14:31:36.735810",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "3932",
+    "from_email": "<no-reply@uptevia.com>",
+    "subject": " [202] - Ex\u00e9cution de votre ordre de vente",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T15:15:47.856273",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "4023",
+    "from_email": "<support@hetzner.com>",
+    "subject": "Your access details",
+    "score": 45,
+    "category": "PRO",
+    "criteria_breakdown": {
+      "category_PRO": 30,
+      "urgent_keywords": 15
+    },
+    "action_type": "respond",
+    "status": "new",
+    "detected_at": "2025-12-08T16:47:55.848911",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "4109",
+    "from_email": "\"Google Families\" <families-noreply@google.com>",
+    "subject": "Rappel : Modifications \u00e0 venir du r\u00f4le de julie dans votre groupe familial",
+    "score": 45,
+    "category": "PRO",
+    "criteria_breakdown": {
+      "category_PRO": 30,
+      "urgent_keywords": 15
+    },
+    "action_type": "respond",
+    "status": "new",
+    "detected_at": "2025-12-08T18:00:44.790528",
+    "category_confidence": 0.72
+  },
+  {
+    "message_id": "4141",
+    "from_email": "\"Google\" <no-reply@accounts.google.com>",
+    "subject": "Demande de cr\u00e9ation d'archive des donn\u00e9es Google",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T18:14:54.109709",
+    "category_confidence": 0.5
+  },
+  {
+    "message_id": "77",
+    "from_email": "\"Amazon.fr\" <order-update@amazon.fr>",
+    "subject": "Livraison\u00a0: 1\u00a0article | Num\u00e9ro de commande 405-7397022-5247507",
+    "score": 40,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T21:58:23.472014",
+    "category_confidence": 0.85
+  },
+  {
+    "message_id": "384",
+    "from_email": "\"Crypto.com\" <hello@crypto.com>",
+    "subject": "Achat r\u00e9current effectu\u00e9",
+    "score": 50,
+    "category": "BANQUE",
+    "criteria_breakdown": {
+      "category_BANQUE": 25,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "verify",
+    "status": "new",
+    "detected_at": "2025-12-08T21:58:28.089575",
+    "category_confidence": 0.95
+  },
+  {
+    "message_id": "60",
+    "from_email": "\"Votre Banque Populaire\" <contact@md.banquepopulaire.fr>",
+    "subject": "Faites des \u00e9conomies en pr\u00e9parant les f\u00eates avec Extra +X",
+    "score": 30,
+    "category": "VENTE",
+    "criteria_breakdown": {
+      "category_VENTE": 5,
+      "urgent_keywords": 15,
+      "relocation_keyword": 10
+    },
+    "action_type": "track",
+    "status": "new",
+    "detected_at": "2025-12-09T16:39:14.343507",
+    "category_confidence": 0.93
+  },
+  {
+    "message_id": "5221",
+    "from_email": "\"NETH-Nursery Admin\" <neth-nurseryadmin@nethercurrie.edin.sch.uk>",
+    "subject": "RE: RE: Nursery Place Enquiry for January 2026",
+    "score": 30,
+    "category": "PRO",
+    "criteria_breakdown": {
+      "category_PRO": 30
+    },
+    "action_type": "review",
+    "status": "new",
+    "detected_at": "2025-12-09T16:39:32.846985",
+    "category_confidence": 0.8
+  },
+  {
+    "message_id": "116",
+    "from_email": "\"dan.sullivan@cheri-alliance.org\" <dan.sullivan@cheri-alliance.org>",
+    "subject": "[Ambassadors] Action Required: Your Ambassador Hub Profile",
+    "score": 45,
+    "category": "PRO",
+    "criteria_breakdown": {
+      "category_PRO": 30,
+      "urgent_keywords": 15
+    },
+    "action_type": "respond",
+    "status": "new",
+    "detected_at": "2025-12-09T16:39:53.842793",
+    "category_confidence": 0.86
+  },
+  {
+    "message_id": "117",
+    "from_email": "\"dan.sullivan@cheri-alliance.org\" <dan.sullivan@cheri-alliance.org>",
+    "subject": "[CHERI Alliance - All] Ambassador Talk: Tariq Kurd - \"Why the EU CRA will cause an explosion in popu",
+    "score": 30,
+    "category": "PRO",
+    "criteria_breakdown": {
+      "category_PRO": 30
+    },
+    "action_type": "review",
+    "status": "new",
+    "detected_at": "2025-12-09T16:39:57.477795",
+    "category_confidence": 0.84
+  },
+  {
+    "message_id": "107",
+    "from_email": "\"Wellfound\" <team@hi.wellfound.com>",
+    "subject": "New jobs: Manager, Cybersecurity Operations NA (Remote) at Johnson Controls and  0 more jobs",
+    "score": 45,
+    "category": "PRO",
+    "criteria_breakdown": {
+      "category_PRO": 30,
+      "urgent_keywords": 15
+    },
+    "action_type": "respond",
+    "status": "new",
+    "detected_at": "2025-12-09T16:40:08.554557",
+    "category_confidence": 0.9
+  },
+  {
+    "message_id": "2",
+    "from_email": "Enqu\u00eate France Travail <enquetefrancetravail@satisfaction.francetravail.fr>",
+    "subject": "Suite \u00e0 votre dernier \u00e9change par mail avec votre conseiller France Travail",
+    "score": 45,
+    "category": "PRO",
+    "criteria_breakdown": {
+      "category_PRO": 30,
+      "urgent_keywords": 15
+    },
+    "action_type": "respond",
+    "status": "new",
+    "detected_at": "2025-12-09T17:14:39.664473",
+    "category_confidence": 0.92
+  }
+]

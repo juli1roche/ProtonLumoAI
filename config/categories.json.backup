@@ -1,0 +1,322 @@
+{
+  "LABELS_GMAIL.COM_23_12_2022_14:55": {
+    "name": "LABELS_GMAIL.COM_23_12_2022_14:55",
+    "folder": "Labels/gmail.com 23-12-2022 14:55",
+    "keywords": [],
+    "confidence_threshold": 0.7,
+    "priority": 2,
+    "description": "Dossier auto-détecté : Labels/gmail.com 23-12-2022 14:55"
+  },
+  "LABELS_[IMAP]\\\\_SENT": {
+    "name": "LABELS_[IMAP]\\\\_SENT",
+    "folder": "Labels/[Imap]\\\\/Sent",
+    "keywords": [],
+    "confidence_threshold": 0.7,
+    "priority": 2,
+    "description": "Dossier auto-détecté : Labels/[Imap]\\\\/Sent"
+  },
+  "LABELS_@SANENOTSPAM": {
+    "name": "LABELS_@SANENOTSPAM",
+    "folder": "Labels/@SaneNotSpam",
+    "keywords": [],
+    "confidence_threshold": 0.7,
+    "priority": 2,
+    "description": "Dossier auto-détecté : Labels/@SaneNotSpam"
+  },
+  "LABELS_@SANETONIGHT": {
+    "name": "LABELS_@SANETONIGHT",
+    "folder": "Labels/@SaneTonight",
+    "keywords": [],
+    "confidence_threshold": 0.7,
+    "priority": 2,
+    "description": "Dossier auto-détecté : Labels/@SaneTonight"
+  },
+  "FOLDERS_BINANCEORG": {
+    "name": "FOLDERS_BINANCEORG",
+    "folder": "Folders/binanceorg",
+    "keywords": [],
+    "confidence_threshold": 0.7,
+    "priority": 2,
+    "description": "Dossier auto-détecté : Folders/binanceorg"
+  },
+  "FOLDERS_ARCHIVES_2021": {
+    "name": "FOLDERS_ARCHIVES_2021",
+    "folder": "Folders/Archives/2021",
+    "keywords": [],
+    "confidence_threshold": 0.7,
+    "priority": 2,
+    "description": "Dossier auto-détecté : Folders/Archives/2021"
+  },
+  "FOLDERS": {
+    "name": "FOLDERS",
+    "folder": "Folders",
+    "keywords": [],
+    "confidence_threshold": 0.7,
+    "priority": 2,
+    "description": "Dossier auto-détecté : Folders"
+  },
+  "FOLDERS_ARCHIVES_2022": {
+    "name": "FOLDERS_ARCHIVES_2022",
+    "folder": "Folders/Archives/2022",
+    "keywords": [],
+    "confidence_threshold": 0.7,
+    "priority": 2,
+    "description": "Dossier auto-détecté : Folders/Archives/2022"
+  },
+  "FOLDERS_ARCHIVES_2024": {
+    "name": "FOLDERS_ARCHIVES_2024",
+    "folder": "Folders/Archives/2024",
+    "keywords": [],
+    "confidence_threshold": 0.7,
+    "priority": 2,
+    "description": "Dossier auto-détecté : Folders/Archives/2024"
+  },
+  "LABELS_@SANENOREPLIES": {
+    "name": "LABELS_@SANENOREPLIES",
+    "folder": "Labels/@SaneNoReplies",
+    "keywords": [],
+    "confidence_threshold": 0.7,
+    "priority": 2,
+    "description": "Dossier auto-détecté : Labels/@SaneNoReplies"
+  },
+  "LABELS__SNOOZED": {
+    "name": "LABELS__SNOOZED",
+    "folder": "Labels/-Snoozed",
+    "keywords": [],
+    "confidence_threshold": 0.7,
+    "priority": 2,
+    "description": "Dossier auto-détecté : Labels/-Snoozed"
+  },
+  "FOLDERS_ARCHIVES_2025": {
+    "name": "FOLDERS_ARCHIVES_2025",
+    "folder": "Folders/Archives/2025",
+    "keywords": [],
+    "confidence_threshold": 0.7,
+    "priority": 2,
+    "description": "Dossier auto-détecté : Folders/Archives/2025"
+  },
+  "FOLDERS_ARCHIVES": {
+    "name": "FOLDERS_ARCHIVES",
+    "folder": "Folders/Archives",
+    "keywords": [],
+    "confidence_threshold": 0.7,
+    "priority": 2,
+    "description": "Dossier auto-détecté : Folders/Archives"
+  },
+  "LABELS_@SANEBLACKHOLE": {
+    "name": "LABELS_@SANEBLACKHOLE",
+    "folder": "Labels/@SaneBlackHole",
+    "keywords": [],
+    "confidence_threshold": 0.7,
+    "priority": 2,
+    "description": "Dossier auto-détecté : Labels/@SaneBlackHole"
+  },
+  "LABELS_[IMAP]\\\\_TRASH": {
+    "name": "LABELS_[IMAP]\\\\_TRASH",
+    "folder": "Labels/[Imap]\\\\/Trash",
+    "keywords": [],
+    "confidence_threshold": 0.7,
+    "priority": 2,
+    "description": "Dossier auto-détecté : Labels/[Imap]\\\\/Trash"
+  },
+  "LABELS_BLOCKFI": {
+    "name": "LABELS_BLOCKFI",
+    "folder": "Labels/blockfi",
+    "keywords": [],
+    "confidence_threshold": 0.7,
+    "priority": 2,
+    "description": "Dossier auto-détecté : Labels/blockfi"
+  },
+  "LABELS_GITHUB": {
+    "name": "LABELS_GITHUB",
+    "folder": "Labels/github",
+    "keywords": [],
+    "confidence_threshold": 0.7,
+    "priority": 2,
+    "description": "Dossier auto-détecté : Labels/github"
+  },
+  "LABELS_@SANETOMORROW": {
+    "name": "LABELS_@SANETOMORROW",
+    "folder": "Labels/@SaneTomorrow",
+    "keywords": [],
+    "confidence_threshold": 0.7,
+    "priority": 2,
+    "description": "Dossier auto-détecté : Labels/@SaneTomorrow"
+  },
+  "FOLDERS_BANK": {
+    "name": "FOLDERS_BANK",
+    "folder": "Folders/BANK",
+    "keywords": [],
+    "confidence_threshold": 0.7,
+    "priority": 2,
+    "description": "Dossier auto-détecté : Folders/BANK"
+  },
+  "LABELS_UNDEFINED_23_12_2022_15:03": {
+    "name": "LABELS_UNDEFINED_23_12_2022_15:03",
+    "folder": "Labels/undefined 23-12-2022 15:03",
+    "keywords": [],
+    "confidence_threshold": 0.7,
+    "priority": 2,
+    "description": "Dossier auto-détecté : Labels/undefined 23-12-2022 15:03"
+  },
+  "FOLDERS_ARCHIVES_2026": {
+    "name": "FOLDERS_ARCHIVES_2026",
+    "folder": "Folders/Archives/2026",
+    "keywords": [],
+    "confidence_threshold": 0.7,
+    "priority": 2,
+    "description": "Dossier auto-détecté : Folders/Archives/2026"
+  },
+  "LABELS_ETORO": {
+    "name": "LABELS_ETORO",
+    "folder": "Labels/etoro",
+    "keywords": [],
+    "confidence_threshold": 0.7,
+    "priority": 2,
+    "description": "Dossier auto-détecté : Labels/etoro"
+  },
+  "LABELS_@SANEREMINDERS": {
+    "name": "LABELS_@SANEREMINDERS",
+    "folder": "Labels/@SaneReminders",
+    "keywords": [],
+    "confidence_threshold": 0.7,
+    "priority": 2,
+    "description": "Dossier auto-détecté : Labels/@SaneReminders"
+  },
+  "FOLDERS_ARCHIVES_2023": {
+    "name": "FOLDERS_ARCHIVES_2023",
+    "folder": "Folders/Archives/2023",
+    "keywords": [],
+    "confidence_threshold": 0.7,
+    "priority": 2,
+    "description": "Dossier auto-détecté : Folders/Archives/2023"
+  },
+  "LABELS_DELIVERY": {
+    "name": "LABELS_DELIVERY",
+    "folder": "Labels/delivery",
+    "keywords": [],
+    "confidence_threshold": 0.7,
+    "priority": 2,
+    "description": "Dossier auto-détecté : Labels/delivery"
+  },
+  "STARRED": {
+    "name": "STARRED",
+    "folder": "Starred",
+    "keywords": [],
+    "confidence_threshold": 0.7,
+    "priority": 2,
+    "description": "Dossier auto-détecté : Starred"
+  },
+  "LABELS__SNOOZED_FOLLOW_UP": {
+    "name": "LABELS__SNOOZED_FOLLOW_UP",
+    "folder": "Labels/-Snoozed-Follow-up",
+    "keywords": [],
+    "confidence_threshold": 0.7,
+    "priority": 2,
+    "description": "Dossier auto-détecté : Labels/-Snoozed-Follow-up"
+  },
+  "LABELS_IMPORTANT": {
+    "name": "LABELS_IMPORTANT",
+    "folder": "Labels/Important",
+    "keywords": [],
+    "confidence_threshold": 0.7,
+    "priority": 2,
+    "description": "Dossier auto-détecté : Labels/Important"
+  },
+  "LABELS_@SANEARCHIVE": {
+    "name": "LABELS_@SANEARCHIVE",
+    "folder": "Labels/@SaneArchive",
+    "keywords": [],
+    "confidence_threshold": 0.7,
+    "priority": 2,
+    "description": "Dossier auto-détecté : Labels/@SaneArchive"
+  },
+  "LABELS_[IMAP]\\\\": {
+    "name": "LABELS_[IMAP]\\\\",
+    "folder": "Labels/[Imap]\\\\",
+    "keywords": [],
+    "confidence_threshold": 0.7,
+    "priority": 2,
+    "description": "Dossier auto-détecté : Labels/[Imap]\\\\"
+  },
+  "LABELS_FAMILLE": {
+    "name": "LABELS_FAMILLE",
+    "folder": "Labels/famille",
+    "keywords": [],
+    "confidence_threshold": 0.7,
+    "priority": 2,
+    "description": "Dossier auto-détecté : Labels/famille"
+  },
+  "LABELS_CIRRUS": {
+    "name": "LABELS_CIRRUS",
+    "folder": "Labels/CIRRUS",
+    "keywords": [],
+    "confidence_threshold": 0.7,
+    "priority": 2,
+    "description": "Dossier auto-détecté : Labels/CIRRUS"
+  },
+  "FOLDERS_GMAIL": {
+    "name": "FOLDERS_GMAIL",
+    "folder": "Folders/GMAIL",
+    "keywords": [],
+    "confidence_threshold": 0.7,
+    "priority": 2,
+    "description": "Dossier auto-détecté : Folders/GMAIL"
+  },
+  "FOLDERS_OM": {
+    "name": "FOLDERS_OM",
+    "folder": "Folders/om",
+    "keywords": [],
+    "confidence_threshold": 0.7,
+    "priority": 2,
+    "description": "Dossier auto-détecté : Folders/om"
+  },
+  "FOLDERS_PROTON": {
+    "name": "FOLDERS_PROTON",
+    "folder": "Folders/proton",
+    "keywords": [],
+    "confidence_threshold": 0.7,
+    "priority": 2,
+    "description": "Dossier auto-détecté : Folders/proton"
+  },
+  "LABELS": {
+    "name": "LABELS",
+    "folder": "Labels",
+    "keywords": [],
+    "confidence_threshold": 0.7,
+    "priority": 2,
+    "description": "Dossier auto-détecté : Labels"
+  },
+  "LABELS_CRYPTO.COM": {
+    "name": "LABELS_CRYPTO.COM",
+    "folder": "Labels/crypto.com",
+    "keywords": [],
+    "confidence_threshold": 0.7,
+    "priority": 2,
+    "description": "Dossier auto-détecté : Labels/crypto.com"
+  },
+  "LABELS_OM_*": {
+    "name": "LABELS_OM_*",
+    "folder": "Labels/OM *",
+    "keywords": [],
+    "confidence_threshold": 0.7,
+    "priority": 2,
+    "description": "Dossier auto-détecté : Labels/OM *"
+  },
+  "LABELS_BINANCE": {
+    "name": "LABELS_BINANCE",
+    "folder": "Labels/binance",
+    "keywords": [],
+    "confidence_threshold": 0.7,
+    "priority": 2,
+    "description": "Dossier auto-détecté : Labels/binance"
+  },
+  "LABELS_@SANENEWS": {
+    "name": "LABELS_@SANENEWS",
+    "folder": "Labels/@SaneNews",
+    "keywords": [],
+    "confidence_threshold": 0.7,
+    "priority": 2,
+    "description": "Dossier auto-détecté : Labels/@SaneNews"
+  }
+}
