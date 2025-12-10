@@ -6,6 +6,21 @@ Le format est basé sur [Keep a Changelog](https://keepachangelog.com/fr/1.0.0/)
 et ce projet adhère à [Semantic Versioning](https://semver.org/lang/fr/).
 
 ---
+## Version 2.1.0 - 2025-12-10
+
+### 🚀 Nouveautés Majeures
+- **Batch Processing (IA)** : Traitement des emails par lots de 10. Réduit les coûts API de ~90% et accélère le tri (x5).
+- **Adaptive Memory (Cerveau)** : Le système apprend de vos dossiers existants et de vos corrections. Si un expéditeur est connu, il est classé instantanément sans coût API.
+- **Auto-Sync** : Détection automatique de l'arborescence des dossiers ProtonMail et mise à jour de la configuration en temps réel.
+
+### 🛡️ Stabilité & Correctifs
+- **Fix Critique IMAP** : Résolution définitive de l'erreur `command SEARCH illegal in state AUTH` via un filtrage strict des dossiers système (`[Imap]`, `All Mail`).
+- **Fix Connexion** : Correction de la perte de connexion dans la boucle de Feedback (Refresh token).
+- **Fix Encodage** : Gestion robuste des accents dans les noms de dossiers (ex: "Réseaux sociaux", "À traiter").
+
+### ⚙️ Technique
+- Architecture modulaire : Séparation claire entre `BatchClassifier`, `AdaptiveLearner` et `EmailProcessor`.
+- Optimisation des exclusions : Le scan ignore désormais les dossiers volumineux (Archives, Trash) pour économiser les ressources.
 
 ## [1.1.1] - 2025-12-08
 

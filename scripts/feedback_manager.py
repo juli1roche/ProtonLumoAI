@@ -1,85 +1,68 @@
 #!/usr/bin/env python3
-# ============================================================================
-# FEEDBACK MANAGER - ProtonLumoAI (Version Corrigée)
-# ============================================================================
-
 import email
 from email.header import decode_header
 from loguru import logger
-from email_classifier import EmailClassifier
+from adaptive_learner import AdaptiveLearner
 
 class FeedbackManager:
-    """Surveille les corrections de l'utilisateur et améliore le modèle."""
-
-    def __init__(self, classifier: EmailClassifier, mailbox_client):
+    def __init__(self, classifier, mailbox):
         self.classifier = classifier
-        self.mailbox = mailbox_client
+        self.mailbox = mailbox
+        self.learner = AdaptiveLearner() # Le cerveau
 
     def check_for_feedback(self):
-        """Vérifie les dossiers de feedback."""
+        """Scanne les dossiers Training/* et Feedback/*."""
         try:
-            status, folders = self.mailbox.client.list()
-            if status != 'OK': return
+            _, folders = self.mailbox.client.list()
+            for f in folders:
+                name = f.decode().split(' "/" ')[-1].strip('"')
 
-            for folder_info in folders:
-                folder_name = folder_info.decode().split(' "/" ')[-1].strip('"')
-                if folder_name.startswith("Feedback/") or folder_name.startswith("Training/"):
-                    self._process_feedback_folder(folder_name)
-
+                # Détection des dossiers d'apprentissage
+                if name.startswith("Training/") or name.startswith("Feedback/"):
+                    category = name.split("/")[-1].upper()
+                    # Vérifier si c'est une catégorie valide
+                    if category in self.classifier.categories:
+                        self._process_folder(name, category)
         except Exception as e:
-            logger.error(f"Erreur check feedback: {e}")
+            logger.error(f"Erreur feedback: {e}")
 
-    def _process_feedback_folder(self, folder_name: str):
+    def _process_folder(self, folder, category):
         try:
-            self.mailbox.client.select(f'"{folder_name}"')
-            status, messages = self.mailbox.client.search(None, 'ALL')
-            if status != 'OK' or not messages[0]: return
+            self.mailbox.client.select(f'"{folder}"')
+            _, ids = self.mailbox.client.search(None, 'ALL')
+            if not ids[0]: return
 
-            email_ids = messages[0].split()
-            correct_category = folder_name.split('/')[-1].upper()
+            email_ids = ids[0].split()
+            logger.info(f"🎓 Apprentissage ({category}): {len(email_ids)} emails")
 
-            if correct_category not in self.classifier.categories:
-                logger.warning(f"Catégorie inconnue dans le feedback: {correct_category}")
-                return
+            for e_id in email_ids:
+                _, data = self.mailbox.client.fetch(e_id, '(RFC822)')
+                msg = email.message_from_bytes(data[0][1])
 
-            logger.info(f"Apprentissage : {len(email_ids)} emails trouvés dans {folder_name}")
+                subject = self._decode(msg.get("Subject", ""))
+                sender = self._decode(msg.get("From", ""))
+                body_preview = "" # Pas besoin du body pour les règles simples
 
-            for email_id in email_ids:
-                status, msg_data = self.mailbox.client.fetch(email_id, '(RFC822)')
-                if status != 'OK': continue
-
-                msg = email.message_from_bytes(msg_data[0][1])
-                subject = self._decode_header(msg.get("Subject", ""))
-                
-                body = ""
-                if msg.is_multipart():
-                    for part in msg.walk():
-                        if part.get_content_type() == "text/plain":
-                            body = part.get_payload(decode=True).decode(errors='ignore')
-                            break
-                else:
-                    body = msg.get_payload(decode=True).decode(errors='ignore')
-
-                self.classifier.add_training_example(
-                    email_id=email_id.decode(),
+                # 1. Enregistrer la règle dans le cerveau
+                self.learner.learn_from_correction(
+                    email_id=e_id.decode(),
                     subject=subject,
-                    body=body,
-                    category=correct_category,
-                    user_corrected=True
+                    sender=sender,
+                    body_preview=body_preview,
+                    wrong_category="UNKNOWN", # On ne sait pas ce que c'était avant
+                    correct_category=category
                 )
-                
-                if self.classifier.use_lumo:
-                    self.classifier.train_lumo(correct_category, [f"{subject} {body[:500]}"])
 
-                self.mailbox.client.store(email_id, '+FLAGS', '\\Deleted')
+                # 2. Supprimer l'email (il a servi)
+                self.mailbox.client.store(e_id, '+FLAGS', '\\Deleted')
 
             self.mailbox.client.expunge()
-            logger.success(f"✓ Modèle mis à jour avec {len(email_ids)} exemples pour {correct_category}")
+            logger.success(f"✓ Cerveau mis à jour avec {len(email_ids)} règles pour {category}")
 
         except Exception as e:
-            logger.error(f"Erreur traitement dossier {folder_name}: {e}")
+            logger.error(f"Erreur dossier {folder}: {e}")
 
-    def _decode_header(self, header):
+    def _decode(self, header):
         try:
             parts = decode_header(header)
             return ''.join([str(p[0], p[1] or 'utf-8') if isinstance(p[0], bytes) else str(p[0]) for p in parts])

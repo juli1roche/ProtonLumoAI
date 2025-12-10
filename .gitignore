@@ -58,3 +58,5 @@ htmlcov/
 *.tmp
 *.temp
 *.bak
+*.kate-swp
+data/summary_*
