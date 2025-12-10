@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # ============================================================================
-# EMAIL PROCESSOR - ProtonLumoAI v2.1 (Bugfix Release)
-# Fixes: Stale connection in FeedbackManager loop
+# EMAIL PROCESSOR - ProtonLumoAI v2.2 (Unseen Fix)
+# Fixes: Keeps emails 'Unread' using IMAP PEEK
 # ============================================================================
 
 import os
@@ -93,7 +93,7 @@ class EmailProcessor:
         self.running = True
 
         signal.signal(signal.SIGINT, self._stop)
-        logger.info(f"🚀 ProtonLumoAI v2.1 Démarré [Batching: {BATCH_SIZE} | Learning: Actif]")
+        logger.info(f"🚀 ProtonLumoAI v2.2 Démarré [PEEK Mode: ON]")
 
     def _stop(self, sig, frame):
         logger.warning("Arrêt demandé...")
@@ -185,7 +185,9 @@ class EmailProcessor:
                 if not self.running: break
 
                 try:
-                    _, data = mailbox.client.fetch(e_id, '(RFC822)')
+                    # 👇 CHANGEMENT MAJEUR ICI : BODY.PEEK[] au lieu de RFC822
+                    # Cela permet de lire le mail SANS le marquer comme lu (Seen)
+                    _, data = mailbox.client.fetch(e_id, '(BODY.PEEK[])')
                     raw = data[0][1]
                     parsed = self.parser.parse(raw)
 
@@ -218,11 +220,10 @@ class EmailProcessor:
                 # Nouvelle connexion à chaque cycle
                 with ProtonMailBox() as mailbox:
 
-                    # CORRECTION CRITIQUE ICI : Mise à jour de la mailbox pour le feedback
                     if not self.feedback_manager:
                         self.feedback_manager = FeedbackManager(self.classifier, mailbox)
                     else:
-                        self.feedback_manager.mailbox = mailbox  # <--- C'est la ligne qui manquait !
+                        self.feedback_manager.mailbox = mailbox
 
                     # Apprentissage
                     self.feedback_manager.check_for_feedback()
@@ -230,8 +231,17 @@ class EmailProcessor:
                     # Scan des dossiers
                     _, folders = mailbox.client.list()
                     for f in folders:
-                        raw_name = f.decode()
-                        name = raw_name.split(' "/" ')[-1].strip('"')
+                        try:
+                            raw_name = f.decode()
+                        except:
+                            raw_name = f.decode('latin-1')
+
+                        # Parsing IMAP robuste
+                        parts = raw_name.split(' "')
+                        if len(parts) >= 2:
+                            name = parts[-1].strip('"')
+                        else:
+                            name = raw_name.split(' "/" ')[-1].strip('"')
 
                         if any(skip in name for skip in SKIP_FOLDERS): continue
                         if name.startswith("Training") or name.startswith("Feedback"): continue
