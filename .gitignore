@@ -60,3 +60,4 @@ htmlcov/
 *.bak
 *.kate-swp
 data/summary_*
+data/checkpoint.json
