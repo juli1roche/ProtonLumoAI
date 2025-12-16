@@ -61,3 +61,5 @@ htmlcov/
 *.kate-swp
 data/summary_*
 data/checkpoint.json
+*.backup
+*_OLD.py*
