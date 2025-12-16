@@ -17,15 +17,15 @@ from dotenv import load_dotenv
 
 # Imports locaux dynamiques
 try:
-    from email_classifier import EmailClassifier
-    from email_classifier_batch import BatchClassifier, BatchEmail
+    from email_classifier_optimized import EmailClassifierOptimized as EmailClassifier
+    from email_classifier_batch import BatchEmail
     from email_parser import EmailParser
     from feedback_manager import FeedbackManager
     from adaptive_learner import AdaptiveLearner
 except ImportError:
     sys.path.append(os.path.dirname(os.path.abspath(__file__)))
-    from email_classifier import EmailClassifier
-    from email_classifier_batch import BatchClassifier, BatchEmail
+    from email_classifier_optimized import EmailClassifierOptimized as EmailClassifier
+    from email_classifier_batch import BatchEmail
     from email_parser import EmailParser
     from feedback_manager import FeedbackManager
     from adaptive_learner import AdaptiveLearner
@@ -86,7 +86,6 @@ class ProtonMailBox:
 class EmailProcessor:
     def __init__(self):
         self.classifier = EmailClassifier()
-        self.batch_classifier = BatchClassifier(enable_batch=True, batch_size=BATCH_SIZE)
         self.parser = EmailParser()
         self.learner = AdaptiveLearner()
         self.feedback_manager = None
@@ -126,15 +125,23 @@ class EmailProcessor:
                     body=item['body']
                 ))
 
-        # IA Batch
+           # IA Batch
         if unknown_emails:
             valid_cats = list(self.classifier.categories.keys())
             logger.info(f"🤖 IA Batch: Classification de {len(unknown_emails)} emails...")
-            results = self.batch_classifier.classify_batch(unknown_emails, valid_cats)
 
-            for uid, res in results.items():
-                category = res['category']
-                logger.info(f"✨ IA: Email {uid} -> {category} ({res['confidence']:.2f})")
+            # Convertir BatchEmail vers le format du classifier optimisé
+            emails_for_batch = [
+                {'email_id': e.email_id, 'subject': e.subject, 'body': e.body, 'from': getattr(e, 'from_address', '')}
+                for e in unknown_emails
+            ]
+            results = self.classifier.classify_batch(emails_for_batch)
+
+            for res in results:
+                category = res.category
+                uid = res.email_id
+
+                logger.info(f"✨ IA: Email {uid} -> {category} ({res.confidence:.2f}) [{res.method}]")
                 actions.append({'uid': uid, 'category': category})
 
         # Déplacements
